@@ -5,6 +5,7 @@ pragma solidity 0.8.19;
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {Ownable2StepUpgradeable} from "@openzeppelin/contracts-upgradeable/access/Ownable2StepUpgradeable.sol";
 import {SafeERC20, IERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import {ERC20Upgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 
 contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
     using SafeERC20 for IERC20;
@@ -16,11 +17,10 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
     function initialize(address _liquidityPool, address _usdc) external initializer {
         __UUPSUpgradeable_init();
         __Ownable2Step_init();
-        __Pausable_init();
         _transferOwnership(msg.sender);
     }
 
-    function createFuture() external onlyOwner whenNotPaused {
+    function createFuture() external onlyOwner {
 
     }
 
