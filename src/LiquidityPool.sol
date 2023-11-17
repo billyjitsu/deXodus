@@ -4,7 +4,6 @@ pragma solidity 0.8.19;
 
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {Ownable2StepUpgradeable} from "@openzeppelin/contracts-upgradeable/access/Ownable2StepUpgradeable.sol";
-import {PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import {SafeERC20, IERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 /* MAIN FUNCTIONALITY:
@@ -12,13 +11,10 @@ import {SafeERC20, IERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeE
      - Liq Providers rmv liquidity
      - Function with futures access control to send usdc to the user if wining the trade
      - Is earning rewards from the traders that lose money
+     - Add fee?????
 */
 
-contract LiquidityPool is
-    UUPSUpgradeable,
-    ERC20Upgradeable,
-    Ownable2StepUpgradeable
-{
+contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgradeable {
     using SafeERC20 for IERC20;
 
     IERC20 public USDC;
@@ -40,13 +36,16 @@ contract LiquidityPool is
     }
 
     function addLiquidity(address _to, uint256 _amountIn) external {
-        uint256 lpAmountOut = calcLpOut(amount);
-        USDC.transferFrom(msg.sender, address(this), amount);
-        _mint(to, lpAmountOut);
+        uint256 lpAmountOut = calcLpOut(_amountIn);
+        USDC.transferFrom(msg.sender, address(this), _amountIn);
+        _mint(_to, lpAmountOut);
     }
 
-    function withdrawLiquidity() external {
-
+    // see if there's any liquidity blocked
+    function withdrawLiquidity(address _to, uint256 _amount) external {
+        uint256 liquidityOut = calcUsdcOut(_amount);
+        _burn(msg.sender, _amount);
+        USDC.safeTransfer(_to, liquidityOut);
     }
 
     // access control to the futures contract
@@ -70,9 +69,15 @@ contract LiquidityPool is
         } else {
             uint256 price = (totalSupply() * 1e6) /
                 USDC.balanceOf(address(this));
-            lpOut = (amountIn * price) / 1e6;
+            lpOut = (amountIn * price) / 1e6 - 1;
         }
         return lpOut;
+    }
+
+    function calcUsdcOut(
+        uint256 amount
+    ) public view returns (uint256 liquidityOut) {
+        liquidityOut = (USDC.balanceOf(address(this)) * amount) / totalSupply();
     }
 
     //////////////////////////////////////////
