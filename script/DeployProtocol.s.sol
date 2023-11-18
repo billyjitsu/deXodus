@@ -7,6 +7,7 @@ import {HelperConfig} from "./HelperConfig.s.sol";
 import {Futures} from "../src/Futures.sol";
 import {LiquidityPool} from "../src/LiquidityPool.sol";
 import {MockUSDC} from "../src/mocks/MockUSDC.sol";
+import {DXD} from "../src/DXD.sol";
 import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
     /*
@@ -27,7 +28,8 @@ contract DeployProtocol is Script {
         address futuresAddr,
         address liquidityPoolAddr,
         address mockUsdcAddr,
-        HelperConfig helperConfig
+        HelperConfig helperConfig,
+        address dxdAddr
         )
     {
 
@@ -42,11 +44,13 @@ contract DeployProtocol is Script {
         liquidityPoolAddr = _deployLiquidityPool();
         mockUsdcAddr = _deployMockUSDC();
 
+        DXD(dxdAddr).initialize("deXodus Exchange", "DXD");
+
         // LIQUIDITY POOL INITIALIZATION
         LiquidityPool(liquidityPoolAddr).initialize(
             mockUsdcAddr,
-            "deXodus",
-            "dxd"
+            "deXodus LP",
+            "DXDLP"
         );
 
         // FUTURES INITIALIZATION
@@ -61,7 +65,8 @@ contract DeployProtocol is Script {
             futuresAddr,
             liquidityPoolAddr,
             mockUsdcAddr,
-            helperConfig
+            helperConfig,
+            dxdAddr
         );
     }
 

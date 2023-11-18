@@ -56,7 +56,7 @@ contract FuturesTest is Test {
 
         // vm.startPrank(owner);
         DeployProtocol deployer = new DeployProtocol();
-        (futuresAddr, liquidityPoolAddr, usdcAddr, helperConfig) = deployer
+        (futuresAddr, liquidityPoolAddr, usdcAddr, helperConfig,) = deployer
             .run();
 
         (wethAddr, wbtcAddr, deployerKey) = helperConfig.activeNetworkConfig();
