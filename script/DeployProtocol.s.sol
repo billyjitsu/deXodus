@@ -78,8 +78,15 @@ contract DeployProtocol is Script {
         // FUTURES INITIALIZATION
         Futures(futuresAddr).initialize(
             liquidityPoolAddr,
-            mockUsdcAddr
+            priceFeedAddr,
+            mockUsdcAddr,
+            weth,
+            wbtc,
+            10005
         );
+
+        Futures(futuresAddr).createFuture("WBTC:USDC");
+        Futures(futuresAddr).createFuture("WETH:USDC");
 
         vm.stopBroadcast();
 

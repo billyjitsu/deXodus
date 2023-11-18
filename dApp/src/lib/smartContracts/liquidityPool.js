@@ -4,15 +4,15 @@ import {
   waitForTransaction,
 } from "@wagmi/core";
 
-import { USDC_ABI } from "../../../smartContracts/USDC_Test";
+import { LiquidityPoolABI } from "../../../smartContracts/liquidityPool";
 import { floatToBigInt } from "@/lib/bigIntegers";
 
-export async function approve(Erc20Address, spenderAddress, amount) {
+export async function addLiquidity(address, amount, deployment) {
   const config = await prepareWriteContract({
-    address: Erc20Address,
-    abi: USDC_ABI,
-    functionName: "approve",
-    args: [spenderAddress, floatToBigInt(amount)],
+    address: deployment.liquidity,
+    abi: LiquidityPoolABI,
+    functionName: "addLiquidity",
+    args: [address, floatToBigInt(amount)],
     //chainId: chain.id,
   });
 

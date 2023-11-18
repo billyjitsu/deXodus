@@ -26,15 +26,16 @@ export default function Layout({ children, ...props }) {
       futures: process.env.NEXT_PUBLIC_SEPOLIA_FUTURES_ADDRESS,
       liquidity: process.env.NEXT_PUBLIC_SEPOLIA_LIQUIDITY_ADDRESS,
       usdc: process.env.NEXT_PUBLIC_SEPOLIA_USDC_TEST,
+      dxd: process.env.NEXT_PUBLIC_SEPOLIA_DXD_TEST,
     };
-    console.log("deployment", deployment);
 
     setDeploymentData(deployment);
   }, [chain]);
 
-  const futuresAddress = getDeploymentAddress("futures");
+  console.log("ethIsLoading1inch", ethIsLoading1inch);
+  console.log("btcIsLoading1inch", btcIsLoading1inch);
 
-  if (ethIsLoading1inch || btcIsLoading1inch || !price || !futuresAddress) {
+  if (ethIsLoading1inch || btcIsLoading1inch || !price ) {
     console.log("loading");
     return (
       <div className="w-full flex justify-center items-center h-screen bg-[#0d1116]">
