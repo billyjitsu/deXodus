@@ -26,6 +26,7 @@ export default function Layout({ children, ...props }) {
       futures: process.env.NEXT_PUBLIC_SEPOLIA_FUTURES_ADDRESS,
       liquidity: process.env.NEXT_PUBLIC_SEPOLIA_LIQUIDITY_ADDRESS,
       usdc: process.env.NEXT_PUBLIC_SEPOLIA_USDC_TEST,
+      dxd: process.env.NEXT_PUBLIC_SEPOLIA_DXD_TEST,
     };
 
     setDeploymentData(deployment);
