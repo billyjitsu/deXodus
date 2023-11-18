@@ -5,8 +5,10 @@ libs = ["lib"]
 
 remappings = [
     "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
-    #"@uniswap/contracts/=lib/v3-core/contracts/",
     "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+    "@chainlink/contracts/=lib/chainlink/contracts/",
+    "@api3/contracts/=lib/contracts/contracts/",
+    "@api3/airnode-protocol-v1/contracts=lib/airnode-protocol-v1/contracts/",
 ]
 
 viaIR = true # needed to avoid stack too deep errors while compiling ;)

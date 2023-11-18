@@ -8,6 +8,7 @@ import {Futures} from "../src/Futures.sol";
 import {LiquidityPool} from "../src/LiquidityPool.sol";
 import {MockUSDC} from "../src/mocks/MockUSDC.sol";
 import {DXD} from "../src/DXD.sol";
+import {PriceFeed} from "../src/PriceFeed.sol";
 import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
     /*
@@ -18,24 +19,30 @@ import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.s
     */
 
 contract DeployProtocol is Script {
+    address[] public tokens;
+    address[] public priceFeed;
 
     address weth;
     address wbtc;
     address usdc;
     uint256 deployerKey;
 
+    address wethUsdPriceFeed;
+    address wbtcUsdPriceFeed;
+
     function run() external returns (
         address futuresAddr,
         address liquidityPoolAddr,
         address mockUsdcAddr,
         HelperConfig helperConfig,
-        address dxdAddr
+        address dxdAddr,
+        address priceFeedAddr
         )
     {
 
         helperConfig = new HelperConfig();
 
-        (weth, wbtc, deployerKey) = helperConfig.activeNetworkConfig();
+        (weth, wbtc, deployerKey, wbtcUsdPriceFeed, wethUsdPriceFeed) = helperConfig.activeNetworkConfig();
 
         vm.startBroadcast(deployerKey);
         // vm.startBroadcast();
@@ -43,6 +50,21 @@ contract DeployProtocol is Script {
         futuresAddr = _deployFutures();
         liquidityPoolAddr = _deployLiquidityPool();
         mockUsdcAddr = _deployMockUSDC();
+        dxdAddr = _deployDXD();
+        priceFeedAddr = _deployPriceFeed();
+
+        tokens.push(wbtc);
+        tokens.push(weth);
+        priceFeed.push(wbtcUsdPriceFeed);
+        priceFeed.push(wethUsdPriceFeed);
+
+        PriceFeed(priceFeedAddr).initialize(
+            usdc,
+            tokens,
+            priceFeed,
+            wbtc,
+            weth
+        );
 
         DXD(dxdAddr).initialize("deXodus Exchange", "DXD");
 
@@ -66,7 +88,8 @@ contract DeployProtocol is Script {
             liquidityPoolAddr,
             mockUsdcAddr,
             helperConfig,
-            dxdAddr
+            dxdAddr,
+            priceFeedAddr
         );
     }
 
@@ -95,8 +118,20 @@ contract DeployProtocol is Script {
         );
         return address(mockUSDCProxy);
     }
-        
 
+    function _deployDXD() internal returns (address) {
+        DXD dxd = new DXD();
+        bytes memory bytess;
+        ERC1967Proxy dxdProxy = new ERC1967Proxy(address(dxd), bytess);
+        return address(dxdProxy);
+    }
+
+    function _deployPriceFeed() internal returns (address) {
+        PriceFeed _priceFeed = new PriceFeed();
+        bytes memory bytess;
+        ERC1967Proxy priceFeedProxy = new ERC1967Proxy(address(_priceFeed), bytess);
+        return address(priceFeedProxy);
+    }
         
 
     

@@ -10,6 +10,8 @@ contract HelperConfig is Script {
         address weth;
         address wbtc;
         uint256 deployerKey;
+        address wbtcUsdPriceFeed;
+        address wethUsdPriceFeed;
     }
 
     constructor() {
@@ -36,6 +38,8 @@ contract HelperConfig is Script {
         arbitrumGoerliNetworkConfig = NetworkConfig({
             weth: 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2,
             wbtc: 0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599,
+            wethUsdPriceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306, // ETH / USD
+            wbtcUsdPriceFeed: 0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43,
             deployerKey: vm.envUint("PRIVATE_KEY")
         });
     }
@@ -48,6 +52,8 @@ contract HelperConfig is Script {
         arbitrumGoerliNetworkConfig = NetworkConfig({
             weth: 0xb16F35c0Ae2912430DAc15764477E179D9B9EbEa,
             wbtc: 0xFF82bB6DB46Ad45F017e2Dfb478102C7671B13b3,
+            wethUsdPriceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306, // ETH / USD
+            wbtcUsdPriceFeed: 0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43,
             deployerKey: vm.envUint("PRIVATE_KEY")
         });
     }
@@ -60,6 +66,8 @@ contract HelperConfig is Script {
         arbitrumGoerliNetworkConfig = NetworkConfig({
             weth: 0xF4e3B0de5021d400A3D2F4A5F286593D447d7569,
             wbtc: 0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063,
+            wethUsdPriceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306, // ETH / USD
+            wbtcUsdPriceFeed: 0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43,
             deployerKey: vm.envUint("PRIVATE_KEY")
         });
     }
@@ -72,6 +80,8 @@ contract HelperConfig is Script {
         arbitrumGoerliNetworkConfig = NetworkConfig({
             weth: 0x980B62Da83eFf3D4576C647993b0c1D7faf17c73,
             wbtc: 0x806D0637Fbbfb4EB9efD5119B0895A5C7Cbc66e7,
+            wethUsdPriceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306, // ETH / USD
+            wbtcUsdPriceFeed: 0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43,
             deployerKey: vm.envUint("PRIVATE_KEY")
         });
     }
