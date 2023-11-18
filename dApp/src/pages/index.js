@@ -1,6 +1,8 @@
+import { Navbar } from "@/components/layout/navbar";
 import TradingViewWidget from "@/components/tradingViewWidget";
 import Head from "next/head";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { ExchangeUserInfo } from "@/components/exchangeUserInfo";
 import { Trading } from "@/components/trading";
 import { useMarket } from "@/context/marketContext";
 import { usePrice } from "@/context/priceContext";
@@ -17,7 +19,7 @@ export default function Home() {
           <main className="flex-auto w-full min-h-screen lg:static lg:max-h-full lg:overflow-visible bg-[#0d1116]">
             <Head>
               <title>
-                deXodus |{" "}
+                GamiDex |{" "}
                 {price
                   ? Number(price).toLocaleString("en", {
                       minimumFractionDigits: 2,
@@ -25,7 +27,10 @@ export default function Home() {
                     })
                   : ""}
               </title>
-              <meta name="description" content="ETH Istanbul project" />
+              <meta
+                name="description"
+                content="ETH Istanbul project"
+              />
               <link rel="icon" href="/images/favicon/bull-icon-32.png" />
             </Head>
             <div className="container mx-auto py-10 bg-[#0d1116]">
@@ -39,7 +44,7 @@ export default function Home() {
                     />
                   </div>
                   <div id="exchange-info" className="mt-6 hidden lg:block">
-                    WIP
+                    <ExchangeUserInfo />
                   </div>
                 </div>
                 <div id="right" className="grid gird-cols-1">
@@ -64,7 +69,7 @@ export default function Home() {
                 </div>
               </div>
               <div id="exchange-info" className="mt-6  lg:hidden">
-                WIP
+                <ExchangeUserInfo />
               </div>
             </div>
           </main>

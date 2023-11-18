@@ -1,46 +1,37 @@
 import { Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
-import { usePrice } from "@/context/priceContext";
 import { useErc20Allowance } from "@/hooks/useErc20Allowance";
+import { useAccount } from "wagmi";
+import { addLiquidity } from "@/lib/smartContracts/liquidityPool";
 import { approve } from "@/lib/smartContracts/erc20Functions";
-import { increasePosition } from "@/lib/smartContracts/futures";
-import { useMarket } from "@/context/marketContext";
 import { useDeployment } from "@/context/deploymentContext";
 
-export const OpenPositionButton = ({ collateral, leverage, type = "long" }) => {
-  const { market } = useMarket();
+export const AddLiquidityButton = ({ amount }) => {
   const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
-  const { getPriceByMarket } = usePrice();
-  const price = getPriceByMarket(market);
   const { deployment } = useDeployment();
+  const { address, isConnecting, isDisconnected } = useAccount();
   const { balance: allowance, isLoading: isLoadingAllowance } =
-    useErc20Allowance(deployment.usdc, deployment.futures);
+    useErc20Allowance(
+      deployment.usdc,
+      deployment.liquidity
+    );
 
-  //Size is collateral * leverage, use 2 decimals precision
-  const size = parseFloat((collateral * leverage).toFixed(2));
-
-  const handleOpenPosition = async () => {
+  const handleAddLiquidity = async () => {
     setIsLoading(true);
     try {
-      if (allowance < collateral) {
+      if (allowance < amount) {
         const approveReq = await approve(
           deployment.usdc,
-          deployment.futures,
-          collateral
+          deployment.liquidity,
+          amount
         );
       }
-      const increasePositionReq = await increasePosition(
-        market,
-        size,
-        collateral,
-        price,
-        deployment.futures,
-      );
+      const addLiquidityReq = await addLiquidity(address, amount, deployment);
       toast({
-        title: "Position opened",
-        description: "Your position has been opened successfully",
+        title: "Liquidity added",
+        description: "Your liquidity has been added successfully",
         status: "success",
         duration: 7000,
         isClosable: true,
@@ -63,12 +54,12 @@ export const OpenPositionButton = ({ collateral, leverage, type = "long" }) => {
     <Button
       colorScheme="teal"
       size="lg"
-      onClick={handleOpenPosition}
+      onClick={handleAddLiquidity}
       isLoading={isLoading}
       loadingText="Submitting"
-      isDisabled={!price}
+      className="w-32"
     >
-      {!price ? "Loading...please wait" : "Open position"}
+      Add
     </Button>
   );
 };
