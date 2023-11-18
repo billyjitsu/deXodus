@@ -29,8 +29,20 @@ dataSources:
           handler: handleAdminChanged
         - event: BeaconUpgraded(indexed address)
           handler: handleBeaconUpgraded
+        - event: ClosePosition(indexed uint256,indexed uint256,indexed
+            address,uint256,uint256,uint256,uint256,uint256,bool,uint256)
+          handler: handleClosePosition
+        - event: DecreasePosition(indexed uint256,indexed uint256,indexed
+            address,uint256,uint256,uint256,uint256,uint256,bool,uint256)
+          handler: handleDecreasePosition
+        - event: IncreasePosition(indexed uint256,indexed uint256,indexed
+            address,uint256,uint256,uint256,uint256,uint256,bool,uint256)
+          handler: handleIncreasePosition
         - event: Initialized(uint8)
           handler: handleInitialized
+        - event: LiquidatePosition(indexed uint256,indexed uint256,indexed
+            address,uint256,uint256,uint256,uint256,uint256,bool,uint256)
+          handler: handleLiquidatePosition
         - event: OpenPosition(indexed uint256,indexed uint256,indexed
             address,uint256,uint256,uint256,uint256,uint256,bool,uint256)
           handler: handleOpenPosition
