@@ -1,0 +1,43 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Futures
+    network: sepolia
+    source:
+      address: "0x76e1885CD1ED6373C321cb78cfBeF2b211816D89"
+      abi: Futures
+      startBlock: 4718964
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Initialized
+        - OpenPosition
+        - OwnershipTransferStarted
+        - OwnershipTransferred
+        - Upgraded
+      abis:
+        - name: Futures
+          file: Futures\abis\Futures.json
+      eventHandlers:
+        - event: AdminChanged(address,address)
+          handler: handleAdminChanged
+        - event: BeaconUpgraded(indexed address)
+          handler: handleBeaconUpgraded
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: OpenPosition(indexed uint256,indexed uint256,indexed
+            address,uint256,uint256,uint256,uint256,uint256,bool,uint256)
+          handler: handleOpenPosition
+        - event: OwnershipTransferStarted(indexed address,indexed address)
+          handler: handleOwnershipTransferStarted
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+      file: Futures\Futures.wasm
