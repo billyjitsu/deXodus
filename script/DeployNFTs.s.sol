@@ -9,13 +9,6 @@ import {EXD} from "../src/EXD.sol";
 import {Guardians} from "../src/NFTS/Guardians.sol";
 import {Chest} from "../src/NFTS/Chest.sol";
 
-    /*
-    STEPS FOR UPDATE DEPLOYENT SCRIPT:
-    - MAKE THE _DEPLOY FUNCTION OF THE GIVEN CONTRACT
-        - DECLARE CONTRACT VARIABLE
-        - DECLARE ADDR
-    */
-
 contract DeployNFTs is Script {
 
     function run() external returns (
@@ -26,8 +19,8 @@ contract DeployNFTs is Script {
 
         vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
 
-        address mockUsdcAddr = address(0);
-        address exdAddr = address(0);
+        address mockUsdcAddr = address(0xAB9Ad499c25204E7E4D302f1b5435cB7B9B73078);
+        address exdAddr = address(0xB4473931D8d1A7d1BCD3eDF384e53f6B2eD0542f);
 
         guardiansAddr = _deployGuardians();
         chestAddr = _deployChest(exdAddr, mockUsdcAddr, guardiansAddr);

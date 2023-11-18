@@ -11,13 +11,6 @@ import {EXD} from "../src/EXD.sol";
 import {PriceFeed} from "../src/PriceFeed.sol";
 import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
-    /*
-    STEPS FOR UPDATE DEPLOYENT SCRIPT:
-    - MAKE THE _DEPLOY FUNCTION OF THE GIVEN CONTRACT
-        - DECLARE CONTRACT VARIABLE
-        - DECLARE ADDR
-    */
-
 contract DeployProtocol is Script {
     address[] public tokens;
     address[] public priceFeed;

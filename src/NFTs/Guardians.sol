@@ -118,6 +118,10 @@ contract Guardians is ERC1155, Ownable {
                 predatorAttributes[_ids[3]].experience == _maxExp;
     }
 
+    function mintBatchFromOwner(address to, uint256[] memory ids, uint256[] memory amounts) public onlyOwner {
+        _mintBatch(to, ids, amounts, "");
+    }
+
     function mintBatch(address _to, uint256[] memory _newIds, uint256[] memory _amounts) public {
         _mintBatch(_to, _newIds, _amounts, "");
         address holder = msg.sender;
