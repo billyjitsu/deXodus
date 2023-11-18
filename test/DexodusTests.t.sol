@@ -246,6 +246,460 @@ contract FuturesTest is Test {
         vm.stopPrank();
     }
 
+    /*############################################################################
+    #################################    CORE    #################################
+    ############################################################################*/
+
+    function testProfitPredatorsCore() public {
+        logLiqPrBlance(liqPr1, "LIQPR1");
+        logLiqPrBlance(liqPr2, "LIQPR2");
+        logLiqPrBlance(liqPr3, "LIQPR3");
+        logUsdcBlance(alice, "ALICE");
+        logUsdcBlance(bobby, "BOBBY");
+        logUsdcBlance(carla, "CARLA");
+
+        vm.startPrank(liqPr1);
+        IERC20(usdc).approve(liquidityPoolAddr, usdc.balanceOf(liqPr1));
+        liquidityPool.addLiquidity(liqPr1, 100_000e6);
+        vm.stopPrank();
+
+        vm.startPrank(liqPr2);
+        IERC20(usdc).approve(liquidityPoolAddr, usdc.balanceOf(liqPr2));
+        liquidityPool.addLiquidity(liqPr2, 100_000e6);
+        vm.stopPrank();
+
+        vm.startPrank(liqPr3);
+        IERC20(usdc).approve(liquidityPoolAddr, usdc.balanceOf(liqPr3));
+        liquidityPool.addLiquidity(liqPr3, 100_000e6);
+        vm.stopPrank();
+
+        // ETH  1600
+        // BTC 33000
+
+        vm.startPrank(alice);
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        futures.increasePosition(1, 1000e6, 100e6, 1600e6, true);
+        futures.increasePosition(2, 1000e6, 100e6, 33000e6, true);
+        vm.stopPrank();
+
+        console.log(futures.positionNetValue(1600e6, alice, true, 1));
+
+        vm.startPrank(bobby);
+        usdc.approve(futuresAddr, usdc.balanceOf(bobby));
+        futures.increasePosition(1, 1000e6, 100e6, 1600e6, true);
+        futures.increasePosition(2, 1000e6, 100e6, 33000e6, true);
+        vm.stopPrank();
+
+        console.log(futures.positionNetValue(1600e6, bobby, true, 1));
+
+        // ETH  2500
+        // BTC 40000
+
+        console.log(futures.positionNetValue(2500e6, alice, true, 1));
+
+        vm.startPrank(alice);
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        futures.increasePosition(1, 1000e6, 200e6, 2500e6, true);
+        futures.increasePosition(2, 1000e6, 200e6, 40000e6, true);
+        vm.stopPrank();
+
+        console.log(futures.positionNetValue(1600e6, alice, true, 1));
+
+        // ETH  3000
+        // BTC 50000
+
+        vm.startPrank(carla);
+        usdc.approve(futuresAddr, usdc.balanceOf(carla));
+        futures.increasePosition(1, 500e6, 100e6, 3000e6, true);
+        vm.stopPrank();
+
+        vm.startPrank(alice);
+        futures.decreasePosition(1, 5000, 3000e6, true, true); // 50% of position decreasing
+        futures.decreasePosition(2, 5000, 50000e6, true, true); // 50% of position decreasing
+        vm.stopPrank();
+
+        console.log(futures.positionNetValue(3000e6, alice, true, 1));
+        console.log(futures.positionNetValue(3000e6, bobby, true, 1));
+        console.log(futures.positionNetValue(3000e6, carla, true, 1));
+
+        vm.startPrank(liqPr3);
+        liquidityPool.withdrawLiquidity(
+            liqPr3,
+            liquidityPool.balanceOf(liqPr3)
+        );
+        vm.stopPrank();
+
+        // ETH  2250
+        // BTC 36000
+
+        vm.startPrank(carla);
+        usdc.approve(futuresAddr, usdc.balanceOf(carla));
+        futures.decreasePosition(1, 10000, 2750e6, true, true);
+        vm.stopPrank();
+
+        vm.startPrank(alice);
+        futures.decreasePosition(1, 10000, 2250e6, true, true); // 50% of position decreasing
+        futures.decreasePosition(2, 10000, 36000e6, true, true); // 50% of position decreasing
+        vm.stopPrank();
+
+        console.log(futures.positionNetValue(2250e6, alice, true, 1));
+        console.log(futures.positionNetValue(2250e6, bobby, true, 1));
+        console.log(futures.positionNetValue(2250e6, carla, true, 1));
+
+        vm.startPrank(bobby);
+        futures.decreasePosition(1, 10000, 2250e6, true, true); // 50% of position decreasing
+        futures.decreasePosition(2, 10000, 36000e6, true, true); // 50% of position decreasing
+        vm.stopPrank();
+
+        console.log(futures.positionNetValue(2250e6, alice, true, 1));
+        console.log(futures.positionNetValue(2250e6, bobby, true, 1));
+        console.log(futures.positionNetValue(2250e6, carla, true, 1));
+
+        vm.startPrank(liqPr1);
+        liquidityPool.withdrawLiquidity(
+            liqPr1,
+            liquidityPool.balanceOf(liqPr1)
+        );
+        vm.stopPrank();
+
+        vm.startPrank(liqPr2);
+        liquidityPool.withdrawLiquidity(
+            liqPr2,
+            liquidityPool.balanceOf(liqPr2)
+        );
+        vm.stopPrank();
+
+        logLiqPrBlance(liqPr1, "LIQPR1");
+        logLiqPrBlance(liqPr2, "LIQPR2");
+        logLiqPrBlance(liqPr3, "LIQPR3");
+        logUsdcBlance(alice, "ALICE");
+        logUsdcBlance(bobby, "BOBBY");
+        logUsdcBlance(carla, "CARLA");
+    }
+
+    /*############################################################################
+    #####################    DECREASE POSITIONS KEEP RATIO   #####################
+    ############################################################################*/
+
+    function testDPKL1() public {
+        // FIRST INCREASE POSITION PARAMS:
+        uint256 size = 1000e6;
+        uint256 collateral = 100e6;
+        uint256 entryPrice = 2000e6;
+        bool long = true;
+
+        // SECOND DECREASE POSITION PARAMS:
+        uint256 percentageDecrease = 5000;
+        uint256 currentPrice = 2500e6;
+        bool keepLeverageRatio = true;
+
+        // EXPECTED OUTPUTS
+        uint256 usdcOut = 175e6;
+        uint256 newLeverage = 450e6;
+
+        deal(usdcAddr, alice, collateral);
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        futures.increasePosition(1, size, collateral, entryPrice, long);
+
+        uint256 id = 1;
+        address user = alice;
+        (, , , , uint256 liqPriceBefore, , ) = futures.getTraderPosition(
+            id,
+            user,
+            long
+        );
+
+        futures.decreasePosition(
+            1,
+            percentageDecrease,
+            currentPrice,
+            keepLeverageRatio,
+            true
+        );
+
+        (
+            ,
+            uint256 finalSize,
+            uint256 finalCollateral,
+            ,
+            uint256 liqPriceAfter,
+            ,
+
+        ) = futures.getTraderPosition(id, user, long);
+
+        vm.stopPrank();
+
+        assertEq(liqPriceBefore, liqPriceAfter);
+        assertEq(newLeverage, finalSize - finalCollateral);
+        assertEq(usdcOut, usdc.balanceOf(alice));
+    }
+
+    function testDPKL2() public {
+        // FIRST INCREASE POSITION PARAMS:
+        uint256 size = 50000e6;
+        uint256 collateral = 1000e6;
+        uint256 entryPrice = 28000e6;
+        bool long = true;
+
+        // SECOND DECREASE POSITION PARAMS:
+        uint256 percentageDecrease = 2500;
+        uint256 currentPrice = 30000e6;
+        bool keepLeverageRatio = true;
+
+        // EXPECTED OUTPUTS
+        uint256 usdcOut = 1143e6;
+        uint256 newLeverage = 36750e6;
+
+        deal(usdcAddr, alice, collateral);
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        futures.increasePosition(2, size, collateral, entryPrice, long);
+
+        address user = alice;
+        (, , , , uint256 liqPriceBefore, , ) = futures.getTraderPosition(
+            2,
+            user,
+            long
+        );
+
+        futures.decreasePosition(
+            2,
+            percentageDecrease,
+            currentPrice,
+            keepLeverageRatio,
+            true
+        );
+
+        (
+            ,
+            uint256 finalSize,
+            uint256 finalCollateral,
+            ,
+            uint256 liqPriceAfter,
+            ,
+
+        ) = futures.getTraderPosition(2, user, long);
+
+        assertEqPercent(liqPriceBefore, liqPriceAfter, 1); // margin error of 0.01%
+        assertEq(newLeverage, finalSize - finalCollateral);
+        assertEqPercent(usdcOut, usdc.balanceOf(alice), 5); // margin error of 0.05%
+    }
+
+    function testDPKL3() public {
+        // FIRST INCREASE POSITION PARAMS:
+        uint256 size = 750e6;
+        uint256 collateral = 250e6;
+        uint256 entryPrice = 1500e6;
+        bool long = true;
+
+        // SECOND DECREASE POSITION PARAMS:
+        uint256 percentageDecrease = 1000;
+        uint256 currentPrice = 2000e6;
+        bool keepLeverageRatio = true;
+
+        // EXPECTED OUTPUTS
+        uint256 usdcOut = 50e6;
+        uint256 newLeverage = 450e6;
+
+        deal(usdcAddr, alice, collateral);
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        futures.increasePosition(1, size, collateral, entryPrice, long);
+
+        address user = alice;
+        (, , , , uint256 liqPriceBefore, , ) = futures.getTraderPosition(
+            1,
+            user,
+            long
+        );
+
+        futures.decreasePosition(
+            1,
+            percentageDecrease,
+            currentPrice,
+            keepLeverageRatio,
+            true
+        );
+
+        (
+            ,
+            uint256 finalSize,
+            uint256 finalCollateral,
+            ,
+            uint256 liqPriceAfter,
+            ,
+
+        ) = futures.getTraderPosition(1, user, long);
+
+        assertEqPercent(liqPriceBefore, liqPriceAfter, 1); // margin error of 0.01%
+        assertEq(newLeverage, finalSize - finalCollateral);
+        assertEqPercent(usdcOut, usdc.balanceOf(alice), 5); // margin error of 0.05%
+    }
+
+    function testDPKL4() public {
+        // FIRST INCREASE POSITION PARAMS:
+        uint256 size = 150e6;
+        uint256 collateral = 10e6;
+        uint256 entryPrice = 1800e6;
+        bool long = true;
+
+        // SECOND DECREASE POSITION PARAMS:
+        uint256 percentageDecrease = 10000;
+        uint256 currentPrice = 2000e6;
+        bool keepLeverageRatio = true;
+
+        // EXPECTED OUTPUTS
+        uint256 usdcOut = 2667e4;
+        uint256 newLeverage = 0;
+
+        deal(usdcAddr, alice, collateral);
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        futures.increasePosition(1, size, collateral, entryPrice, long);
+
+        address user = alice;
+        (, , , , uint256 liqPriceBefore, , ) = futures.getTraderPosition(
+            1,
+            user,
+            long
+        );
+
+        futures.decreasePosition(
+            1,
+            percentageDecrease,
+            currentPrice,
+            keepLeverageRatio,
+            true
+        );
+
+        (
+            ,
+            uint256 finalSize,
+            uint256 finalCollateral,
+            ,
+            uint256 liqPriceAfter,
+            ,
+
+        ) = futures.getTraderPosition(1, user, long);
+
+        assertEq(0, liqPriceAfter);
+        assertEq(newLeverage, finalSize - finalCollateral);
+        assertEqPercent(usdcOut, usdc.balanceOf(alice), 5); // margin error of 0.05%
+    }
+
+    function testDPKL5() public {
+        // FIRST INCREASE POSITION PARAMS:
+        uint256 size = 150e6;
+        uint256 collateral = 10e6;
+        uint256 entryPrice = 1800e6;
+        bool long = true;
+
+        // SECOND DECREASE POSITION PARAMS:
+        uint256 percentageDecrease = 5000;
+        uint256 currentPrice = 1750e6;
+        bool keepLeverageRatio = true;
+
+        // EXPECTED OUTPUTS
+        uint256 usdcOut = 2917e3;
+        uint256 newLeverage = 70e6;
+
+        deal(usdcAddr, alice, collateral);
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        futures.increasePosition(1, size, collateral, entryPrice, long);
+
+        address user = alice;
+        (, , , , uint256 liqPriceBefore, , ) = futures.getTraderPosition(
+            1,
+            user,
+            long
+        );
+
+        futures.decreasePosition(
+            1,
+            percentageDecrease,
+            currentPrice,
+            keepLeverageRatio,
+            true
+        );
+
+        (
+            ,
+            uint256 finalSize,
+            uint256 finalCollateral,
+            ,
+            uint256 liqPriceAfter,
+            ,
+
+        ) = futures.getTraderPosition(1, user, long);
+
+        assertEqPercent(liqPriceBefore, liqPriceAfter, 1); // margin error of 0.01%
+        assertEq(newLeverage, finalSize - finalCollateral);
+        assertEqPercent(usdcOut, usdc.balanceOf(alice), 5); // margin error of 0.05%
+    }
+
+    function testDPKL6() public {
+        // FIRST INCREASE POSITION PARAMS:
+        uint256 size = 1000e6;
+        uint256 collateral = 200e6;
+        uint256 entryPrice = 1650e6;
+        bool long = true;
+
+        // SECOND DECREASE POSITION PARAMS:
+        uint256 percentageDecrease = 5000;
+        uint256 currentPrice = 2000e6;
+        bool keepLeverageRatio = true;
+
+        // EXPECTED OUTPUTS
+        uint256 usdcOut = 2061e5;
+        uint256 newLeverage = 400e6;
+
+        deal(usdcAddr, alice, collateral);
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        futures.increasePosition(1, size, collateral, entryPrice, long);
+
+        address user = alice;
+        (, , , , uint256 liqPriceBefore, , ) = futures.getTraderPosition(
+            1,
+            user,
+            long
+        );
+
+        futures.decreasePosition(
+            1,
+            percentageDecrease,
+            currentPrice,
+            keepLeverageRatio,
+            true
+        );
+
+        (
+            ,
+            uint256 finalSize,
+            uint256 finalCollateral,
+            ,
+            uint256 liqPriceAfter,
+            ,
+
+        ) = futures.getTraderPosition(1, user, long);
+
+        assertEqPercent(liqPriceBefore, liqPriceAfter, 1); // margin error of 0.01%
+        assertEq(newLeverage, finalSize - finalCollateral);
+        assertEqPercent(usdcOut, usdc.balanceOf(alice), 5); // margin error of 0.05%
+    }
+
+    function testDPKL7() public {
+        
+    }
+
     // user can provide liquidity
     function testLP001() public {
         vm.startPrank(liqPr1);
@@ -263,8 +717,8 @@ contract FuturesTest is Test {
         vm.stopPrank();
         uint256 balanceLiqPr = liquidityPool.balanceOf(liqPr1);
         uint256 totalSupply = liquidityPool.totalSupply();
-        assertEq(balanceLiqPr, (100_000e6 * 10 * 1e18) / 1e6);
-        assertEq(balanceLiqPr, totalSupply);
+        assertEq(balanceLiqPr, ((100_000e6 * 10 * 1e18) / 1e6) - 1);
+        assertEq(balanceLiqPr, totalSupply - liquidityPool.balanceOf(owner));
     }
 
     // withdraw liquidity
@@ -278,16 +732,49 @@ contract FuturesTest is Test {
             liqPr1,
             liquidityPool.balanceOf(liqPr1)
         );
-        assertEq(liquidityPool.totalSupply(), 0);
-        assertEq(usdc.balanceOf(liqPr1), firstUsdcAmount);
+        assertEq(liquidityPool.totalSupply(), liquidityPool.balanceOf(owner));
+        assertEq(usdc.balanceOf(liqPr1), firstUsdcAmount - 1);
         vm.stopPrank();
     }
+    
 
     /*###############################################################################################################################
     #######################################################                    ######################################################
     ######################################################       HELPERS        #####################################################
     #######################################################                    ######################################################
     ###############################################################################################################################*/
+
+    function logPosition(uint256 id, address user, bool long) internal {
+        (
+            uint256 a,
+            uint256 b,
+            uint256 c,
+            uint256 d,
+            uint256 e,
+            ,
+            uint256 f
+        ) = futures.getTraderPosition(id, user, long);
+        console.log("------------------------------------------");
+        console.log("##########    POSITION LOGS     ##########");
+        console.log("------------------------------------------");
+        console.log("startedAt -----> ", a);
+        console.log("size      -----> ", b);
+        console.log("collateral ----> ", c);
+        console.log("entryPrice ----> ", d);
+        console.log("liqPrice  -----> ", e);
+        console.log("long      -----> ", long);
+        // /console.log("market    -----> ", f);
+        console.log("------------------------------------------");
+    }
+
+    function logUsdcBlance(address user, string memory name) internal {
+        console.log("%s  USDC BALANCE -------> ", name, usdc.balanceOf(user));
+    }
+
+    function logLiqPrBlance(address user, string memory name) internal {
+        console.log("%s USDC BALANCE -------> ", name, usdc.balanceOf(user));
+        console.log("%s PPLP BALANCE -------> ", name, liquidityPool.balanceOf(user));
+    }
 
     function _logPosition(uint256 id, address user, bool long) internal {
         (

@@ -71,7 +71,8 @@ contract DeployProtocol is Script {
         LiquidityPool(liquidityPoolAddr).initialize(
             mockUsdcAddr,
             "deXodus LP",
-            "DXDLP"
+            "EXDLP",
+            futuresAddr
         );
 
         // FUTURES INITIALIZATION

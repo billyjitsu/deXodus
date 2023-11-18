@@ -21,8 +21,14 @@ contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgrade
     error LiquidityPool__InsufficientAvailableLiquidity(uint256 available, uint256 required);
 
     uint256 public blockedAmount;
+    address public futuresContract;
 
     IERC20 public USDC;
+
+    modifier onlyFutures() {
+        require(msg.sender == futuresContract);
+        _;
+    }
 
     constructor() {
         _disableInitializers();
@@ -31,13 +37,15 @@ contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgrade
     function initialize(
         address _usdc,
         string memory _name,
-        string memory _symbol) external initializer {
+        string memory _symbol,
+        address _futuresContract) external initializer {
         __UUPSUpgradeable_init();
         __Ownable2Step_init();
         __ERC20_init(_name, _symbol);
         _transferOwnership(msg.sender);
 
         USDC = IERC20(_usdc);
+        futuresContract = _futuresContract;
     }
 
     function addLiquidity(address _to, uint256 _amountIn) external {
@@ -94,6 +102,13 @@ contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgrade
 
     function availableLiquidity() public view returns (uint256) {
         return USDC.balanceOf(address(this)) - blockedAmount;
+    }
+
+    function benefitsToTrader(
+        address _to,
+        uint256 _amount
+    ) external onlyFutures {
+        USDC.safeTransfer(_to, _amount);
     }
 
     //////////////////////////////////////////
