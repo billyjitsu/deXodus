@@ -20,6 +20,10 @@ import {console} from "../lib/hardhat/packages/hardhat-core/console.sol";
 contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgradeable {
     using SafeERC20 for IERC20;
 
+    error LiquidityPool__InsufficientAvailableLiquidity(uint256 available, uint256 required);
+
+    uint256 public blockedAmount;
+
     IERC20 public USDC;
 
     constructor() {
@@ -53,13 +57,20 @@ contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgrade
     }
 
     // access control to the futures contract
-    function blockLiquidity() external {
-
+    function blockLiquidity(uint256 _amount) external {
+        uint256 available = availableLiquidity();
+        if (_amount > available)
+            revert LiquidityPool__InsufficientAvailableLiquidity({
+                available: available,
+                required: _amount
+            });
+        blockedAmount += _amount;
     }
 
     // only futures
-    function unblockLiquidity() external {
-
+    function unblockLiquidity(uint256 _amount) external {
+        if (blockedAmount < _amount) _amount = blockedAmount;
+        blockedAmount -= _amount;
     }
 
 
@@ -82,6 +93,10 @@ contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgrade
         uint256 amount
     ) public view returns (uint256 liquidityOut) {
         liquidityOut = (USDC.balanceOf(address(this)) * amount) / totalSupply();
+    }
+
+    function availableLiquidity() public view returns (uint256) {
+        return USDC.balanceOf(address(this)) - blockedAmount;
     }
 
     //////////////////////////////////////////
