@@ -7,6 +7,8 @@ import { usePrice } from "@/context/priceContext";
 import { useMarket } from "@/context/marketContext";
 import { useDeployment } from "@/context/deploymentContext";
 import { useNetwork } from "wagmi";
+import backgroundImage from "../../../public/images/istanbul_wallpaper_fit.png";
+import Image from "next/image";
 
 export default function Layout({ children, ...props }) {
   const { isLoading: ethIsLoading1inch } = useETH1InchPriceAggregator();
@@ -22,20 +24,32 @@ export default function Layout({ children, ...props }) {
   //Load deployment context
   useEffect(() => {
     let deployment;
-    deployment = {
-      futures: process.env.NEXT_PUBLIC_SEPOLIA_FUTURES_ADDRESS,
-      liquidity: process.env.NEXT_PUBLIC_SEPOLIA_LIQUIDITY_ADDRESS,
-      usdc: process.env.NEXT_PUBLIC_SEPOLIA_USDC_TEST,
-      dxd: process.env.NEXT_PUBLIC_SEPOLIA_DXD_TEST,
-    };
-
+    if (!chain || chain.id == "11155111") {
+      //Sepolia network id
+      deployment = {
+        futures: process.env.NEXT_PUBLIC_SEPOLIA_FUTURES_ADDRESS,
+        liquidity: process.env.NEXT_PUBLIC_SEPOLIA_LIQUIDITY_ADDRESS,
+        usdc: process.env.NEXT_PUBLIC_SEPOLIA_USDC_TEST,
+        chest: process.env.NEXT_PUBLIC_SEPOLIA_CHEST,
+        exd: process.env.NEXT_PUBLIC_SEPOLIA_EXD,
+        guardians: process.env.NEXT_PUBLIC_SEPOLIA_GUARDIANS,
+      };
+    } else {
+      deployment = {
+        futures: process.env.NEXT_PUBLIC_ZKSYNC_FUTURES_ADDRESS,
+        liquidity: process.env.NEXT_PUBLIC__ZKSYNC_LIQUIDITY_ADDRESS,
+        usdc: process.env.NEXT_PUBLIC_ZKSYNC_USDC_TEST,
+        chest: process.env.NEXT_PUBLIC_ZKSYNC_CHEST,
+        exd: process.env.NEXT_PUBLIC_ZKSYNC_EXD,
+        guardians: process.env.NEXT_PUBLIC_ZKSYNC_GUARDIANS,
+      };
+    }
     setDeploymentData(deployment);
   }, [chain]);
 
-  console.log("ethIsLoading1inch", ethIsLoading1inch);
-  console.log("btcIsLoading1inch", btcIsLoading1inch);
+  const futuresAddress = getDeploymentAddress("futures");
 
-  if (ethIsLoading1inch || btcIsLoading1inch || !price ) {
+  if (ethIsLoading1inch || btcIsLoading1inch || !price || !futuresAddress) {
     console.log("loading");
     return (
       <div className="w-full flex justify-center items-center h-screen bg-[#0d1116]">
@@ -53,12 +67,17 @@ export default function Layout({ children, ...props }) {
     return (
       <>
         <Navbar />
-        <div className="w-full">
+        <div className="relative w-full bg-[#0d1116]">
           <div className="lg:flex">
-            <main className="flex-auto w-full min-h-screen lg:static lg:max-h-full lg:overflow-visible bg-neutral-100 dark:bg-dark-bg-color dark:text-white">
+            <main className="z-40 flex-auto w-full min-h-screen lg:static lg:max-h-full lg:overflow-visible">
               {children}
             </main>
           </div>
+          <Image
+            className="z-10 opacity-10 object-contain"
+            src={backgroundImage}
+            layout="fill"
+          />
         </div>
       </>
     );

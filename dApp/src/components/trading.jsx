@@ -21,6 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { useMarket } from "@/context/marketContext";
 import { CryptoIcon } from "./cryptoIcon";
+import { NftArenaSelector } from "./nftArenaSelector";
 import { useDeployment } from "@/context/deploymentContext";
 
 export const Trading = ({ type = "long" }) => {
@@ -30,7 +31,7 @@ export const Trading = ({ type = "long" }) => {
   const [cryptoValue, setCryptoValue] = useState(0); // [BTC]
   const [leverageValue, setLeverageValue] = useState(1.1);
   const { market, setMarketData } = useMarket();
-  const { deployment } = useDeployment();
+  const { deployment } = useDeployment(); 
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
@@ -158,6 +159,9 @@ export const Trading = ({ type = "long" }) => {
               setSliderValue={setLeverageValue}
             />
           </div>
+        </div>
+        <div className="mt-12">
+          <NftArenaSelector />
         </div>
         <div className="w-fit mx-auto mt-14">
           {isMounted &&
