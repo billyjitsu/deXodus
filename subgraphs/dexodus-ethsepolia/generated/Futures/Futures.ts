@@ -50,6 +50,168 @@ export class BeaconUpgraded__Params {
   }
 }
 
+export class ClosePosition extends ethereum.Event {
+  get params(): ClosePosition__Params {
+    return new ClosePosition__Params(this);
+  }
+}
+
+export class ClosePosition__Params {
+  _event: ClosePosition;
+
+  constructor(event: ClosePosition) {
+    this._event = event;
+  }
+
+  get marketId(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get positionId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+
+  get trader(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get startedAt(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get size(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get collateral(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+
+  get entryPrice(): BigInt {
+    return this._event.parameters[6].value.toBigInt();
+  }
+
+  get liqPrice(): BigInt {
+    return this._event.parameters[7].value.toBigInt();
+  }
+
+  get long(): boolean {
+    return this._event.parameters[8].value.toBoolean();
+  }
+
+  get currentPrice(): BigInt {
+    return this._event.parameters[9].value.toBigInt();
+  }
+}
+
+export class DecreasePosition extends ethereum.Event {
+  get params(): DecreasePosition__Params {
+    return new DecreasePosition__Params(this);
+  }
+}
+
+export class DecreasePosition__Params {
+  _event: DecreasePosition;
+
+  constructor(event: DecreasePosition) {
+    this._event = event;
+  }
+
+  get marketId(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get positionId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+
+  get trader(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get startedAt(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get size(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get collateral(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+
+  get entryPrice(): BigInt {
+    return this._event.parameters[6].value.toBigInt();
+  }
+
+  get liqPrice(): BigInt {
+    return this._event.parameters[7].value.toBigInt();
+  }
+
+  get long(): boolean {
+    return this._event.parameters[8].value.toBoolean();
+  }
+
+  get currentPrice(): BigInt {
+    return this._event.parameters[9].value.toBigInt();
+  }
+}
+
+export class IncreasePosition extends ethereum.Event {
+  get params(): IncreasePosition__Params {
+    return new IncreasePosition__Params(this);
+  }
+}
+
+export class IncreasePosition__Params {
+  _event: IncreasePosition;
+
+  constructor(event: IncreasePosition) {
+    this._event = event;
+  }
+
+  get marketId(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get positionId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+
+  get trader(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get startedAt(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get size(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get collateral(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+
+  get entryPrice(): BigInt {
+    return this._event.parameters[6].value.toBigInt();
+  }
+
+  get liqPrice(): BigInt {
+    return this._event.parameters[7].value.toBigInt();
+  }
+
+  get long(): boolean {
+    return this._event.parameters[8].value.toBoolean();
+  }
+
+  get currentPrice(): BigInt {
+    return this._event.parameters[9].value.toBigInt();
+  }
+}
+
 export class Initialized extends ethereum.Event {
   get params(): Initialized__Params {
     return new Initialized__Params(this);
@@ -65,6 +227,60 @@ export class Initialized__Params {
 
   get version(): i32 {
     return this._event.parameters[0].value.toI32();
+  }
+}
+
+export class LiquidatePosition extends ethereum.Event {
+  get params(): LiquidatePosition__Params {
+    return new LiquidatePosition__Params(this);
+  }
+}
+
+export class LiquidatePosition__Params {
+  _event: LiquidatePosition;
+
+  constructor(event: LiquidatePosition) {
+    this._event = event;
+  }
+
+  get marketId(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get positionId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+
+  get trader(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get startedAt(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get size(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get collateral(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+
+  get entryPrice(): BigInt {
+    return this._event.parameters[6].value.toBigInt();
+  }
+
+  get liqPrice(): BigInt {
+    return this._event.parameters[7].value.toBigInt();
+  }
+
+  get long(): boolean {
+    return this._event.parameters[8].value.toBoolean();
+  }
+
+  get currentPrice(): BigInt {
+    return this._event.parameters[9].value.toBigInt();
   }
 }
 
@@ -542,21 +758,6 @@ export class Futures extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  borrowingFee(): BigInt {
-    let result = super.call("borrowingFee", "borrowingFee():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_borrowingFee(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("borrowingFee", "borrowingFee():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   calcLiquidationPrice(
     _position: Futures__calcLiquidationPriceInput_positionStruct
   ): BigInt {
@@ -592,36 +793,6 @@ export class Futures extends ethereum.SmartContract {
 
   try_counter(): ethereum.CallResult<BigInt> {
     let result = super.tryCall("counter", "counter():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  executionFee(): BigInt {
-    let result = super.call("executionFee", "executionFee():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_executionFee(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("executionFee", "executionFee():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  fundingFee(): BigInt {
-    let result = super.call("fundingFee", "fundingFee():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_fundingFee(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("fundingFee", "fundingFee():(uint256)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -726,21 +897,6 @@ export class Futures extends ethereum.SmartContract {
     );
   }
 
-  governance(): Address {
-    let result = super.call("governance", "governance():(address)", []);
-
-    return result[0].toAddress();
-  }
-
-  try_governance(): ethereum.CallResult<Address> {
-    let result = super.tryCall("governance", "governance():(address)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
   liquidationThreshold(): BigInt {
     let result = super.call(
       "liquidationThreshold",
@@ -833,29 +989,6 @@ export class Futures extends ethereum.SmartContract {
         value[7].toBigInt()
       )
     );
-  }
-
-  makerTradingFee(): BigInt {
-    let result = super.call(
-      "makerTradingFee",
-      "makerTradingFee():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_makerTradingFee(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "makerTradingFee",
-      "makerTradingFee():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   owner(): Address {
@@ -969,25 +1102,6 @@ export class Futures extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  priceImpactFee(): BigInt {
-    let result = super.call("priceImpactFee", "priceImpactFee():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_priceImpactFee(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "priceImpactFee",
-      "priceImpactFee():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   proxiableUUID(): Bytes {
     let result = super.call("proxiableUUID", "proxiableUUID():(bytes32)", []);
 
@@ -1060,29 +1174,6 @@ export class Futures extends ethereum.SmartContract {
         value[7].toBigInt()
       )
     );
-  }
-
-  takerTradingFee(): BigInt {
-    let result = super.call(
-      "takerTradingFee",
-      "takerTradingFee():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_takerTradingFee(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "takerTradingFee",
-      "takerTradingFee():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   validFuture(_futureId: BigInt): boolean {
@@ -1232,48 +1323,6 @@ export class CreateFutureCall__Outputs {
   }
 }
 
-export class DecreaseCollateralCall extends ethereum.Call {
-  get inputs(): DecreaseCollateralCall__Inputs {
-    return new DecreaseCollateralCall__Inputs(this);
-  }
-
-  get outputs(): DecreaseCollateralCall__Outputs {
-    return new DecreaseCollateralCall__Outputs(this);
-  }
-}
-
-export class DecreaseCollateralCall__Inputs {
-  _call: DecreaseCollateralCall;
-
-  constructor(call: DecreaseCollateralCall) {
-    this._call = call;
-  }
-
-  get _futureId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get _percentageDecrease(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get _currentPrice(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-
-  get _long(): boolean {
-    return this._call.inputValues[3].value.toBoolean();
-  }
-}
-
-export class DecreaseCollateralCall__Outputs {
-  _call: DecreaseCollateralCall;
-
-  constructor(call: DecreaseCollateralCall) {
-    this._call = call;
-  }
-}
-
 export class DecreasePositionCall extends ethereum.Call {
   get inputs(): DecreasePositionCall__Inputs {
     return new DecreasePositionCall__Inputs(this);
@@ -1316,48 +1365,6 @@ export class DecreasePositionCall__Outputs {
   _call: DecreasePositionCall;
 
   constructor(call: DecreasePositionCall) {
-    this._call = call;
-  }
-}
-
-export class IncreaseCollateralCall extends ethereum.Call {
-  get inputs(): IncreaseCollateralCall__Inputs {
-    return new IncreaseCollateralCall__Inputs(this);
-  }
-
-  get outputs(): IncreaseCollateralCall__Outputs {
-    return new IncreaseCollateralCall__Outputs(this);
-  }
-}
-
-export class IncreaseCollateralCall__Inputs {
-  _call: IncreaseCollateralCall;
-
-  constructor(call: IncreaseCollateralCall) {
-    this._call = call;
-  }
-
-  get _futureId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get _collateral(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get _currentPrice(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-
-  get _long(): boolean {
-    return this._call.inputValues[3].value.toBoolean();
-  }
-}
-
-export class IncreaseCollateralCall__Outputs {
-  _call: IncreaseCollateralCall;
-
-  constructor(call: IncreaseCollateralCall) {
     this._call = call;
   }
 }
@@ -1518,190 +1525,6 @@ export class RenounceOwnershipCall__Outputs {
   _call: RenounceOwnershipCall;
 
   constructor(call: RenounceOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class SetGovernanceCall extends ethereum.Call {
-  get inputs(): SetGovernanceCall__Inputs {
-    return new SetGovernanceCall__Inputs(this);
-  }
-
-  get outputs(): SetGovernanceCall__Outputs {
-    return new SetGovernanceCall__Outputs(this);
-  }
-}
-
-export class SetGovernanceCall__Inputs {
-  _call: SetGovernanceCall;
-
-  constructor(call: SetGovernanceCall) {
-    this._call = call;
-  }
-
-  get _newGovernance(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class SetGovernanceCall__Outputs {
-  _call: SetGovernanceCall;
-
-  constructor(call: SetGovernanceCall) {
-    this._call = call;
-  }
-}
-
-export class SetTradingFeesCall extends ethereum.Call {
-  get inputs(): SetTradingFeesCall__Inputs {
-    return new SetTradingFeesCall__Inputs(this);
-  }
-
-  get outputs(): SetTradingFeesCall__Outputs {
-    return new SetTradingFeesCall__Outputs(this);
-  }
-}
-
-export class SetTradingFeesCall__Inputs {
-  _call: SetTradingFeesCall;
-
-  constructor(call: SetTradingFeesCall) {
-    this._call = call;
-  }
-
-  get _makerFee(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get _takerFee(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class SetTradingFeesCall__Outputs {
-  _call: SetTradingFeesCall;
-
-  constructor(call: SetTradingFeesCall) {
-    this._call = call;
-  }
-}
-
-export class SetborrowingFeeCall extends ethereum.Call {
-  get inputs(): SetborrowingFeeCall__Inputs {
-    return new SetborrowingFeeCall__Inputs(this);
-  }
-
-  get outputs(): SetborrowingFeeCall__Outputs {
-    return new SetborrowingFeeCall__Outputs(this);
-  }
-}
-
-export class SetborrowingFeeCall__Inputs {
-  _call: SetborrowingFeeCall;
-
-  constructor(call: SetborrowingFeeCall) {
-    this._call = call;
-  }
-
-  get _borrowingFee(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class SetborrowingFeeCall__Outputs {
-  _call: SetborrowingFeeCall;
-
-  constructor(call: SetborrowingFeeCall) {
-    this._call = call;
-  }
-}
-
-export class SetexecutionFeeCall extends ethereum.Call {
-  get inputs(): SetexecutionFeeCall__Inputs {
-    return new SetexecutionFeeCall__Inputs(this);
-  }
-
-  get outputs(): SetexecutionFeeCall__Outputs {
-    return new SetexecutionFeeCall__Outputs(this);
-  }
-}
-
-export class SetexecutionFeeCall__Inputs {
-  _call: SetexecutionFeeCall;
-
-  constructor(call: SetexecutionFeeCall) {
-    this._call = call;
-  }
-
-  get _executionFee(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class SetexecutionFeeCall__Outputs {
-  _call: SetexecutionFeeCall;
-
-  constructor(call: SetexecutionFeeCall) {
-    this._call = call;
-  }
-}
-
-export class SetfundingFeeCall extends ethereum.Call {
-  get inputs(): SetfundingFeeCall__Inputs {
-    return new SetfundingFeeCall__Inputs(this);
-  }
-
-  get outputs(): SetfundingFeeCall__Outputs {
-    return new SetfundingFeeCall__Outputs(this);
-  }
-}
-
-export class SetfundingFeeCall__Inputs {
-  _call: SetfundingFeeCall;
-
-  constructor(call: SetfundingFeeCall) {
-    this._call = call;
-  }
-
-  get _fundingFee(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class SetfundingFeeCall__Outputs {
-  _call: SetfundingFeeCall;
-
-  constructor(call: SetfundingFeeCall) {
-    this._call = call;
-  }
-}
-
-export class SetpriceImpactFeeCall extends ethereum.Call {
-  get inputs(): SetpriceImpactFeeCall__Inputs {
-    return new SetpriceImpactFeeCall__Inputs(this);
-  }
-
-  get outputs(): SetpriceImpactFeeCall__Outputs {
-    return new SetpriceImpactFeeCall__Outputs(this);
-  }
-}
-
-export class SetpriceImpactFeeCall__Inputs {
-  _call: SetpriceImpactFeeCall;
-
-  constructor(call: SetpriceImpactFeeCall) {
-    this._call = call;
-  }
-
-  get _priceImpactFee(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class SetpriceImpactFeeCall__Outputs {
-  _call: SetpriceImpactFeeCall;
-
-  constructor(call: SetpriceImpactFeeCall) {
     this._call = call;
   }
 }
