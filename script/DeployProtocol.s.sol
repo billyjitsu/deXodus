@@ -32,12 +32,8 @@ contract DeployProtocol is Script {
     {
 
         helperConfig = new HelperConfig();
-        (
-            weth,
-            wbtc,
-            usdc,
-            deployerKey
-        ) = helperConfig.activeNetworkConfig();
+
+        (weth, wbtc, deployerKey) = helperConfig.activeNetworkConfig();
 
         vm.startBroadcast(deployerKey);
         // vm.startBroadcast();
@@ -45,19 +41,18 @@ contract DeployProtocol is Script {
         futuresAddr = _deployFutures();
         liquidityPoolAddr = _deployLiquidityPool();
         mockUsdcAddr = _deployMockUSDC();
-        usdc = mockUsdcAddr;
 
         // LIQUIDITY POOL INITIALIZATION
         LiquidityPool(liquidityPoolAddr).initialize(
-            usdc,
-            "Profit Predators LP",
-            "PPLP"
+            mockUsdcAddr,
+            "deXodus",
+            "dxd"
         );
 
         // FUTURES INITIALIZATION
         Futures(futuresAddr).initialize(
             liquidityPoolAddr,
-            usdc
+            mockUsdcAddr
         );
 
         vm.stopBroadcast();

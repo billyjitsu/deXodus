@@ -7,6 +7,8 @@ import {Ownable2StepUpgradeable} from "@openzeppelin/contracts-upgradeable/acces
 import {SafeERC20, IERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {ERC20Upgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 
+import {console} from "../lib/hardhat/packages/hardhat-core/console.sol";
+
 /* MAIN FUNCTIONALITY:
      - Liquidity providers add liquidity
      - Liq Providers rmv liquidity
@@ -38,6 +40,7 @@ contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgrade
 
     function addLiquidity(address _to, uint256 _amountIn) external {
         uint256 lpAmountOut = calcLpOut(_amountIn);
+        console.log("USDC --> ", address(USDC));
         USDC.transferFrom(msg.sender, address(this), _amountIn);
         _mint(_to, lpAmountOut);
     }

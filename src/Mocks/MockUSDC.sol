@@ -36,11 +36,6 @@ contract MockUSDC is UUPSUpgradeable, Ownable2StepUpgradeable, ERC20Upgradeable 
 
     function _authorizeUpgrade(address newImplementation) internal virtual override onlyOwner {}
 
-
-
-
-
-
     uint256[50] private __gap;
 
 

@@ -1,0 +1,34 @@
+name: Run the entire test suite with the latest dependency versions
+
+on:
+  schedule:
+    - cron: "0 0/8 * * *"
+
+jobs:
+  test-without-yarn-lock:
+    name: Test without yarn.lock
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+      - name: install vyper
+        run: docker pull vyperlang/vyper:0.1.0b10
+      - uses: actions/checkout@v2
+      - name: Delete yarn.lock
+        run: "rm yarn.lock"
+      - name: Install
+        run: yarn
+      - name: Run tests
+        run: yarn test
+      - name: Notify failures
+        if: failure()
+        uses: slackapi/slack-github-action@v1.18.0
+        with:
+          payload: |
+            {
+              "workflow_name": "${{ github.workflow }}",
+              "run_url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.GH_ACTION_NOTIFICATIONS_SLACK_WEBHOOK_URL }}
