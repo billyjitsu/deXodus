@@ -10,10 +10,6 @@ import {ILiquidityPool} from "./interfaces/ILiquidityPool.sol";
 import {IPriceFeed} from "./interfaces/IPriceFeed.sol";
 
 
-// CHECK LIQPRICE
-// ADD EVENTS
-// NATSPEC
-
 contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
     using SafeERC20 for IERC20;
 
@@ -25,7 +21,6 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
     IERC20 public USDC;
     uint256 public positionIdCounter;
     IPriceFeed public priceFeed;
-    address public governance;
     address public wbtc;
     address public weth;
 
@@ -59,21 +54,14 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
     uint256 private leverageToReturn;
     uint256 private currentSize;
 
-    uint256 public makerTradingFee;
-    uint256 public takerTradingFee;
-    uint256 public priceImpactFee;
-    uint256 public fundingFee;
-    uint256 public borrowingFee;
-    uint256 public executionFee;
     uint256 public constant BASIS_POINTS = 10000;
     uint256 public liquidationThreshold;
 
     event OpenPosition(uint256 indexed marketId, uint256 indexed positionId, address indexed trader, uint256 startedAt, uint256 size, uint256 collateral, uint256 entryPrice, uint256 liqPrice, bool long, uint256 currentPrice);
-
-    modifier onlyGov() {
-        require(msg.sender == governance);
-        _;
-    }
+    event IncreasePosition(uint256 indexed marketId, uint256 indexed positionId, address indexed trader, uint256 startedAt, uint256 size, uint256 collateral, uint256 entryPrice, uint256 liqPrice, bool long, uint256 currentPrice);
+    event DecreasePosition(uint256 indexed marketId, uint256 indexed positionId, address indexed trader, uint256 startedAt, uint256 size, uint256 collateral, uint256 entryPrice, uint256 liqPrice, bool long, uint256 currentPrice);
+    event ClosePosition(uint256 indexed marketId, uint256 indexed positionId, address indexed trader, uint256 startedAt, uint256 size, uint256 collateral, uint256 entryPrice, uint256 liqPrice, bool long, uint256 currentPrice);
+    event LiquidatePosition(uint256 indexed marketId, uint256 indexed positionId, address indexed trader, uint256 startedAt, uint256 size, uint256 collateral, uint256 entryPrice, uint256 liqPrice, bool long, uint256 currentPrice);
 
     constructor() {
         _disableInitializers();
@@ -97,7 +85,6 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
         priceFeed = IPriceFeed(_priceFeed);
         USDC = IERC20(_usdc);
         liquidationThreshold = _liquidationThreshold;
-        governance = msg.sender;
     }
 
     /*###############################################################################################################################
@@ -166,6 +153,7 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
                 position.size = position.size + _size;
                 position.liqPrice = calcLiquidationPrice(position);
                 require(_currentPrice > position.liqPrice);
+                emit IncreasePosition(position.marketId, position.positionId, msg.sender, position.startedAt, position.size, position.collateral, position.entryPrice, position.liqPrice, position.long, _currentPrice);
             }
             require(position.size / position.collateral <= 50);
             longPositions[_futureId][msg.sender] = position;
@@ -174,37 +162,6 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
         }
     }
 
-    function increaseCollateral(
-        uint256 _futureId,
-        uint256 _collateral,
-        uint256 _currentPrice,
-        bool _long
-    ) external {
-        // if (!validFuture(_futureId)) revert Futures__FutureDoesNotExists();
-        // require(priceFeed.isAcceptablePrice(_futureId, _currentPrice));
-
-        // USDC.safeTransferFrom(msg.sender, address(this), _collateral);
-        // liquidityPool.blockLiquidity(_collateral * 9);
-
-        // if (_long) {
-        //     Position memory position = longPositions[_futureId][msg.sender];
-        //     require(position.long);
-        //     require(position.size != 0);
-        //     position.entryPrice =
-        //         ((position.entryPrice * position.size) +
-        //             (_currentPrice * _collateral)) /
-        //         (position.size + _collateral);
-        //     position.size += _collateral;
-        //     position.collateral += _collateral;
-        //     position.liqPrice = calcLiquidationPrice(position);
-        //     require(_currentPrice > position.liqPrice);
-        //     longPositions[_futureId][msg.sender] = position;
-        // } else {
-        //     revert();
-        // }
-    }
-
-    // NUEVA DECREASE POSITION FUNCTION
     function decreasePosition(
         uint256 _futureId,
         uint256 _percentageDecrease, // percentage with 2 decimals (0-10000);
@@ -233,10 +190,10 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
                     position.size -= leverageToReturn;
                     usdcOut =
                         (currentSize * _percentageDecrease) /
-                        BASIS_POINTS -
+                        10000 -
                         leverageToReturn;
                     uint256 collateralToDecrease = (position.collateral *
-                        _percentageDecrease) / BASIS_POINTS;
+                        _percentageDecrease) / 10000;
                     position.collateral -= collateralToDecrease;
                     position.size -= collateralToDecrease;
                     if (usdcOut > collateralToDecrease) {
@@ -249,9 +206,10 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
                     uint256 tokenAmount = ((position.size * 1e12) /
                         position.entryPrice) / 1e6;
                     position.liqPrice =
-                        ((((newLeverage * 1e12) / tokenAmount) * liquidationThreshold) /
-                            BASIS_POINTS) /
+                        ((((newLeverage * 1e12) / tokenAmount) * 10005) /
+                            10000) /
                         1e6;
+                    emit DecreasePosition(position.marketId, position.positionId, msg.sender, position.startedAt, position.size, position.collateral, position.entryPrice, position.liqPrice, position.long, _currentPrice);
                     require(_currentPrice > position.liqPrice);
                     longPositions[_futureId][msg.sender] = position;
                     if (collateralToDecrease < usdcOut) {
@@ -264,10 +222,11 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
                         fromLiquidityPool
                     );
                     liquidityPool.unblockLiquidity(collateralToDecrease * 9 - fromLiquidityPool);
+                    //emit DecreasePosition(position.marketId, position.positionId, msg.sender, position.startedAt, position.size, position.collateral, position.entryPrice, position.liqPrice, position.long, _currentPrice);
                 } else {
                     usdcOut =
                         (currentSize * _percentageDecrease) /
-                        BASIS_POINTS -
+                        10000 -
                         leverage;
                     if (usdcOut > position.collateral){
                         fromLiquidityPool = usdcOut - position.collateral;
@@ -285,6 +244,7 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
                         delete longPositions[_futureId][msg.sender];
                         USDC.safeTransfer(msg.sender, fromCollateral);
                     }
+                    emit ClosePosition(position.marketId, position.positionId, msg.sender, position.startedAt, position.size, position.collateral, position.entryPrice, position.liqPrice, position.long, _currentPrice);
                 }
             } else {
                 revert(); // modify ratio not yet available
@@ -293,42 +253,8 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
             revert(); // shorts not yet available
         }
     }
-
-    // NEW FUNCTION
-    function decreaseCollateral(
-        uint256 _futureId,
-        uint256 _percentageDecrease,
-        uint256 _currentPrice,
-        bool _long
-    ) external {
-        // if (!validFuture(_futureId)) revert Futures__FutureDoesNotExists();
-        // require(priceFeed.isAcceptablePrice(_futureId, _currentPrice));
-        // uint256 collateralOut;
-
-        // if (_long) {
-        //     Position memory position = longPositions[_futureId][msg.sender];
-        //     require(position.long);
-        //     require(position.size != 0);
-
-        //     collateralOut = (position.collateral * _percentageDecrease) / 10000;
-        //     position.collateral -= collateralOut;
-        //     position.size -= collateralOut;
-        //     uint256 leverage = position.size - position.collateral;
-        //     uint256 tokenAmount = ((position.size * 1e12) /
-        //         position.entryPrice) / 1e6;
-        //     position.liqPrice =
-        //         ((((leverage * 1e12) / tokenAmount) * liquidationThreshold) / 10000) /
-        //         1e6;
-        //     USDC.safeTransfer(msg.sender, collateralOut);
-        //     liquidityPool.unblockLiquidity(collateralOut * 9);
-        //     longPositions[_futureId][msg.sender] = position;
-        // } else {
-        //     revert(); // shorts not yet available
-        // }
-    }
-
+ 
     // function to liquidate positions
-    // Note that _currentPrice param will be deleted as will be obtained through the priceFeed
     function liquidatePosition(
         uint256 _futureId,
         address _trader,
@@ -356,6 +282,7 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
                 delete longPositions[_futureId][_trader];
                 USDC.safeTransfer(_trader, fromCollateral);
                 USDC.safeTransfer(address(liquidityPool), position.collateral - fromCollateral);
+                emit LiquidatePosition(position.marketId, position.positionId, _trader, position.startedAt, position.size, position.collateral, position.entryPrice, position.liqPrice, position.long, currentPrice);
             } else {
                 revert();
             }
@@ -405,40 +332,8 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
     #######################################################                     #####################################################
     ###############################################################################################################################*/
 
-    // function stopLossOrder() external {}
-
-    // function takeProfitOrder() external {}
-
     function validFuture(uint256 _futureId) public view returns (bool) {
         return (_futureId != 0 && _futureId <= counter);
-    }
-
-    function setGovernance(address _newGovernance) external onlyGov {
-        governance = _newGovernance;
-    }
-
-    function setTradingFees(
-        uint256 _makerFee,
-        uint256 _takerFee
-    ) external onlyGov {
-        makerTradingFee = _makerFee;
-        takerTradingFee = _takerFee;
-    }
-
-    function setpriceImpactFee(uint256 _priceImpactFee) external onlyGov {
-        priceImpactFee = _priceImpactFee;
-    }
-
-    function setfundingFee(uint256 _fundingFee) external onlyGov {
-        fundingFee = _fundingFee;
-    }
-
-    function setborrowingFee(uint256 _borrowingFee) external onlyGov {
-        borrowingFee = _borrowingFee;
-    }
-
-    function setexecutionFee(uint256 _executionFee) external onlyGov {
-        executionFee = _executionFee;
     }
 
     function getTraderPosition(

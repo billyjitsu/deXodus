@@ -283,34 +283,6 @@ contract FuturesTest is Test {
         vm.stopPrank();
     }
 
-    /*############################################################################
-    ##########################    INCREASE COLATERAL    ##########################
-    ############################################################################*/
-
-    function testICL1() public {
-        vm.startPrank(alice);
-
-        usdc.approve(futuresAddr, usdc.balanceOf(alice));
-        futures.increasePosition(1, 1000e6, 100e6, 2000e6, true);
-        _logPosition(1, alice, true);
-
-        futures.increaseCollateral(1, 100e6, 2500e6, true);
-        _logPosition(1, alice, true);
-        vm.stopPrank();
-    }
-
-    function testICL2() public {
-        vm.startPrank(alice);
-
-        usdc.approve(futuresAddr, usdc.balanceOf(alice));
-        futures.increasePosition(1, 50000e6, 1000e6, 28000e6, true);
-        _logPosition(1, alice, true);
-
-        futures.increaseCollateral(1, 5000e6, 30000e6, true);
-        _logPosition(1, alice, true);
-        vm.stopPrank();
-    }
-
     /*###############################################################################################################################
     #######################################################                    ######################################################
     ######################################################       HELPERS        #####################################################
