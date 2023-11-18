@@ -83,8 +83,8 @@ contract FuturesTest is Test {
 
         vm.startPrank(owner);
         IERC20(usdc).approve(liquidityPoolAddr, usdc.balanceOf(owner));
-        // liquidityPool.addLiquidity(owner, 100_000e6);
-        console.log(liquidityPool.balanceOf(owner));
+        liquidityPool.addLiquidity(owner, 100_000e6);
+        // console.log(liquidityPool.balanceOf(owner));
         vm.stopPrank();
 
         vm.label(owner, "Owner");
@@ -113,7 +113,7 @@ contract FuturesTest is Test {
 
         usdc.approve(futuresAddr, usdc.balanceOf(alice));
         vm.warp(100000);
-        console.log(address(futures));
+        // console.log(address(futures));
         futures.increasePosition(2, 1000e6, 100e6, 2000e6, true);
 
         _logPosition(2, alice, true);
@@ -338,6 +338,35 @@ contract FuturesTest is Test {
         console.log("long      -----> ", long);
         // /console.log("market    -----> ", f);
         console.log("------------------------------------------");
+    }
+
+    function assertEqPercent(
+        uint256 value1,
+        uint256 value2,
+        uint256 percentAllowed
+    ) internal {
+        // ej percent allowed: 50 (= 0.5%), 500 (= 5%), 5000 (50%), 10000 (100%)
+        uint256 diff = (value1 * percentAllowed) / 10000;
+        uint256 value2max = value1 + diff;
+        uint256 value2min = value1 - diff;
+        assertGt(value2, value2min);
+        assertLt(value2, value2max);
+    }
+
+    function assertGtPercent(
+        uint256 value1,
+        uint256 value2,
+        uint256 percentAllowed
+    ) internal {
+        // ej percent allowed: 50 (= 0.5%), 500 (= 5%), 5000 (50%), 10000 (100%)
+    }
+
+    function assertLtPercent(
+        uint256 value1,
+        uint256 value2,
+        uint256 percentAllowed
+    ) internal {
+        // ej percent allowed: 50 (= 0.5%), 500 (= 5%), 5000 (50%), 10000 (100%)
     }
 
 }

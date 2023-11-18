@@ -132,7 +132,7 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
         bool _long
     ) external {
         if (!validFuture(_futureId)) revert Futures__FutureDoesNotExists();
-        // require(priceFeed.isAcceptablePrice(_futureId, _currentPrice));
+        require(priceFeed.isAcceptablePrice(_futureId, _currentPrice));
 
         USDC.safeTransferFrom(msg.sender, address(this), _collateral);
         liquidityPool.blockLiquidity(_collateral * 9);
@@ -210,7 +210,7 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
         bool _long
     ) external {
         if (!validFuture(_futureId)) revert Futures__FutureDoesNotExists();
-        // require(priceFeed.isAcceptablePrice(_futureId, _currentPrice));
+        require(priceFeed.isAcceptablePrice(_futureId, _currentPrice));
 
         _keepLeverageRatio = true; // will be used in the future for users to decide (now always true)
 

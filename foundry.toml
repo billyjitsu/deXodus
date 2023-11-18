@@ -5,10 +5,6 @@ libs = ["lib"]
 
 remappings = [
     "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
-<<<<<<< HEAD
-    "@uniswap/contracts/=lib/v3-core/contracts/",
-=======
->>>>>>> 3c84cc0b350e0966b1a5754a68e8ec4d145ba7cd
     "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
     "@chainlink/contracts/=lib/chainlink/contracts/",
     "@api3/contracts/=lib/contracts/contracts/",
