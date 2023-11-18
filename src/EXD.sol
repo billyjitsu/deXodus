@@ -6,7 +6,7 @@ import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/U
 import {Ownable2StepUpgradeable} from "@openzeppelin/contracts-upgradeable/access/Ownable2StepUpgradeable.sol";
 import {ERC20Upgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 
-contract DXD is UUPSUpgradeable, Ownable2StepUpgradeable, ERC20Upgradeable {
+contract EXD is UUPSUpgradeable, Ownable2StepUpgradeable, ERC20Upgradeable {
     
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
