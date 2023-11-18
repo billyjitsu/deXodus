@@ -11,7 +11,7 @@ import {
   AdminChanged,
   BeaconUpgraded,
   Initialized,
-  OpenPosition,
+  Position,
   OwnershipTransferStarted,
   OwnershipTransferred,
   Upgraded
@@ -58,25 +58,25 @@ export function handleInitialized(event: InitializedEvent): void {
 }
 
 export function handleOpenPosition(event: OpenPositionEvent): void {
-  let entity = new OpenPosition(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.marketId = event.params.marketId
-  entity.positionId = event.params.positionId
-  entity.trader = event.params.trader
-  entity.startedAt = event.params.startedAt
-  entity.size = event.params.size
-  entity.collateral = event.params.collateral
-  entity.entryPrice = event.params.entryPrice
-  entity.liqPrice = event.params.liqPrice
-  entity.long = event.params.long
-  entity.currentPrice = event.params.currentPrice
+  // create Position entity
+  let id = event.params.positionId.toString()
+  let position = new Position(id)
 
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
+  position.marketId = event.params.marketId
+  position.trader = event.params.trader
+  position.size = event.params.size
+  position.collateral = event.params.collateral
+  position.entryPrice = event.params.entryPrice
+  position.currentPrice = event.params.currentPrice
+  position.liqPrice = event.params.liqPrice
+  position.long = event.params.long
+  
+  position.startedAt = event.params.startedAt
+  position.blockNumber = event.block.number
+  position.blockTimestamp = event.block.timestamp
+  position.transactionHash = event.transaction.hash
 
-  entity.save()
+  position.save()
 }
 
 export function handleOwnershipTransferStarted(

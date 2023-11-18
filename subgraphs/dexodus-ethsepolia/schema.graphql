@@ -23,18 +23,17 @@ type Initialized @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type OpenPosition @entity(immutable: true) {
-  id: Bytes!
+type Position @entity(immutable: true) {
+  id: String! 
   marketId: BigInt! # uint256
-  positionId: BigInt! # uint256
   trader: Bytes! # address
   startedAt: BigInt! # uint256
   size: BigInt! # uint256
   collateral: BigInt! # uint256
   entryPrice: BigInt! # uint256
+  currentPrice: BigInt! # uint256
   liqPrice: BigInt! # uint256
   long: Boolean! # bool
-  currentPrice: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
