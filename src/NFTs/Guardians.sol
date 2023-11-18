@@ -7,7 +7,6 @@ import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Guardians is ERC1155, Ownable {
-
     using Strings for uint256;
 
     string public name;
