@@ -11,6 +11,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { NFTCollectionV2 } from "./nftCollectionV2";
 import { InfoIcon } from "@chakra-ui/icons";
 import { Tooltip } from "@chakra-ui/react";
 
@@ -76,7 +77,10 @@ export const NftArenaSelector = () => {
             <p className="text-gray-200 mt-2 font-semibold">
               Select the creature that will participate in the trade
             </p>
-            TEST
+            <NFTCollectionV2
+              onItemClick={handleNftClick}
+              selectedItems={[selectedNft?.id]}
+            />
           </DrawerBody>
           <DrawerFooter className="bg-gray-900 text-white"></DrawerFooter>
         </DrawerContent>
