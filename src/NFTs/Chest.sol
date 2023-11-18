@@ -59,6 +59,12 @@ contract Chest is ERC1155, Ownable {
         randomNumbers.makeRequestUint256Array(3);
     }
 
+    function areRandomNumbersReady() public view returns (bool) {
+        uint256[] memory randoms = randomNumbers.getRandomNumberArray();
+        if (randoms[0] != 0) return true;
+        return false;
+    }
+
     function claimNfts() public onlynextUserToMint {
         nextUserToMint = address(0);
         minting = 1;
