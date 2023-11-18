@@ -18,6 +18,16 @@ export const Navbar = () => {
       path: "/",
       icon: "",
     },
+    {
+      name: "Liquidity",
+      path: "/liquidity",
+      icon: "",
+    },
+    {
+      name: "Admin",
+      path: "/admin",
+      icon: "",
+    },
   ];
 
   return (

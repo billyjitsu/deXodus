@@ -9,6 +9,7 @@ remappings = [
     "@chainlink/contracts/=lib/chainlink/contracts/",
     "@api3/contracts/=lib/contracts/contracts/",
     "@api3/airnode-protocol-v1/contracts=lib/airnode-protocol-v1/contracts/",
+    "@api3/airnode-protocol/contracts=lib/airnode/packages/airnode-protocol/contracts/",
 ]
 
 viaIR = true # needed to avoid stack too deep errors while compiling ;)

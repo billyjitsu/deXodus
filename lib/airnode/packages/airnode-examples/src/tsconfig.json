@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+
+    "rootDir": "./",
+    "outDir": "../dist"
+  },
+  "references": [
+    { "path": "../../airnode-abi/src" },
+    { "path": "../../airnode-admin/src" },
+    { "path": "../../airnode-deployer/src" },
+    { "path": "../../airnode-node/src" },
+    { "path": "../../airnode-protocol/src" },
+    { "path": "../../airnode-utilities/src" }
+  ],
+  "include": ["./**/*.ts"],
+  "exclude": ["./**/*.test.ts"]
+}
