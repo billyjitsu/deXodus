@@ -1,0 +1,61 @@
+{
+  "name": "@api3/airnode-examples",
+  "license": "MIT",
+  "version": "0.13.0",
+  "private": false,
+  "description": "A collection of examples showcasing the features of Airnode",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn run clean && yarn compile",
+    "clean": "rimraf -g *.tsbuildinfo ./dist ./build *.tgz",
+    "choose-integration": "ts-node src/scripts/choose-integration.ts",
+    "compile": "hardhat compile && tsc --build tsconfig.json",
+    "create-airnode-config": "ts-node src/scripts/create-airnode-config.ts",
+    "create-airnode-secrets": "ts-node src/scripts/create-airnode-secrets.ts",
+    "create-aws-secrets": "ts-node src/scripts/create-aws-secrets.ts",
+    "deploy-airnode": "ts-node src/scripts/deploy-airnode.ts",
+    "deploy-requester": "ts-node src/scripts/deploy-requester.ts",
+    "deploy-rrp": "ts-node src/scripts/deploy-rrp.ts",
+    "deploy-rrp-dry-run": "ts-node src/scripts/deploy-rrp-dry-run.ts",
+    "derive-and-fund-sponsor-wallet": "ts-node src/scripts/derive-and-fund-sponsor-wallet.ts",
+    "dev:generate-example-files": "ts-node dev-scripts/generate-example-files.ts",
+    "eth-node": "hardhat node",
+    "make-request": "ts-node src/scripts/make-request.ts",
+    "make-withdrawal-request": "ts-node src/scripts/make-withdrawal-request.ts",
+    "print-account-details": "ts-node src/scripts/print-account-details.ts",
+    "remove-airnode": "ts-node src/scripts/remove-airnode.ts",
+    "run-airnode-locally": "ts-node src/scripts/run-airnode-locally.ts",
+    "sponsor-requester": "ts-node src/scripts/sponsor-requester.ts",
+    "stop-local-airnode": "ts-node src/scripts/stop-local-airnode.ts",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --selectProjects unit",
+    "test:e2e": "jest --selectProjects e2e"
+  },
+  "dependencies": {
+    "@api3/airnode-abi": "^0.13.0",
+    "@api3/airnode-admin": "^0.13.0",
+    "@api3/airnode-deployer": "^0.13.0",
+    "@api3/airnode-node": "^0.13.0",
+    "@api3/airnode-protocol": "^0.13.0",
+    "@api3/airnode-utilities": "^0.13.0",
+    "ethers": "^5.7.2",
+    "is-wsl": "^2.2.0"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@types/jest": "^29.5.5",
+    "@types/node": "^18.18.4",
+    "@types/prompts": "^2.4.6",
+    "chalk": "^4.1.2",
+    "dotenv": "^16.3.1",
+    "ethereum-waffle": "^4.0.10",
+    "hardhat": "^2.14.1",
+    "jest": "^29.7.0",
+    "prompts": "^2.4.2",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}

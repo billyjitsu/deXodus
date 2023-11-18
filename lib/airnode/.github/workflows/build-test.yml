@@ -1,0 +1,199 @@
+name: Continuous Build
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize, reopened]
+
+env:
+  DOCKER_BUILDKIT: 1
+  TARGET_NODE_VERSION: '18.14.0'
+
+jobs:
+  documentation:
+    name: Check documentation
+    runs-on: ubuntu-latest
+    # Don't run twice for a push within an internal PR
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+    steps:
+      - name: Clone airnode
+        uses: actions/checkout@v3
+      - name: Check hyperlinks
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          config-file: .github/workflows/mlc_config.json
+  pre-build:
+    name: Prepare build environment
+    runs-on: ubuntu-latest
+    # Don't run twice for a push within an internal PR
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+    steps:
+      - name: Clone airnode
+        uses: actions/checkout@v3
+        with:
+          # Required for changesets check. See: https://github.com/changesets/changesets/issues/517#issuecomment-813282523
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.TARGET_NODE_VERSION }}
+          cache: yarn
+      - name: Install Dependencies
+        run: yarn run bootstrap
+      - uses: actions/cache@v3
+        id: cache-pre-build
+        with:
+          path: ./*
+          key: pre-build-${{ github.sha }}
+  build:
+    name: Build and lint Airnode
+    runs-on: ubuntu-latest
+    # Don't run twice for a push within an internal PR
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+    needs: pre-build
+    steps:
+      - uses: actions/cache@v3
+        id: cache-pre-build
+        with:
+          path: ./*
+          key: pre-build-${{ github.sha }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.TARGET_NODE_VERSION }}
+          cache: yarn
+      - name: Build
+        run: yarn run build
+      - name: Lint code
+        run: yarn run lint
+      - uses: actions/cache@v3
+        id: cache-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+  docker-build:
+    name: Build all the Docker containers and push them to Docker Hub
+    runs-on: ubuntu-latest
+    # Don't run twice for a push within an internal PR
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+    needs: build
+    steps:
+      - uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.TARGET_NODE_VERSION }}
+          cache: yarn
+      - name: Build Docker packaging container
+        run: yarn docker:build:packaging
+      - name: Start local NPM registry
+        run: yarn docker:scripts:npm-registry:start
+      - name: Publish NPM packages to local NPM registry
+        run: yarn docker:scripts:npm:publish-snapshot:mount --npm-registry local --npm-tag ${{ github.sha }}
+      - name: Build Docker containers
+        run: yarn docker:scripts:docker:build --dev --npm-registry local --npm-tag snapshot-${{ github.sha }} --docker-tags ${{ github.sha }}
+      - name: Stop local NPM registry
+        run: yarn docker:scripts:npm-registry:stop
+      - name: Publish Docker containers
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: yarn docker:scripts:docker:publish --dev --docker-tags ${{ github.sha }}
+  unit-tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.TARGET_NODE_VERSION }}
+          cache: yarn
+      - run: yarn run test
+  e2e-tests:
+    name: E2E tests
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      matrix:
+        package: [admin, node, utilities, validator]
+    steps:
+      - uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.TARGET_NODE_VERSION }}
+          cache: yarn
+      - name: Start background services
+        run: yarn run dev:background
+      - run: yarn run test:e2e-${{ matrix.package }}
+        env:
+          COMMIT: ${{ github.sha }}
+  e2e-tests-examples:
+    name: E2E Tests - examples
+    runs-on: ubuntu-latest
+    needs: [build, docker-build]
+    steps:
+      - uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.TARGET_NODE_VERSION }}
+          cache: yarn
+      - name: Start background services
+        run: yarn run dev:background
+      - run: yarn run test:e2e-examples
+        env:
+          COMMIT: ${{ github.sha }}
+  require-changeset:
+    name: Require a changeset
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.TARGET_NODE_VERSION }}
+          cache: yarn
+      - name: Require a changeset
+        # https://github.com/renovatebot/renovate/discussions/13704#discussioncomment-2013280
+        if: github.actor != 'renovate[bot]'
+        run: yarn changeset:check
+  enable-merge:
+    name: Enable PR merge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the ENABLE_MERGE secret
+        env:
+          ENABLE_MERGE: ${{ secrets.ENABLE_MERGE }}
+        run: test $ENABLE_MERGE = true && exit 0 || exit 1
+  build-complete:
+    name: All tests passed
+    runs-on: ubuntu-latest
+    needs: [documentation, docker-build, unit-tests, e2e-tests, e2e-tests-examples, require-changeset, enable-merge]
+    steps:
+      - run: exit 0

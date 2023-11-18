@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    "esModuleInterop": true,
+    "lib": ["es2021"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "downlevelIteration": true,
+    "target": "es2021",
+
+    "strict": true,
+    // This check doesn't work well in monorepos: https://github.com/microsoft/TypeScript/issues/38538
+    "skipLibCheck": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    // Disabled because they are too restrictive
+    "exactOptionalPropertyTypes": false,
+    "noUncheckedIndexedAccess": false,
+    // Disabled because they are covered by Eslint rules
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    // Disabled because prefer the property syntax
+    "noPropertyAccessFromIndexSignature": false
+  },
+  // See: https://www.typescriptlang.org/docs/handbook/project-references.html#overall-structure
+  //
+  // Another good practice is to have a “solution” tsconfig.json file that simply has
+  // references to all of your leaf-node projects and sets files to an empty array
+  // (otherwise the solution file will cause double compilation of files)
+  "files": [],
+  "references": [
+    { "path": "./packages/airnode-abi" },
+    { "path": "./packages/airnode-deployer" },
+    { "path": "./packages/airnode-utilities" },
+    { "path": "./packages/airnode-adapter" },
+    { "path": "./packages/airnode-examples" },
+    { "path": "./packages/airnode-operation" },
+    { "path": "./packages/airnode-validator" },
+    { "path": "./packages/airnode-admin" },
+    { "path": "./packages/airnode-node" },
+    { "path": "./packages/airnode-protocol" },
+    { "path": "./scripts" },
+    { "path": "./docker/scripts" }
+  ]
+}

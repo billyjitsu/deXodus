@@ -7,7 +7,7 @@ import {HelperConfig} from "./HelperConfig.s.sol";
 import {Futures} from "../src/Futures.sol";
 import {LiquidityPool} from "../src/LiquidityPool.sol";
 import {MockUSDC} from "../src/mocks/MockUSDC.sol";
-import {DXD} from "../src/DXD.sol";
+import {EXD} from "../src/EXD.sol";
 import {PriceFeed} from "../src/PriceFeed.sol";
 import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
@@ -35,7 +35,7 @@ contract DeployProtocol is Script {
         address liquidityPoolAddr,
         address mockUsdcAddr,
         HelperConfig helperConfig,
-        address dxdAddr,
+        address exdAddr,
         address priceFeedAddr
         )
     {
@@ -45,12 +45,11 @@ contract DeployProtocol is Script {
         (weth, wbtc, deployerKey, wbtcUsdPriceFeed, wethUsdPriceFeed) = helperConfig.activeNetworkConfig();
 
         vm.startBroadcast(deployerKey);
-        // vm.startBroadcast();
 
         futuresAddr = _deployFutures();
         liquidityPoolAddr = _deployLiquidityPool();
         mockUsdcAddr = _deployMockUSDC();
-        dxdAddr = _deployDXD();
+        exdAddr = _deployEXD();
         priceFeedAddr = _deployPriceFeed();
 
         tokens.push(wbtc);
@@ -66,13 +65,14 @@ contract DeployProtocol is Script {
             weth
         );
 
-        DXD(dxdAddr).initialize("deXodus Exchange", "DXD");
+        EXD(exdAddr).initialize("deXodus Exchange", "EXD");
 
         // LIQUIDITY POOL INITIALIZATION
         LiquidityPool(liquidityPoolAddr).initialize(
             mockUsdcAddr,
             "deXodus LP",
-            "DXDLP"
+            "EXDLP",
+            futuresAddr
         );
 
         // FUTURES INITIALIZATION
@@ -95,7 +95,7 @@ contract DeployProtocol is Script {
             liquidityPoolAddr,
             mockUsdcAddr,
             helperConfig,
-            dxdAddr,
+            exdAddr,
             priceFeedAddr
         );
     }
@@ -126,11 +126,11 @@ contract DeployProtocol is Script {
         return address(mockUSDCProxy);
     }
 
-    function _deployDXD() internal returns (address) {
-        DXD dxd = new DXD();
+    function _deployEXD() internal returns (address) {
+        EXD exd = new EXD();
         bytes memory bytess;
-        ERC1967Proxy dxdProxy = new ERC1967Proxy(address(dxd), bytess);
-        return address(dxdProxy);
+        ERC1967Proxy exdProxy = new ERC1967Proxy(address(exd), bytess);
+        return address(exdProxy);
     }
 
     function _deployPriceFeed() internal returns (address) {

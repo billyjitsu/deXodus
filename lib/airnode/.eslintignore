@@ -1,0 +1,15 @@
+**/node_modules/**
+
+# Buidler
+**/cache/**
+**/artifacts/**
+**/buidler.config.js
+
+**/.build/**
+**/.serverless/**
+**/coverage/**
+**/dist/**
+**/build/**
+
+# Ignore the TS wrappers created by Typechain
+packages/airnode-protocol/src/contracts

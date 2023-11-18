@@ -1,0 +1,31 @@
+{
+  "extends": ["config:base", "docker:disable"],
+  "automerge": true,
+  "automergeType": "pr",
+  "packageRules": [
+    {
+      "matchPackageNames": ["chalk", "hardhat", "ora", "node", "@openzeppelin/contracts", "zod"],
+      "enabled": false
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "schedule": ["before 2am on monday"],
+      "groupName": "devDependencies (non-major)"
+    },
+    {
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "schedule": ["before 2am on monday"],
+      "groupName": "dependencies (non-major)"
+    }
+  ],
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "reviewers": ["team:airnode"],
+  "minimumReleaseAge": "5 days",
+  "internalChecksFilter": "strict",
+  "dependencyDashboard": false
+}

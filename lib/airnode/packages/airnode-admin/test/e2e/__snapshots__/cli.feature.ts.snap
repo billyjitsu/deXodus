@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CLI shows help 1`] = `
+"cli.js <command>
+
+Commands:
+  cli.js derive-airnode-xpub              Derives the Airnode extended public key
+  cli.js verify-airnode-xpub              Verifies that the xpub belongs to the Airnode wallet
+  cli.js derive-sponsor-wallet-address    Derives the address of the wallet for an airnode-sponsor pair
+  cli.js sponsor-requester                Allows a requester to make requests that will be fulfilled by the Airnode
+                                          using the sponsor wallet
+  cli.js unsponsor-requester              Disallow a requester to make requests to the Airnode
+  cli.js get-sponsor-status               Returns the sponsorship status for the given sponsor and requester
+  cli.js create-template                  Creates a template and returns its ID
+  cli.js create-inline-template           Creates a template data to be inlined inside config.json
+  cli.js get-template                     Returns the template for the given template-id
+  cli.js request-withdrawal               Requests withdrawal from the designated wallet of an Airnode as a sponsor
+  cli.js check-withdrawal-request         Checks the state of the withdrawal request
+  cli.js derive-endpoint-id               Derives an endpoint ID using the OIS title and endpoint name
+  cli.js set-whitelist-expiration         Sets whitelist expiration of a requester for the Airnode–endpoint pair
+  cli.js extend-whitelist-expiration      Extends whitelist expiration of a requester for the Airnode–endpoint pair
+  cli.js set-indefinite-whitelist-status  Sets the indefinite whitelist status of a requester for the Airnode–endpoint
+                                          pair
+  cli.js get-whitelist-status             Returns the detailed whitelist status of a requester for the Airnode–endpoint
+                                          pair
+  cli.js is-requester-whitelisted         Returns a boolean to indicate whether or not the requester is whitelisted to
+                                          use the Airnode–endpoint pair
+  cli.js generate-airnode-mnemonic        Generates a random mnemonic which can be used in the Airnode config and
+                                          displays the corresponding address and extended public key. Uses
+                                          "ethers.Wallet.createRandom" under the hood
+  cli.js generate-mnemonic                Generates a random mnemonic. Uses "ethers.Wallet.createRandom" under the hood
+  cli.js derive-airnode-address           Derives the airnode address which is the identifier of the particular Airnode
+                                          on chain
+
+Options:
+  --version  Show version number                                                                               [boolean]
+  --help     Show help                                                                                         [boolean]
+
+Examples:
+  cli.js derive-airnode-address --airnode-mnemonic "test test test test test test test test test test test junk"
+
+  cli.js derive-sponsor-wallet-address --airnode-xpub
+  xpub6Ce9NcJvTk36xtLSrJLZqE7wtgA5deCeYs7rSQtreh4cj6ByPtrg9sD7V2FNFLPnf8heNP3FGkeV9qwfzvZNSd54JoNXVsXFYSYwHsnJxqP
+  --airnode-address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --sponsor-address
+  0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+
+  cli.js derive-endpoint-id --ois-title "title" --endpoint-name "endpoint""
+`;
