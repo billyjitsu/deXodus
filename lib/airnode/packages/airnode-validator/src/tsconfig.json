@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "../build/src-tsconfig.tsbuildinfo",
+
+    "rootDir": "..",
+    "rootDirs": ["./src", "./bin"],
+    "outDir": "../dist"
+  },
+  "references": [{ "path": "../../airnode-protocol/src" }],
+  "include": ["./**/*.ts", "../bin/**/*.ts", "../package.json"],
+  "exclude": ["./**/*.test.ts"]
+}
