@@ -32,7 +32,7 @@ export const Navbar = () => {
               alt="logo"
             />
             <div className="ml-2 bg-gradient-to-tl from-teal-500 via-emerald-500 to-blue-500 bg-clip-text text-transparent font-bold">
-              GamiDex
+              deXodus
             </div>
           </Link>
           <button

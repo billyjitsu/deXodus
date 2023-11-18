@@ -4,7 +4,7 @@ import {
   waitForTransaction,
 } from "@wagmi/core";
 
-import { USDC_ABI } from "../../../smartContracts/USDC_XDC";
+import { USDC_ABI } from "../../../smartContracts/USDC_Test";
 import { floatToBigInt } from "@/lib/bigIntegers";
 
 export async function approve(Erc20Address, spenderAddress, amount) {

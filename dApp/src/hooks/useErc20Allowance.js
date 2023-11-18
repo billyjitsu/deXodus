@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useContractRead, useNetwork } from "wagmi";
-import { USDC_ABI } from "../../smartContracts/USDC_XDC";
-import { sepolia } from "viem/chains";
+import { USDC_ABI } from "../../smartContracts/USDC_Test";
 import { useAccount } from "wagmi";
 
 export const useErc20Allowance = (Erc20Address, spender) => {
