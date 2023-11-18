@@ -68,6 +68,8 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
     uint256 public constant BASIS_POINTS = 10000;
     uint256 public liquidationThreshold;
 
+    event OpenPosition(uint256 indexed marketId, uint256 indexed positionId, address indexed trader, uint256 startedAt, uint256 size, uint256 collateral, uint256 entryPrice, uint256 liqPrice, bool long, uint256 currentPrice);
+
     modifier onlyGov() {
         require(msg.sender == governance);
         _;
@@ -149,6 +151,7 @@ contract Futures is UUPSUpgradeable, Ownable2StepUpgradeable {
                 position.marketId = _futureId;
                 position.positionId = positionIdCounter;
                 positionIdCounter++;
+                emit OpenPosition(position.marketId, position.positionId, msg.sender, position.startedAt, position.size, position.collateral, position.entryPrice, position.liqPrice, position.long, _currentPrice);
             } else {
                 require(position.long);
                 position.entryPrice =
