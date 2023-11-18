@@ -11,6 +11,8 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
+import { ClosePositionModal } from "./closePositionModal";
 import { Button } from "@chakra-ui/react";
 import { useUserOpenedPositions } from "@/hooks/useUserOpenedPositions";
 import { useEffect, useState } from "react";
@@ -18,16 +20,22 @@ import { useMarket } from "@/context/marketContext";
 import { CryptoIcon } from "./cryptoIcon";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { EditIcon, StarIcon } from "@chakra-ui/icons";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { TradesHistory } from "./tradesHistory";
 
 export const ExchangeUserInfo = () => {
   const { market } = useMarket();
   const { getPriceByMarket } = usePrice();
   const price = getPriceByMarket(market);
-
+  const {
+    isOpen: isOpenClosePositionModal,
+    onClose: onCloseClosePositionModal,
+    onOpen: onOpenClosePositionModal,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenEditCollateralModal,
+    onClose: onCloseEditCollateralModal,
+    onOpen: onOpenEditCollateralModal,
+  } = useDisclosure();
   const { position, isLoading: isLoadingPosition } =
     useUserOpenedPositions(market);
   const [myPosition, setMyPosition] = useState([]);
@@ -74,8 +82,8 @@ export const ExchangeUserInfo = () => {
   };
 
   return (
-    <div className="p-2 bg-black/30 rounded-xl">
-      <Tabs isFitted variant="solid-rounded" colorScheme="teal">
+    <div className="p-2 bg-black/70 rounded-xl">
+      <Tabs isFitted variant="solid-rounded" colorScheme="pink">
         <TabList className="flex space-x-1 rounded-full bg-gray-900">
           <Tab>Positions</Tab>
           <Tab>Trades</Tab>
@@ -89,7 +97,7 @@ export const ExchangeUserInfo = () => {
                 </div>
               ) : (
                 <TableContainer>
-                  <Table variant="simple" colorScheme="teal">
+                  <Table variant="simple" colorScheme="pink">
                     <Thead>
                       <Tr>
                         <Th>Position</Th>
@@ -198,7 +206,17 @@ export const ExchangeUserInfo = () => {
                             })}
                           </Td>
                           <Td>
-                            <Button colorScheme="teal" variant="link">
+                            <ClosePositionModal
+                              isOpen={isOpenClosePositionModal}
+                              onClose={onCloseClosePositionModal}
+                              position={position}
+                              marketPrice={price}
+                            />
+                            <Button
+                              colorScheme="pink"
+                              variant="link"
+                              onClick={onOpenClosePositionModal}
+                            >
                               Close
                             </Button>
                           </Td>
@@ -209,9 +227,8 @@ export const ExchangeUserInfo = () => {
                                 <MenuItem
                                   icon={<EditIcon />}
                                   bg="#202a36"
-                                >
-                                  Edit collateral
-                                </MenuItem>
+                                  onClick={onOpenEditCollateralModal}
+                                ></MenuItem>
                                 <MenuItem icon={<StarIcon />} bg="#202a36">
                                   Hello ETH Istanbul :D
                                 </MenuItem>
@@ -227,7 +244,9 @@ export const ExchangeUserInfo = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <span className="text-white">WIP</span>
+            <span className="text-white">
+              <TradesHistory />
+            </span>
           </TabPanel>
         </TabPanels>
       </Tabs>
