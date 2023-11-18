@@ -9,6 +9,7 @@ import {Futures} from "../../src/Futures.sol";
 import {LiquidityPool} from "../../src/LiquidityPool.sol";
 import {console, Test} from "forge-std/Test.sol";
 import {LiquidityPool} from "../../src/LiquidityPool.sol";
+import {Futures} from "../../src/Futures.sol";
 
 contract FuturesTest is Test {
     address public owner;
@@ -83,7 +84,7 @@ contract FuturesTest is Test {
         vm.startPrank(owner);
         IERC20(usdc).approve(liquidityPoolAddr, usdc.balanceOf(owner));
         // liquidityPool.addLiquidity(owner, 100_000e6);
-        // console.log(liquidityPool.balanceOf(owner));
+        console.log(liquidityPool.balanceOf(owner));
         vm.stopPrank();
 
         vm.label(owner, "Owner");
@@ -104,8 +105,149 @@ contract FuturesTest is Test {
     #######################################################                   ######################################################
     ##############################################################################################################################*/
 
+
+
+    // You can create a position
+    function testIPL0() public {
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        vm.warp(100000);
+        console.log(address(futures));
+        futures.increasePosition(2, 1000e6, 100e6, 2000e6, true);
+
+        _logPosition(2, alice, true);
+    }
+
+    // you can increase the position after create one
+    function testIPL1() public {
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        vm.warp(100000);
+        futures.increasePosition(2, 1000e6, 100e6, 2000e6, true);
+
+        _logPosition(2, alice, true);
+
+        vm.warp(120000);
+        futures.increasePosition(2, 2000e6, 200e6, 2500e6, true);
+
+        _logPosition(2, alice, true);
+        vm.stopPrank();
+    }
+
+    // you can increase the position 2 times after create the position and the liqPosition and oher data makes sense
+    function testIPL2() public {
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        vm.warp(100000);
+        futures.increasePosition(1, 50000e6, 1000e6, 28000e6, true);
+
+        _logPosition(1, alice, true);
+
+        vm.warp(120000);
+        futures.increasePosition(1, 20000e6, 1000e6, 30000e6, true);
+
+        _logPosition(1, alice, true);
+
+        vm.warp(150000);
+        futures.increasePosition(1, 20000e6, 1000e6, 32000e6, true);
+
+        _logPosition(1, alice, true);
+        vm.stopPrank();
+    }
+
+    // you can increase the position with adding 0 collateral
+    function testIPL3() public {
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        vm.warp(100000);
+        futures.increasePosition(2, 750e6, 250e6, 1500e6, true);
+
+        _logPosition(2, alice, true);
+
+        vm.warp(120000);
+        futures.increasePosition(2, 5000e6, 500e6, 1200e6, true);
+
+        _logPosition(2, alice, true);
+
+        vm.warp(150000);
+        futures.increasePosition(2, 5000e6, 0, 1200e6, true);
+
+        _logPosition(2, alice, true);
+        vm.stopPrank();
+    }
+
+    function testIPL4() public {
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        vm.warp(100000);
+        futures.increasePosition(2, 150e6, 10e6, 1800e6, true);
+
+        _logPosition(2, alice, true);
+
+        vm.warp(120000);
+        futures.increasePosition(2, 30e6, 20e6, 1500e6, true);
+
+        _logPosition(2, alice, true);
+        vm.stopPrank();
+    }
+
+    function testIPL5() public {
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        vm.warp(100000);
+        futures.increasePosition(2, 150e6, 10e6, 1800e6, true);
+
+        _logPosition(2, alice, true);
+
+        vm.warp(120000);
+        futures.increasePosition(2, 30e6, 20e6, 2000e6, true);
+
+        _logPosition(2, alice, true);
+        vm.stopPrank();
+    }
+
+    function testIPL6() public {
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        vm.warp(100000);
+        futures.increasePosition(2, 1000e6, 200e6, 1650e6, true);
+
+        _logPosition(2, alice, true);
+
+        vm.warp(120000);
+        futures.increasePosition(2, 15000e6, 1000e6, 1350e6, true);
+
+        _logPosition(2, alice, true);
+        vm.stopPrank();
+    }
+
+    // an increase position that goes directly to liqprice should revert (is it possible?)
+    function testIPL7() public {
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        vm.warp(100000);
+        futures.increasePosition(1, 10000e6, 1000e6, 28000e6, true);
+
+        _logPosition(1, alice, true);
+
+        vm.warp(120000);
+        vm.expectRevert();
+        futures.increasePosition(1, 30000e6, 0, 25400e6, true);
+
+        _logPosition(1, alice, true);
+        vm.stopPrank();
+    }
+
     // user can provide liquidity
-    function test001() public {
+    function testLP001() public {
         vm.startPrank(liqPr1);
         IERC20(usdc).approve(liquidityPoolAddr, usdc.balanceOf(liqPr1));
         console.log("usdc -----> ", address(usdc));
@@ -114,7 +256,7 @@ contract FuturesTest is Test {
     }
 
     // total supply and LP balance for user is calculated as expected
-    function test002() public {
+    function testLP002() public {
         vm.startPrank(liqPr1);
         IERC20(usdc).approve(liquidityPoolAddr, usdc.balanceOf(liqPr1));
         liquidityPool.addLiquidity(liqPr1, 100_000e6);
@@ -126,7 +268,7 @@ contract FuturesTest is Test {
     }
 
     // withdraw liquidity
-    function test003() public {
+    function testLP003() public {
         vm.startPrank(liqPr1);
         IERC20(usdc).approve(liquidityPoolAddr, usdc.balanceOf(liqPr1));
         uint256 firstUsdcAmount = usdc.balanceOf(liqPr1);
@@ -139,6 +281,63 @@ contract FuturesTest is Test {
         assertEq(liquidityPool.totalSupply(), 0);
         assertEq(usdc.balanceOf(liqPr1), firstUsdcAmount);
         vm.stopPrank();
+    }
+
+    /*############################################################################
+    ##########################    INCREASE COLATERAL    ##########################
+    ############################################################################*/
+
+    function testICL1() public {
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        futures.increasePosition(1, 1000e6, 100e6, 2000e6, true);
+        _logPosition(1, alice, true);
+
+        futures.increaseCollateral(1, 100e6, 2500e6, true);
+        _logPosition(1, alice, true);
+        vm.stopPrank();
+    }
+
+    function testICL2() public {
+        vm.startPrank(alice);
+
+        usdc.approve(futuresAddr, usdc.balanceOf(alice));
+        futures.increasePosition(1, 50000e6, 1000e6, 28000e6, true);
+        _logPosition(1, alice, true);
+
+        futures.increaseCollateral(1, 5000e6, 30000e6, true);
+        _logPosition(1, alice, true);
+        vm.stopPrank();
+    }
+
+    /*###############################################################################################################################
+    #######################################################                    ######################################################
+    ######################################################       HELPERS        #####################################################
+    #######################################################                    ######################################################
+    ###############################################################################################################################*/
+
+    function _logPosition(uint256 id, address user, bool long) internal {
+        (
+            uint256 a,
+            uint256 b,
+            uint256 c,
+            uint256 d,
+            uint256 e,
+            ,
+            uint256 f
+        ) = futures.getTraderPosition(id, user, long);
+        console.log("------------------------------------------");
+        console.log("##########    POSITION LOGS     ##########");
+        console.log("------------------------------------------");
+        console.log("startedAt -----> ", a);
+        console.log("size      -----> ", b);
+        console.log("collateral ----> ", c);
+        console.log("entryPrice ----> ", d);
+        console.log("liqPrice  -----> ", e);
+        console.log("long      -----> ", long);
+        // /console.log("market    -----> ", f);
+        console.log("------------------------------------------");
     }
 
 }
