@@ -1,0 +1,12 @@
+/node_modules
+/dist
+/build
+
+/cache
+/artifacts
+/src/contracts
+
+credentials.json
+*.flat.sol
+coverage.json
+gas_report

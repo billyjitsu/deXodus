@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["@nomiclabs/hardhat-waffle", "@nomiclabs/hardhat-ethers", "chai", "mocha", "hardhat"],
+    "rootDir": "..",
+    // The output files of this TS config are for development only. See the referenced TS configs
+    // which build the sources into the "dist" folder in the root of the validator project.
+    "outDir": "../build"
+  },
+  "references": [{ "path": "../src" }],
+  // Mocha tests use only the ".ts" (not ".test.ts") extension not to conflict with Jest tests
+  "include": ["./**/*.ts", "../hardhat.config.ts"]
+}

@@ -1,0 +1,13 @@
+.git/
+.github/
+**/node_modules/**
+**/dist/**
+!docker/scripts/dist/**
+**/build/**
+**/coverage/**
+
+.dockerignore
+Dockerfile
+
+**/*.env
+**/*.log

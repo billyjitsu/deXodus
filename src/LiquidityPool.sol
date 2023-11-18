@@ -7,8 +7,6 @@ import {Ownable2StepUpgradeable} from "@openzeppelin/contracts-upgradeable/acces
 import {SafeERC20, IERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {ERC20Upgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 
-// import {console} from "../lib/hardhat/packages/hardhat-core/console.sol";
-
 /* MAIN FUNCTIONALITY:
      - Liquidity providers add liquidity
      - Liq Providers rmv liquidity
@@ -23,8 +21,14 @@ contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgrade
     error LiquidityPool__InsufficientAvailableLiquidity(uint256 available, uint256 required);
 
     uint256 public blockedAmount;
+    address public futuresContract;
 
     IERC20 public USDC;
+
+    modifier onlyFutures() {
+        require(msg.sender == futuresContract);
+        _;
+    }
 
     constructor() {
         _disableInitializers();
@@ -33,18 +37,19 @@ contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgrade
     function initialize(
         address _usdc,
         string memory _name,
-        string memory _symbol) external initializer {
+        string memory _symbol,
+        address _futuresContract) external initializer {
         __UUPSUpgradeable_init();
         __Ownable2Step_init();
         __ERC20_init(_name, _symbol);
         _transferOwnership(msg.sender);
 
         USDC = IERC20(_usdc);
+        futuresContract = _futuresContract;
     }
 
     function addLiquidity(address _to, uint256 _amountIn) external {
         uint256 lpAmountOut = calcLpOut(_amountIn);
-        // console.log("USDC --> ", address(USDC));
         USDC.transferFrom(msg.sender, address(this), _amountIn);
         _mint(_to, lpAmountOut);
     }
@@ -97,6 +102,13 @@ contract LiquidityPool is UUPSUpgradeable, ERC20Upgradeable, Ownable2StepUpgrade
 
     function availableLiquidity() public view returns (uint256) {
         return USDC.balanceOf(address(this)) - blockedAmount;
+    }
+
+    function benefitsToTrader(
+        address _to,
+        uint256 _amount
+    ) external onlyFutures {
+        USDC.safeTransfer(_to, _amount);
     }
 
     //////////////////////////////////////////

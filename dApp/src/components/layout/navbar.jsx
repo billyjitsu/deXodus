@@ -19,15 +19,20 @@ export const Navbar = () => {
       icon: "",
     },
     {
-      name: "Liquidity",
+      name: "Provide Liquidity",
       path: "/liquidity",
+      icon: "",
+    },
+    {
+      name: "My guardians",
+      path: "/collection",
       icon: "",
     },
     {
       name: "Admin",
       path: "/admin",
       icon: "",
-    },
+    }
   ];
 
   return (
@@ -36,13 +41,15 @@ export const Navbar = () => {
         <div className="text-white font-semibold flex felx-col my-auto lg:my-0 lg:flex-row items-center flex-shrink-0 mr-6 lg:mr-10 lg:ml-5 lg:pt-1 text-2xl">
           <Link href="/" className="flex items-center gap-1 cursor-pointer">
             <Image
-              src="/images/Logomark-Blue.png"
+              src="/images/dexLogo_fit.png"
               width={40}
               height={40}
               alt="logo"
             />
-            <div className="ml-2 bg-gradient-to-tl from-teal-500 via-emerald-500 to-blue-500 bg-clip-text text-transparent font-bold">
-              deXodus
+            <div className="ml-2 bg-gradient-to-r from-[#DC2368] via-[#861E6E] to-[#BB2C54] bg-clip-text text-transparent font-bold">
+              de
+              <span className="bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-500 bg-clip-text text-transparent">X</span>
+              odus
             </div>
           </Link>
           <button
