@@ -43,7 +43,7 @@ contract DeployNFTs is Script {
     function _deployChest(address exdAddr, address mockUsdcAddr, address guardiansAddr) internal returns (address) {
         uint256 chestPrice = 50e6;
         uint256 openSpending = 3;
-        string memory baseURI = "";
+        string memory baseURI = "https://ipfs.io/ipfs/bafybeif4puipnguxms5hkhjemoqq55ukzblj2bfbea5gtxprp7hlhbn3vu/";
         Chest chest = new Chest(chestPrice, openSpending, exdAddr, mockUsdcAddr, guardiansAddr, baseURI);
         return address(chest);
     }
@@ -51,7 +51,7 @@ contract DeployNFTs is Script {
     function _deployGuardians() internal returns (address) {
         string memory name = "Guardians";
         string memory symbol = "GRD";
-        string memory baseURI = "";
+        string memory baseURI = "https://ipfs.io/ipfs/bafybeie4rqfkmtugo76im235g2qvur2vmj5mszsbfi3t6yddbmvj5d6chi/";
         uint256[6] memory agesToEvolution = _setAges();
         uint256[100] memory experiences = _setExperience();
         Guardians guardians = new Guardians(name, symbol, baseURI, agesToEvolution, experiences);
