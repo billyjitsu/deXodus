@@ -5,105 +5,103 @@ const priceFeedABI = [
     type: "constructor",
   },
   {
+    anonymous: false,
     inputs: [
       {
+        indexed: false,
         internalType: "address",
         name: "previousAdmin",
         type: "address",
-        indexed: false,
       },
       {
+        indexed: false,
         internalType: "address",
         name: "newAdmin",
         type: "address",
-        indexed: false,
       },
     ],
-    type: "event",
     name: "AdminChanged",
-    anonymous: false,
+    type: "event",
   },
   {
+    anonymous: false,
     inputs: [
       {
+        indexed: true,
         internalType: "address",
         name: "beacon",
         type: "address",
-        indexed: true,
       },
     ],
-    type: "event",
     name: "BeaconUpgraded",
-    anonymous: false,
+    type: "event",
   },
   {
+    anonymous: false,
     inputs: [
       {
+        indexed: false,
         internalType: "uint8",
         name: "version",
         type: "uint8",
-        indexed: false,
       },
     ],
-    type: "event",
     name: "Initialized",
-    anonymous: false,
+    type: "event",
   },
   {
+    anonymous: false,
     inputs: [
       {
+        indexed: true,
         internalType: "address",
         name: "previousOwner",
         type: "address",
-        indexed: true,
       },
       {
+        indexed: true,
         internalType: "address",
         name: "newOwner",
         type: "address",
-        indexed: true,
       },
     ],
-    type: "event",
     name: "OwnershipTransferStarted",
-    anonymous: false,
+    type: "event",
   },
   {
+    anonymous: false,
     inputs: [
       {
+        indexed: true,
         internalType: "address",
         name: "previousOwner",
         type: "address",
-        indexed: true,
       },
       {
+        indexed: true,
         internalType: "address",
         name: "newOwner",
         type: "address",
-        indexed: true,
       },
     ],
-    type: "event",
     name: "OwnershipTransferred",
-    anonymous: false,
+    type: "event",
   },
   {
+    anonymous: false,
     inputs: [
       {
+        indexed: true,
         internalType: "address",
         name: "implementation",
         type: "address",
-        indexed: true,
       },
     ],
-    type: "event",
     name: "Upgraded",
-    anonymous: false,
+    type: "event",
   },
   {
     inputs: [],
-    stateMutability: "view",
-    type: "function",
     name: "USDC",
     outputs: [
       {
@@ -112,34 +110,15 @@ const priceFeedABI = [
         type: "address",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
     name: "acceptOwnership",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_token",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "_uniswapPool",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "_priceFeed",
-        type: "address",
-      },
-    ],
+    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    name: "addOrUpdateTokenSupport",
   },
   {
     inputs: [
@@ -149,27 +128,6 @@ const priceFeedABI = [
         type: "address",
       },
     ],
-    stateMutability: "view",
-    type: "function",
-    name: "getUsdPriceFromAmm",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_token",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
     name: "getUsdPriceFromChainlink",
     outputs: [
       {
@@ -178,6 +136,8 @@ const priceFeedABI = [
         type: "uint256",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [
@@ -189,11 +149,6 @@ const priceFeedABI = [
       {
         internalType: "address[]",
         name: "_tokens",
-        type: "address[]",
-      },
-      {
-        internalType: "address[]",
-        name: "_uniswapPool",
         type: "address[]",
       },
       {
@@ -212,43 +167,10 @@ const priceFeedABI = [
         type: "address",
       },
     ],
+    name: "initialize",
+    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    name: "initialize",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_futureId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_entryPrice",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_percentAllowed",
-        type: "uint256",
-      },
-      {
-        internalType: "bool",
-        name: "_long",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-    name: "isAcceptablePrice",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
   },
   {
     inputs: [
@@ -263,8 +185,6 @@ const priceFeedABI = [
         type: "uint256",
       },
     ],
-    stateMutability: "view",
-    type: "function",
     name: "isAcceptablePrice",
     outputs: [
       {
@@ -273,6 +193,8 @@ const priceFeedABI = [
         type: "bool",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [
@@ -287,9 +209,10 @@ const priceFeedABI = [
         type: "uint256",
       },
     ],
+    name: "mockChangePrice",
+    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    name: "mockChangePrice",
   },
   {
     inputs: [
@@ -299,21 +222,19 @@ const priceFeedABI = [
         type: "address",
       },
     ],
-    stateMutability: "view",
-    type: "function",
     name: "mockGetUsdPriceFromChainlink",
     outputs: [
       {
         internalType: "uint256",
-        name: "price",
+        name: "",
         type: "uint256",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [],
-    stateMutability: "view",
-    type: "function",
     name: "owner",
     outputs: [
       {
@@ -322,11 +243,11 @@ const priceFeedABI = [
         type: "address",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [],
-    stateMutability: "view",
-    type: "function",
     name: "pendingOwner",
     outputs: [
       {
@@ -335,11 +256,11 @@ const priceFeedABI = [
         type: "address",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [],
-    stateMutability: "view",
-    type: "function",
     name: "proxiableUUID",
     outputs: [
       {
@@ -348,6 +269,8 @@ const priceFeedABI = [
         type: "bytes32",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [
@@ -357,8 +280,6 @@ const priceFeedABI = [
         type: "address",
       },
     ],
-    stateMutability: "view",
-    type: "function",
     name: "readDataFeedFromApi3",
     outputs: [
       {
@@ -367,12 +288,15 @@ const priceFeedABI = [
         type: "uint224",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [],
+    name: "renounceOwnership",
+    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    name: "renounceOwnership",
   },
   {
     inputs: [
@@ -382,8 +306,6 @@ const priceFeedABI = [
         type: "address",
       },
     ],
-    stateMutability: "view",
-    type: "function",
     name: "s_tokenPrice",
     outputs: [
       {
@@ -392,6 +314,8 @@ const priceFeedABI = [
         type: "uint256",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [
@@ -401,8 +325,6 @@ const priceFeedABI = [
         type: "address",
       },
     ],
-    stateMutability: "view",
-    type: "function",
     name: "s_tokenPriceFeed",
     outputs: [
       {
@@ -411,25 +333,8 @@ const priceFeedABI = [
         type: "address",
       },
     ],
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "token",
-        type: "address",
-      },
-    ],
     stateMutability: "view",
     type: "function",
-    name: "s_uniswapTokenPool",
-    outputs: [
-      {
-        internalType: "contract IUniswapV3Pool",
-        name: "tokenUsdPool",
-        type: "address",
-      },
-    ],
   },
   {
     inputs: [
@@ -439,9 +344,10 @@ const priceFeedABI = [
         type: "address",
       },
     ],
+    name: "transferOwnership",
+    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    name: "transferOwnership",
   },
   {
     inputs: [
@@ -451,9 +357,10 @@ const priceFeedABI = [
         type: "address",
       },
     ],
+    name: "upgradeTo",
+    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
-    name: "upgradeTo",
   },
   {
     inputs: [
@@ -468,14 +375,13 @@ const priceFeedABI = [
         type: "bytes",
       },
     ],
+    name: "upgradeToAndCall",
+    outputs: [],
     stateMutability: "payable",
     type: "function",
-    name: "upgradeToAndCall",
   },
   {
     inputs: [],
-    stateMutability: "pure",
-    type: "function",
     name: "version",
     outputs: [
       {
@@ -484,11 +390,11 @@ const priceFeedABI = [
         type: "uint256",
       },
     ],
+    stateMutability: "pure",
+    type: "function",
   },
   {
     inputs: [],
-    stateMutability: "view",
-    type: "function",
     name: "wbtc",
     outputs: [
       {
@@ -497,11 +403,11 @@ const priceFeedABI = [
         type: "address",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [],
-    stateMutability: "view",
-    type: "function",
     name: "weth",
     outputs: [
       {
@@ -510,6 +416,8 @@ const priceFeedABI = [
         type: "address",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
 ];
 

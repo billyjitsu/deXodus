@@ -119,92 +119,6 @@ const futuresABI = [
       {
         indexed: true,
         internalType: "uint256",
-        name: "futureId",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "string",
-        name: "market",
-        type: "string",
-      },
-    ],
-    name: "CreateFuture",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "marketId",
-        type: "uint256",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "positionId",
-        type: "uint256",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "trader",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "startedAt",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "size",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "collateral",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "entryPrice",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "liqPrice",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "bool",
-        name: "long",
-        type: "bool",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "currentPrice",
-        type: "uint256",
-      },
-    ],
-    name: "DecreaseCollateral",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "uint256",
         name: "marketId",
         type: "uint256",
       },
@@ -264,73 +178,6 @@ const futuresABI = [
       },
     ],
     name: "DecreasePosition",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "marketId",
-        type: "uint256",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "positionId",
-        type: "uint256",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "trader",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "startedAt",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "size",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "collateral",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "entryPrice",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "liqPrice",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "bool",
-        name: "long",
-        type: "bool",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "currentPrice",
-        type: "uint256",
-      },
-    ],
-    name: "IncreaseCollateral",
     type: "event",
   },
   {
@@ -589,51 +436,6 @@ const futuresABI = [
     anonymous: false,
     inputs: [
       {
-        indexed: false,
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-    ],
-    name: "Paused",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-    ],
-    name: "Unpaused",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "oldGovernance",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "address",
-        name: "newGovernance",
-        type: "address",
-      },
-    ],
-    name: "UpdatedGovernance",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
         indexed: true,
         internalType: "address",
         name: "implementation",
@@ -642,6 +444,19 @@ const futuresABI = [
     ],
     name: "Upgraded",
     type: "event",
+  },
+  {
+    inputs: [],
+    name: "BASIS_POINTS",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [
@@ -711,19 +526,6 @@ const futuresABI = [
   },
   {
     inputs: [],
-    name: "PERCENTAGE",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "USDC",
     outputs: [
       {
@@ -740,19 +542,6 @@ const futuresABI = [
     name: "acceptOwnership",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "borrowingFee",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {
@@ -861,34 +650,6 @@ const futuresABI = [
       },
       {
         internalType: "bool",
-        name: "_long",
-        type: "bool",
-      },
-    ],
-    name: "decreaseCollateral",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_futureId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_percentageDecrease",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_currentPrice",
-        type: "uint256",
-      },
-      {
-        internalType: "bool",
         name: "_keepLeverageRatio",
         type: "bool",
       },
@@ -901,32 +662,6 @@ const futuresABI = [
     name: "decreasePosition",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "executionFee",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "fundingFee",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {
@@ -1027,47 +762,6 @@ const futuresABI = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "governance",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_futureId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_collateral",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_currentPrice",
-        type: "uint256",
-      },
-      {
-        internalType: "bool",
-        name: "_long",
-        type: "bool",
-      },
-    ],
-    name: "increaseCollateral",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "uint256",
@@ -1115,6 +809,16 @@ const futuresABI = [
       {
         internalType: "address",
         name: "_usdc",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_weth",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_wbtc",
         type: "address",
       },
       {
@@ -1238,38 +942,12 @@ const futuresABI = [
   },
   {
     inputs: [],
-    name: "makerTradingFee",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "owner",
     outputs: [
       {
         internalType: "address",
         name: "",
         type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "paused",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
       },
     ],
     stateMutability: "view",
@@ -1350,19 +1028,6 @@ const futuresABI = [
   },
   {
     inputs: [],
-    name: "priceImpactFee",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "proxiableUUID",
     outputs: [
       {
@@ -1377,102 +1042,6 @@ const futuresABI = [
   {
     inputs: [],
     name: "renounceOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_newGovernance",
-        type: "address",
-      },
-    ],
-    name: "setGovernance",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bool",
-        name: "_paused",
-        type: "bool",
-      },
-    ],
-    name: "setPause",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_makerFee",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_takerFee",
-        type: "uint256",
-      },
-    ],
-    name: "setTradingFees",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_borrowingFee",
-        type: "uint256",
-      },
-    ],
-    name: "setborrowingFee",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_executionFee",
-        type: "uint256",
-      },
-    ],
-    name: "setexecutionFee",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_fundingFee",
-        type: "uint256",
-      },
-    ],
-    name: "setfundingFee",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_priceImpactFee",
-        type: "uint256",
-      },
-    ],
-    name: "setpriceImpactFee",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -1530,19 +1099,6 @@ const futuresABI = [
       {
         internalType: "uint256",
         name: "marketId",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "takerTradingFee",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
         type: "uint256",
       },
     ],
@@ -1625,8 +1181,34 @@ const futuresABI = [
     stateMutability: "pure",
     type: "function",
   },
+  {
+    inputs: [],
+    name: "wbtc",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "weth",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
 ];
 
 module.exports = {
   futuresABI,
-}
+};

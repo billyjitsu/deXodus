@@ -2,7 +2,6 @@ import Head from "next/head";
 import { MintButton } from "@/components/mintButton";
 import { MintNFTButton } from "@/components/mintNFTButton";
 import { MintEXDButton } from "@/components/mintEXDButton";
-import { MintPayMasterButton } from "@/components/mintPayMasterButton";
 import { useBalance } from "wagmi";
 import { useAccount } from "wagmi";
 import { ClearMintButton } from "@/components/clearMintButton";
@@ -49,9 +48,6 @@ export default function Home() {
           <div className="ml-5 flex gap-4 items-center">
             <div>
               <MintButton />
-            </div>
-            <div>
-              <MintPayMasterButton />
             </div>
             <div>
               <MintEXDButton />

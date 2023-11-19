@@ -255,6 +255,40 @@ export const guardiansABI = [
   {
     inputs: [
       {
+        internalType: "uint256",
+        name: "id",
+        type: "uint256",
+      },
+    ],
+    name: "guardiansAttributes",
+    outputs: [
+      {
+        internalType: "enum Guardians.Animal",
+        name: "animal",
+        type: "uint8",
+      },
+      {
+        internalType: "enum Guardians.Evolution",
+        name: "evolution",
+        type: "uint8",
+      },
+      {
+        internalType: "uint256",
+        name: "age",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "experience",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
         name: "",
         type: "address",
@@ -380,6 +414,29 @@ export const guardiansABI = [
     type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256[]",
+        name: "ids",
+        type: "uint256[]",
+      },
+      {
+        internalType: "uint256[]",
+        name: "amounts",
+        type: "uint256[]",
+      },
+    ],
+    name: "mintBatchFromOwner",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "name",
     outputs: [
@@ -400,40 +457,6 @@ export const guardiansABI = [
         internalType: "address",
         name: "",
         type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "id",
-        type: "uint256",
-      },
-    ],
-    name: "predatorAttributes",
-    outputs: [
-      {
-        internalType: "enum Guardians.Animal",
-        name: "animal",
-        type: "uint8",
-      },
-      {
-        internalType: "enum Guardians.Evolution",
-        name: "evolution",
-        type: "uint8",
-      },
-      {
-        internalType: "uint256",
-        name: "age",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "experience",
-        type: "uint256",
       },
     ],
     stateMutability: "view",
