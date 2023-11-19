@@ -54,6 +54,34 @@ Our roadmap reflects our commitment to continuous improvement, emphasizing the e
 
 ## Deployed Contracts
 
+#### ZKSync Era
+|Contract                      |Address                                          |
+|------------------------------|-------------------------------------------------|
+|LiquidityPool                 |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
+|Futures                       |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
+|EXD                           |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
+|MockUSDC                      |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
+|Chest                         |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
+|Guardians                     |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
+|RandomNumbers                 |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
+|PriceFeed                     |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
+|Paymasters                    |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
+
+#### ETH Sepolia
+|Contract                      |Address                                          |
+|------------------------------|-------------------------------------------------|
+|LiquidityPool                 |[0x5D9f08d5b65662a53E30C4E510968AcC6d015651](https://sepolia.etherscan.io/address/0x5D9f08d5b65662a53E30C4E510968AcC6d015651)       |
+|Futures                       |[0x0d1cC1c963CdE4DF833bFCa7898D8dfEd713CF44](https://sepolia.etherscan.io/address/0x0d1cC1c963CdE4DF833bFCa7898D8dfEd713CF44)       |
+|EXD                           |[0xaf2aa7917250689Df2692d3249d94292F30491F8](https://sepolia.etherscan.io/address/0xaf2aa7917250689Df2692d3249d94292F30491F8)       |
+|MockUSDC                      |[0x13D0A4EBeAfCaFB6C84AE35753C04FBF3Eb3663F](https://sepolia.etherscan.io/address/0x13D0A4EBeAfCaFB6C84AE35753C04FBF3Eb3663F)       |
+|Chest                         |[0x9Baca60f3Bd0A5376631cf4Bf9b5A807B99A10B0](https://sepolia.etherscan.io/address/0x9Baca60f3Bd0A5376631cf4Bf9b5A807B99A10B0)       |
+|Guardians                     |[0xFa62AF99ee54B75Fc0Fddce81DC9607ebd4cC986](https://sepolia.etherscan.io/address/0xFa62AF99ee54B75Fc0Fddce81DC9607ebd4cC986)      |
+|RandomNumbers                 |[0xE0Be7fE3Bab804B5F4CA9308C996C16569Df62D0](https://sepolia.etherscan.io/address/0xE0Be7fE3Bab804B5F4CA9308C996C16569Df62D0)       |
+|PriceFeed                     |[0x7d2A50F28D5c200b55B7cbB1c2E1c8cE1E74b255](https://sepolia.etherscan.io/address/0x7d2A50F28D5c200b55B7cbB1c2E1c8cE1E74b255)       |
+
+
+
+
 ## Tech Stack
 At Dexodus, our innovative approach relies on a tailored tech stack, offering customized futures contracts for enhanced efficiency in gamification features and more. Here's an insight into our technology arsenal:
 
@@ -124,3 +152,23 @@ Within Dexodus, traders have the opportunity to compete in trader leagues during
 Traders compete simultaneously in an absolute and relative ranking. The absolute ranking takes into account the absolute net PnL, that is, the total gains of the trader. Meanwhile, the relative ranking considers the PnL in relation to the size of the positions managed. This allows a trader to compete in a division, for example, in the rabbit division in the absolute ranking, but in the buffalo division in the relative ranking, due to the comparison of their profits with the size of their operations.
 
 Traders will have the option to access a higher league by paying, but staying in that league will depend entirely on their performance.
+
+<div align="center">
+
+![tier_1](img/hare.png)
+
+Tier 1 - Hare (Bronze)
+
+![tier_2](img/gazelle.png)
+
+Tier 2 - Gazelle (Silver)
+
+![tier_3](img/buffalo.png)
+
+Tier 3 - Buffalo (Gold)
+
+![tier_4](img/elephant.png)
+
+Tier 4 - Elephant (Diamond)
+
+</div>
