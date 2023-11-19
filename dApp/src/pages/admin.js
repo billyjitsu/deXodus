@@ -15,7 +15,7 @@ export default function Home() {
     watch: true,
   });
   const { data: paymasterBalance } = useBalance({
-    address: "0x1495761496684F730Fe8a84D11C0EE6063dbC91b",
+    address: "0x1AE6569a8Aa548ab994e7567D6410C047E2530c9",
     watch: true,
   });
   const { data: usdcBalance } = useBalance({

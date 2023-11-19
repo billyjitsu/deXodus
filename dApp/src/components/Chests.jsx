@@ -9,7 +9,6 @@ import { openChest, buyChest } from "@/lib/smartContracts/chest";
 import { approve } from "@/lib/smartContracts/erc20Functions";
 import { useErc20Allowance } from "@/hooks/useErc20Allowance";
 import { claimNfts } from "@/lib/smartContracts/chest";
-import { Center } from "@chakra-ui/react";
 
 export const Chests = ({}) => {
   const { address } = useAccount();

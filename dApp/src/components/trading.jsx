@@ -2,7 +2,7 @@ import { LeverageSlider } from "@/components/leverageSlider";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import { useIsMounted } from "@/hooks/useIsMounted";
-import { useBalance, useAccount } from "wagmi";
+import { useBalance, useAccount, useNetwork } from "wagmi";
 import { useEffect, useState, useRef } from "react";
 import { OpenPositionButton } from "./tradingComponents/openPositionButton";
 import { usePrice } from "@/context/priceContext";
@@ -23,6 +23,7 @@ import { useMarket } from "@/context/marketContext";
 import { CryptoIcon } from "./cryptoIcon";
 import { NftArenaSelector } from "./nftArenaSelector";
 import { useDeployment } from "@/context/deploymentContext";
+import { OpenPositionPaymasterButton } from "./openPositionPaymasterButton";
 
 export const Trading = ({ type = "long" }) => {
   const { address, isConnected } = useAccount();
@@ -31,7 +32,8 @@ export const Trading = ({ type = "long" }) => {
   const [cryptoValue, setCryptoValue] = useState(0); // [BTC]
   const [leverageValue, setLeverageValue] = useState(1.1);
   const { market, setMarketData } = useMarket();
-  const { deployment } = useDeployment(); 
+  const { deployment } = useDeployment();
+  const { chain } = useNetwork();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
@@ -166,11 +168,19 @@ export const Trading = ({ type = "long" }) => {
         <div className="w-fit mx-auto mt-14">
           {isMounted &&
             (isConnected ? (
-              <OpenPositionButton
-                collateral={collateralValue}
-                leverage={leverageValue}
-                type={type}
-              />
+              chain.id == "11155111" ? (
+                <OpenPositionButton
+                  collateral={collateralValue}
+                  leverage={leverageValue}
+                  type={type}
+                />
+              ) : (
+                <OpenPositionPaymasterButton
+                  collateral={collateralValue}
+                  leverage={leverageValue}
+                  type={type}
+                />
+              )
             ) : (
               <ConnectButton />
             ))}
