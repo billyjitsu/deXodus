@@ -17,7 +17,7 @@ To immortalize the event, we have developed a few unique traits (EtH Global bean
 
 ---
 
-[Prize Submissions](#prize-submission) •
+[Prize Submissions](#prize-submissions) •
 [Important Links](#important-links)
 
 ---
