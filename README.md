@@ -18,24 +18,31 @@ To immortalize the event, we have developed a few unique traits (ETH Global bean
 ---
 
 [Prize Submissions](#prize-submissions) •
-[Important Links](#important-links)
+[Important Links](#important-links) •
+[Project Overview](#project-overview) •
+[Deployed Contracts](#deployed-contracts) •
+[Tech Stack](#tech-stack) •
+[Liquidity Pool](#liquidity-pool) •
+[Perpetual Trading](#perpetual-trading) •
+[NFT Gamification](#nft-gamification) •
+[Leagues & Seasons](#leagues--seasons) •
 
 ---
 
 </div>
 
-## Prize Subsmissions
-- 1Inch: 
+## Prize Submissions
+- 1Inch: Open track
 - ZKSync: Best Paymasters on zkSync
-- Filecoin: Grand Prizes
+- IPFS & Filecoin: Grand Prizes
 - Chainlink: Other Chainlink Services
-- API3: Best use of dAPI price feeds and Best use of API3 QRNG
+- API3: Best use of dAPI price feeds & Best use of API3 QRNG
 - TheGraph: Best New Subgraph & Best Use of Subgraph
 
 
 ## Important Links
 
-- [Live Demo]()
+- [Video Submission]()
 - [MVP Website]()
 - [Front End Repository]()
 - [NFT Collection]()
@@ -47,14 +54,14 @@ Dexodus is a cutting-edge decentralized exchange protocol revolutionizing the De
 
 One of our paramount objectives is to ensure a robust and secure trading environment. The protocol design is meticulously crafted to fortify against exploits, emphasizing stringent security measures at its core.
 
-At Dexodus, we elevate the trading experience through innovative gamification elements. We understand the importance of user engagement, and our platform incorporates gamified features that enhance the overall trading experience. Through the integration of non-fungible tokens (NFTs), traders can actively participate in leagues, stake NFTs, and engage in copy trading without the traditional hurdles.
+At DeXodus, we elevate the trading experience through innovative gamification elements. We understand the importance of user engagement, and our platform incorporates gamified features that enhance the overall trading experience. Through the integration of non-fungible tokens (NFTs), traders can actively participate in leagues, stake NFTs, and engage in copy trading without the traditional hurdles.
 
 Our roadmap reflects our commitment to continuous improvement, emphasizing the empowerment of our community. Transparency, security, and user-centric design remain at the forefront of our priorities.
 
 
 ## Deployed Contracts
 
-#### ZKSync Era
+#### ZKSync Era Testnet
 |Contract                      |Address                                          |
 |------------------------------|-------------------------------------------------|
 |LiquidityPool                 |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
@@ -83,7 +90,7 @@ Our roadmap reflects our commitment to continuous improvement, emphasizing the e
 
 
 ## Tech Stack
-At Dexodus, our innovative approach relies on a tailored tech stack, offering customized futures contracts for enhanced efficiency in gamification features and more. Here's an insight into our technology arsenal:
+At Dexodus, our innovative approach relies on a tailored tech stack, offering customized futures contracts for enhanced efficiency in gamification features and more. Here's an overview of the functionalities:
 
 - Customized Futures Contracts: Engineered in-house to achieve tailored efficiency standards for gamification features and functionalities.
 - Proprietary Liquidity Pool: Our internally-managed liquidity pool ensures efficient auto-compounding mechanisms.
