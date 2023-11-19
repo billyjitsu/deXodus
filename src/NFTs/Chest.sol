@@ -18,7 +18,7 @@ contract Chest is ERC1155, Ownable {
     uint256 public openSpend;
     Guardians public guardians;
 
-    RandomNumbers public constant randomNumbers = RandomNumbers(payable(0xf3b7A9c9af5eDe9701bADBEefC670D70760645D7));
+    RandomNumbers public constant randomNumbers = RandomNumbers(payable(0xE0Be7fE3Bab804B5F4CA9308C996C16569Df62D0));
 
     address public nextUserToMint;
     uint256 public minting;
