@@ -34,6 +34,6 @@ contract RandomNumbersSetUp is Script {
                         bytes32(0x94555f83f1addda23fdaa7c74f27ce2b764ed5cc430c66f5ff1bcf39d583da36), 
                         bytes32(0x9877ec98695c139310480b4323b9d474d48ec4595560348a2341218670f7fbc2), 
                         address(0xfb0c821438ea15e95ab6edDd20043aE761def741),  // derived address from avobe CLI command
-                        address(0xDab14Ea8FCc17a238A5674b70a5CDca484d6CF63)); //use CHEST address
+                        address(0x9Baca60f3Bd0A5376631cf4Bf9b5A807B99A10B0)); //use CHEST address
     }
 }

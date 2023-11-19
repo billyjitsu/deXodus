@@ -76,7 +76,7 @@ export const deployContract = async (contractArtifactName: string, constructorAr
     if (!options?.silent) console.log(message);
   }
 
-  log(`\nStarting deployment process of "${contractArtifactName}"...`);
+  // log(`\nStarting deployment process of "${contractArtifactName}"...`);
   
   const wallet = options?.wallet ?? getWallet();
   const deployer = new Deployer(hre, wallet);
@@ -91,7 +91,7 @@ export const deployContract = async (contractArtifactName: string, constructorAr
 
   // Estimate contract deployment fee
   const deploymentFee = await deployer.estimateDeployFee(artifact, constructorArguments || []);
-  log(`Estimated deployment cost: ${formatEther(deploymentFee)} ETH`);
+  // log(`Estimated deployment cost: ${formatEther(deploymentFee)} ETH`);
 
   // Check if the wallet has enough balance
   await verifyEnoughBalance(wallet, deploymentFee);
@@ -103,20 +103,20 @@ export const deployContract = async (contractArtifactName: string, constructorAr
   const fullContractSource = `${artifact.sourceName}:${artifact.contractName}`;
 
   // Display contract deployment info
-  log(`\n"${artifact.contractName}" was successfully deployed:`);
-  log(` - Contract address: ${contract.address}`);
-  log(` - Contract source: ${fullContractSource}`);
-  log(` - Encoded constructor arguments: ${constructorArgs}\n`);
+  // log(`\n"${artifact.contractName}" was successfully deployed:`);
+  // log(` - Contract address: ${contract.address}`);
+  // log(` - Contract source: ${fullContractSource}`);
+  // log(` - Encoded constructor arguments: ${constructorArgs}\n`);
 
-  if (!options?.noVerify && hre.network.config.verifyURL) {
-    log(`Requesting contract verification...`);
-    await verifyContract({
-      address: contract.address,
-      contract: fullContractSource,
-      constructorArguments: constructorArgs,
-      bytecode: artifact.bytecode,
-    });
-  }
+  // if (!options?.noVerify && hre.network.config.verifyURL) {
+  //   log(`Requesting contract verification...`);
+  //   await verifyContract({
+  //     address: contract.address,
+  //     contract: fullContractSource,
+  //     constructorArguments: constructorArgs,
+  //     bytecode: artifact.bytecode,
+  //   });
+  // }
 
   return contract;
 }

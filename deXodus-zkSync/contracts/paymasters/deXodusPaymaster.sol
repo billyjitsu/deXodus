@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
@@ -10,9 +9,8 @@ import {IPaymaster, ExecutionResult, PAYMASTER_VALIDATION_SUCCESS_MAGIC} from "@
 import {IPaymasterFlow} from "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol";
 import {TransactionHelper, Transaction} from "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
 
-/// @notice This smart contract pays the gas fees on behalf of traders
+/// @notice This smart contract pays the gas fees on behalf of deXodus traders
 contract deXodusPaymaster is IPaymaster, Ownable {
-    // IERC721 private immutable nft_asset;
 
     modifier onlyBootloader() {
         require(
@@ -23,11 +21,7 @@ contract deXodusPaymaster is IPaymaster, Ownable {
         _;
     }
 
-    // The constructor takes the address of the ERC721 contract as an argument.
-    // The ERC721 contract is the asset that the user must hold in order to use the paymaster.
-    constructor(/*address _erc721*/) {
-        // nft_asset = IERC721(_erc721); // Initialize the ERC721 contract
-    }
+    constructor() {}
 
     function validateAndPayForPaymasterTransaction(
         bytes32,
@@ -51,12 +45,7 @@ contract deXodusPaymaster is IPaymaster, Ownable {
         
         if (paymasterInputSelector == IPaymasterFlow.general.selector) {
             address userAddress = address(uint160(_transaction.from));
-        
-            // require(
-            //     nft_asset.balanceOf(userAddress) > 0,
-            //     "User does not hold the required NFT asset and therefore must pay for their own gas!"
-            // );
-        
+
             uint256 requiredETH = _transaction.gasLimit *
                 _transaction.maxFeePerGas;
         
@@ -79,7 +68,6 @@ contract deXodusPaymaster is IPaymaster, Ownable {
     }
 
     function withdraw(address payable _to) external onlyOwner {
-        // send paymaster funds to the owner
         uint256 balance = address(this).balance;
         (bool success, ) = _to.call{value: balance}("");
         require(success, "Failed to withdraw funds from paymaster.");
