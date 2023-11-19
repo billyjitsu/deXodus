@@ -42,11 +42,7 @@ To immortalize the event, we have developed a few unique traits (ETH Global bean
 
 ## Important Links
 
-- [Video Submission]()
-- [MVP Website]()
-- [Front End Repository]()
-- [NFT Collection]()
-
+- [MVP Website](https://dexodus.vercel.app/)
 
 ## Project Overview
 
