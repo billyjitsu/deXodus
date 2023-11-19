@@ -5,6 +5,16 @@ export const FuturesABI = [
     type: "constructor",
   },
   {
+    inputs: [],
+    name: "Futures__FutureAlreadyExists",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "Futures__FutureDoesNotExists",
+    type: "error",
+  },
+  {
     anonymous: false,
     inputs: [
       {
@@ -40,6 +50,207 @@ export const FuturesABI = [
     anonymous: false,
     inputs: [
       {
+        indexed: true,
+        internalType: "uint256",
+        name: "marketId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "positionId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "trader",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "startedAt",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "size",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "collateral",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "entryPrice",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "liqPrice",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "long",
+        type: "bool",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "currentPrice",
+        type: "uint256",
+      },
+    ],
+    name: "ClosePosition",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "marketId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "positionId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "trader",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "startedAt",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "size",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "collateral",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "entryPrice",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "liqPrice",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "long",
+        type: "bool",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "currentPrice",
+        type: "uint256",
+      },
+    ],
+    name: "DecreasePosition",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "marketId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "positionId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "trader",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "startedAt",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "size",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "collateral",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "entryPrice",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "liqPrice",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "long",
+        type: "bool",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "currentPrice",
+        type: "uint256",
+      },
+    ],
+    name: "IncreasePosition",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
         indexed: false,
         internalType: "uint8",
         name: "version",
@@ -47,6 +258,140 @@ export const FuturesABI = [
       },
     ],
     name: "Initialized",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "marketId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "positionId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "trader",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "startedAt",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "size",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "collateral",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "entryPrice",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "liqPrice",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "long",
+        type: "bool",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "currentPrice",
+        type: "uint256",
+      },
+    ],
+    name: "LiquidatePosition",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "marketId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "positionId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "trader",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "startedAt",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "size",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "collateral",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "entryPrice",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "liqPrice",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "long",
+        type: "bool",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "currentPrice",
+        type: "uint256",
+      },
+    ],
+    name: "OpenPosition",
     type: "event",
   },
   {
@@ -102,41 +447,348 @@ export const FuturesABI = [
   },
   {
     inputs: [],
+    name: "BASIS_POINTS",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "positionId",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "startedAt",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "size",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "collateral",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "entryPrice",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "liqPrice",
+            type: "uint256",
+          },
+          {
+            internalType: "bool",
+            name: "long",
+            type: "bool",
+          },
+          {
+            internalType: "uint256",
+            name: "marketId",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct Futures.Position",
+        name: "_position",
+        type: "tuple",
+      },
+      {
+        internalType: "uint256",
+        name: "_currentPrice",
+        type: "uint256",
+      },
+    ],
+    name: "IsPositionLiquidable",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "USDC",
+    outputs: [
+      {
+        internalType: "contract IERC20",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "acceptOwnership",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
+    inputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "positionId",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "startedAt",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "size",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "collateral",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "entryPrice",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "liqPrice",
+            type: "uint256",
+          },
+          {
+            internalType: "bool",
+            name: "long",
+            type: "bool",
+          },
+          {
+            internalType: "uint256",
+            name: "marketId",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct Futures.Position",
+        name: "_position",
+        type: "tuple",
+      },
+    ],
+    name: "calcLiquidationPrice",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "liqPrice",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [],
+    name: "counter",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_market",
+        type: "string",
+      },
+    ],
     name: "createFuture",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [],
-    name: "decreaseCollateral",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_futureId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_percentageDecrease",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_currentPrice",
+        type: "uint256",
+      },
+      {
+        internalType: "bool",
+        name: "_keepLeverageRatio",
+        type: "bool",
+      },
+      {
+        internalType: "bool",
+        name: "_long",
+        type: "bool",
+      },
+    ],
     name: "decreasePosition",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [],
-    name: "increaseCollateral",
-    outputs: [],
-    stateMutability: "nonpayable",
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    name: "futureId",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "futureMarket",
+    outputs: [
+      {
+        internalType: "string",
+        name: "market",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_futureId",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "_user",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "_long",
+        type: "bool",
+      },
+    ],
+    name: "getTraderPosition",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "startedAt",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "size",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "collateral",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "entryPrice",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "liqPrice",
+        type: "uint256",
+      },
+      {
+        internalType: "bool",
+        name: "long",
+        type: "bool",
+      },
+      {
+        internalType: "uint256",
+        name: "marketId",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_futureId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_size",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_collateral",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_currentPrice",
+        type: "uint256",
+      },
+      {
+        internalType: "bool",
+        name: "_long",
+        type: "bool",
+      },
+    ],
     name: "increasePosition",
     outputs: [],
     stateMutability: "nonpayable",
@@ -151,8 +803,28 @@ export const FuturesABI = [
       },
       {
         internalType: "address",
+        name: "_priceFeed",
+        type: "address",
+      },
+      {
+        internalType: "address",
         name: "_usdc",
         type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_weth",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_wbtc",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_liquidationThreshold",
+        type: "uint256",
       },
     ],
     name: "initialize",
@@ -161,10 +833,111 @@ export const FuturesABI = [
     type: "function",
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_futureId",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "_trader",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "_long",
+        type: "bool",
+      },
+    ],
     name: "liquidatePosition",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "liquidationThreshold",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "liquidityPool",
+    outputs: [
+      {
+        internalType: "contract ILiquidityPool",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    name: "longPositions",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "positionId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "startedAt",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "size",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "collateral",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "entryPrice",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "liqPrice",
+        type: "uint256",
+      },
+      {
+        internalType: "bool",
+        name: "long",
+        type: "bool",
+      },
+      {
+        internalType: "uint256",
+        name: "marketId",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -195,6 +968,66 @@ export const FuturesABI = [
   },
   {
     inputs: [],
+    name: "positionIdCounter",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_price",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "_trader",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "_long",
+        type: "bool",
+      },
+      {
+        internalType: "uint256",
+        name: "_futureId",
+        type: "uint256",
+      },
+    ],
+    name: "positionNetValue",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "positionNetValue",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "priceFeed",
+    outputs: [
+      {
+        internalType: "contract IPriceFeed",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "proxiableUUID",
     outputs: [
       {
@@ -211,6 +1044,65 @@ export const FuturesABI = [
     name: "renounceOwnership",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    name: "shortPositions",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "positionId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "startedAt",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "size",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "collateral",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "entryPrice",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "liqPrice",
+        type: "uint256",
+      },
+      {
+        internalType: "bool",
+        name: "long",
+        type: "bool",
+      },
+      {
+        internalType: "uint256",
+        name: "marketId",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -258,6 +1150,25 @@ export const FuturesABI = [
     type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_futureId",
+        type: "uint256",
+      },
+    ],
+    name: "validFuture",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "version",
     outputs: [
@@ -268,6 +1179,32 @@ export const FuturesABI = [
       },
     ],
     stateMutability: "pure",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "wbtc",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "weth",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
 ];

@@ -22,7 +22,8 @@
     "react-dom": "^18",
     "reconnecting-websocket": "^4.4.0",
     "viem": "^1.17.1",
-    "wagmi": "^1.4.5"
+    "wagmi": "^1.4.5",
+    "zksync-web3": "^0.16.0"
   },
   "devDependencies": {
     "@graphprotocol/client-cli": "^3.0.0",

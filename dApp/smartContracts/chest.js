@@ -13,7 +13,7 @@ export const chestABI = [
       },
       {
         internalType: "address",
-        name: "_ppx",
+        name: "_exd",
         type: "address",
       },
       {
@@ -23,8 +23,13 @@ export const chestABI = [
       },
       {
         internalType: "address",
-        name: "_predators",
+        name: "_guardians",
         type: "address",
+      },
+      {
+        internalType: "string",
+        name: "_baseURI",
+        type: "string",
       },
     ],
     stateMutability: "nonpayable",
@@ -250,6 +255,32 @@ export const chestABI = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "exd",
+    outputs: [
+      {
+        internalType: "contract EXD",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "guardians",
+    outputs: [
+      {
+        internalType: "contract Guardians",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -325,32 +356,6 @@ export const chestABI = [
     outputs: [
       {
         internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "ppx",
-    outputs: [
-      {
-        internalType: "contract PPX",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "predators",
-    outputs: [
-      {
-        internalType: "contract PredatorsV1",
         name: "",
         type: "address",
       },
@@ -498,7 +503,7 @@ export const chestABI = [
     inputs: [
       {
         internalType: "uint256",
-        name: "",
+        name: "id",
         type: "uint256",
       },
     ],

@@ -6,7 +6,7 @@ import {
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 import { WagmiConfig, createConfig, configureChains } from "wagmi";
-import { sepolia, mainnet } from "wagmi/chains";
+import { sepolia, mainnet, zkSyncTestnet } from "wagmi/chains";
 import { ChakraProvider } from "@chakra-ui/react";
 import { PriceProvider } from "@/context/priceContext";
 import { MarketProvider } from "@/context/marketContext";
@@ -23,12 +23,17 @@ const font = Hind_Siliguri({
 });
 
 const { chains, publicClient } = configureChains(
-  [sepolia, mainnet],
+  [sepolia, mainnet, zkSyncTestnet],
   [
     alchemyProvider({
       apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     }),
     infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY }),
+    jsonRpcProvider({
+      rpc: () => ({
+        http: "https://zksync2-testnet.zksync.dev",
+      }),
+    }),
   ] //ToDO: API KEY EXPOSED!??
 );
 
@@ -36,7 +41,7 @@ const chainsForWallet = chains.filter((chain) => chain.id !== 1); //WE DONT WANT
 
 const { connectors } = getDefaultWallets({
   appName: "deXodus",
-  projectId: "08b54e6dae02ff39f4f482aad8655733",
+  projectId: "dcfa1ef4ad17e0d8e8e7328da0f052f2",
   chains,
 });
 
@@ -55,7 +60,7 @@ export default function App({ Component, pageProps }) {
       <WagmiConfig config={config}>
         <RainbowKitProvider
           chains={chainsForWallet}
-          theme={darkTheme({ accentColor: "#1B998B" })}
+          theme={darkTheme({ accentColor: "#DE2B6D" })}
         >
           <ChakraProvider>
             <DeploymentProvider>

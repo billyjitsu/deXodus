@@ -5,6 +5,7 @@ import {
   useWaitForTransaction,
   useNetwork,
 } from "wagmi";
+import { sepolia } from "wagmi/chains";
 import { LiquidityPoolABI } from "../../../smartContracts/liquidityPool";
 import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
@@ -20,7 +21,6 @@ export const WithdrawLiquidityButton = ({
   const toast = useToast();
   const { address, isConnecting, isDisconnected } = useAccount();
   const { deployment } = useDeployment();
-  const { chain } = useNetwork();
 
   const {
     config,
@@ -31,7 +31,6 @@ export const WithdrawLiquidityButton = ({
     abi: LiquidityPoolABI,
     functionName: "withdrawLiquidity",
     args: [address, floatToBigInt(amount, 18)],
-    chainId: chain.id,
     onError(error) {
       /*toast({
         title: "Error",
@@ -67,7 +66,7 @@ export const WithdrawLiquidityButton = ({
   return (
     <Button
       variant="outline"
-      colorScheme="teal"
+      colorScheme="pink"
       size="lg"
       onClick={write}
       isLoading={isLoading}

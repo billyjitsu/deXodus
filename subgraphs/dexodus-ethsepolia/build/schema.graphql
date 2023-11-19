@@ -23,22 +23,6 @@ type Initialized @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type Position @entity(immutable: true) {
-  id: String! 
-  marketId: BigInt! # uint256
-  trader: Bytes! # address
-  startedAt: BigInt! # uint256
-  size: BigInt! # uint256
-  collateral: BigInt! # uint256
-  entryPrice: BigInt! # uint256
-  currentPrice: BigInt! # uint256
-  liqPrice: BigInt! # uint256
-  long: Boolean! # bool
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
 type OwnershipTransferStarted @entity(immutable: true) {
   id: Bytes!
   previousOwner: Bytes! # address
@@ -55,6 +39,39 @@ type OwnershipTransferred @entity(immutable: true) {
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+}
+
+type Position @entity {
+  id: String! 
+  marketId: BigInt! # uint256
+  trader: Bytes! # address
+  startedAt: BigInt! # uint256
+  size: BigInt! # uint256
+  collateral: BigInt! # uint256
+  entryPrice: BigInt! # uint256
+  currentPrice: BigInt! # uint256
+  liqPrice: BigInt! # uint256
+  long: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  isClosed: Boolean! # bool
+  positionUpdates: [PositionUpdate!]! @derivedFrom(field: "position")
+}
+
+type PositionUpdate @entity(immutable: true) {
+  id: Bytes! 
+  updateType: String! 
+  size: BigInt! # uint256
+  collateral: BigInt! # uint256
+  entryPrice: BigInt! # uint256
+  currentPrice: BigInt! # uint256
+  liqPrice: BigInt! # uint256
+  startedAt: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  position: Position!
 }
 
 type Upgraded @entity(immutable: true) {
