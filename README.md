@@ -81,6 +81,15 @@ Our roadmap reflects our commitment to continuous improvement, emphasizing the e
 |RandomNumbers                 |[0xE0Be7fE3Bab804B5F4CA9308C996C16569Df62D0](https://sepolia.etherscan.io/address/0xE0Be7fE3Bab804B5F4CA9308C996C16569Df62D0)  |
 |PriceFeed                     |[0x7d2A50F28D5c200b55B7cbB1c2E1c8cE1E74b255](https://sepolia.etherscan.io/address/0x7d2A50F28D5c200b55B7cbB1c2E1c8cE1E74b255)  |
 
+#### Celo Testnet
+|Contract                      |Address                                          |
+|------------------------------|-------------------------------------------------|
+|LiquidityPool                 |0xC99184157E59A9D44Dd3B67bb7AB34b22a274b25  |
+|Futures                       |0x76e1885CD1ED6373C321cb78cfBeF2b211816D89  |
+|EXD                           |0x69cA9969f85984A1dde224dB43b033e07C223A57  |
+|MockUSDC                      |0xdDaC33b8A13Dbc55B3e346B10193408b6cF5a5Da  |
+|PriceFeed                     |0x399D9FD8B6deB6435b9ef0903FA7D2b0071DFf2b  |
+
 
 
 ## Tech Stack
