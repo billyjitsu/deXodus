@@ -29,6 +29,7 @@ export default function Layout({ children, ...props }) {
       deployment = {
         futures: process.env.NEXT_PUBLIC_SEPOLIA_FUTURES_ADDRESS,
         liquidity: process.env.NEXT_PUBLIC_SEPOLIA_LIQUIDITY_ADDRESS,
+        price: process.env.NEXT_PUBLIC_SEPOLIA_PRICE_FEED,
         usdc: process.env.NEXT_PUBLIC_SEPOLIA_USDC_TEST,
         chest: process.env.NEXT_PUBLIC_SEPOLIA_CHEST,
         exd: process.env.NEXT_PUBLIC_SEPOLIA_EXD,
@@ -38,6 +39,7 @@ export default function Layout({ children, ...props }) {
       deployment = {
         futures: process.env.NEXT_PUBLIC_ZKSYNC_FUTURES_ADDRESS,
         liquidity: process.env.NEXT_PUBLIC__ZKSYNC_LIQUIDITY_ADDRESS,
+        price: process.env.NEXT_PUBLIC_ZKSYNC_PRICE_FEED,
         usdc: process.env.NEXT_PUBLIC_ZKSYNC_USDC_TEST,
         chest: process.env.NEXT_PUBLIC_ZKSYNC_CHEST,
         exd: process.env.NEXT_PUBLIC_ZKSYNC_EXD,
@@ -56,7 +58,7 @@ export default function Layout({ children, ...props }) {
         <Navbar />
         <Spinner
           size="xl"
-          colorScheme="teal"
+          colorScheme="pink"
           thickness="4px"
           emptyColor="gray.800"
           color="teal.500"

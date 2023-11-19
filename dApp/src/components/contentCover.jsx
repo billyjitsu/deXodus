@@ -5,7 +5,6 @@ export const ContentCover = ({
   id,
   image,
   name = "",
-  showName = false,
   isLast,
   newLimit,
   width = "0",
@@ -32,7 +31,7 @@ export const ContentCover = ({
     <div
       key={id}
       ref={cardRef}
-      className="relative group rounded-t-md bg-zinc-900 overflow-hidden hover:cursor-pointer"
+      className="relative group rounded-md bg-zinc-900 overflow-hidden hover:cursor-pointer"
     >
       <Image
         src={image}
@@ -43,11 +42,6 @@ export const ContentCover = ({
         className={`w-full h-auto transition duration-200 ease-in transform group-hover:scale-105 `}
         unoptimized={unoptimized}
       />
-      {showName && name.length > 0 && (
-        <div className="bg-zinc-900 py-1 px-3 bg-opacity-80 group-hover:bg-opacity-90 rounded-br-lg absolute top-0 text-3xl text-white font-semibold">
-          <span>{name}</span>
-        </div>
-      )}
     </div>
   );
 };

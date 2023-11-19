@@ -27,7 +27,7 @@ export default function BasicGrid({
       ) : (
         data.slice(0, page * itemsPerPage).map((item, index) => (
           <div
-            className={`shadow-md shadow-cyan-700/30 rounded-md ${
+            className={`h-fit shadow-md shadow-cyan-700/30 rounded-md ${
               selectedItems.includes(item.id)
                 ? "inline-block from-teal-500 via-yellow-500 to-teal-500 bg-[length:_400%_400%] p-0.5 bg-gradient-to-r"
                 : "border border-zinc-900"
@@ -40,19 +40,13 @@ export default function BasicGrid({
             <ContentCover
               key={item.id}
               id={item.id}
-              image={item.image_preview_url || "/images/Logomark-Blue.png"}
+              image={item.image || "/images/Logomark-Blue.png"}
               isLast={index === page * itemsPerPage - 1}
               newLimit={() => setPage(page + 1)}
               width={width}
               height={height}
               unoptimized={unoptimized}
             />
-            <div className="flex justify-between text-white font-semibold bg-zinc-900 p-2">
-              <div>{item.name}</div>
-              <a href={item.permalink} target="_blank" rel="noreferrer">
-                <Image src="/images/Logomark-Blue.png" width="25" height="25" />
-              </a>
-            </div>
           </div>
         ))
       )}

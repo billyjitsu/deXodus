@@ -1,3 +1,4 @@
+import { Navbar } from "@/components/layout/navbar";
 import Head from "next/head";
 import { useState } from "react";
 import Image from "next/image";
@@ -15,10 +16,7 @@ export default function Home() {
   const [quantity, setQuantity] = useState(0.0);
   const [quantityW, setQuantityW] = useState(0.0);
   const { balance: allowance, isLoading: isLoadingAllowance } =
-    useErc20Allowance(
-      deployment.usdc,
-      deployment.liquidity
-    );
+    useErc20Allowance(deployment.usdc, deployment.liquidity);
 
   const { data, isError, isLoading } = useBalance({
     address: address,
@@ -50,137 +48,135 @@ export default function Home() {
 
   return (
     <>
-      <div className="w-full">
-        <div className="lg:flex">
-          <main className="flex-auto w-full min-h-screen lg:static lg:max-h-full lg:overflow-visible bg-[#0d1116]">
-            <Head>
-              <title>Liquidity</title>
-              <meta
-                name="description"
-                content="ETH Istanbul project"
-              />
-              <link rel="icon" href="/images/favicon/bull-icon-32.png" />
-            </Head>
-            <div className="container mx-auto py-10 bg-[#0d1116] flex flex-col w-full items-center justify-center">
-              <div className="flex mb-6">
-                <h1 className="text-white text-xl">
-                  PROVIDE LIQUIDITY
-                </h1>
-              </div>
-              <div className="flex mb-6">
-                <div className="p-4 w-fit bg-gray-900 border-gray-600 rounded-lg">
-                  <div className="flex items-center justify-between text-sm font-medium text-gray-400">
-                    <div>
-                      <span className="">Quantity: </span>
-                    </div>
-                    <span className="">
-                      Balance:{" "}
-                      <span
-                        className="text-white cursor-pointer"
-                        onClick={() =>
-                          changeLiquidity(parseFloat(USDCBalance?.formatted))
-                        }
-                      >
-                        {" "}
-                        {isMounted && !balanceIsLoading && USDCBalance
-                          ? parseFloat(USDCBalance.formatted).toFixed(4)
-                          : "..."}
-                      </span>
-                    </span>
-                  </div>
-                  <div className="w-fit mt-3 flex items-center justify-between">
-                    <input
-                      value={quantity}
-                      type="text"
-                      inputMode="decimal"
-                      autoComplete="off"
-                      autoCorrect="off"
-                      minLength={1}
-                      maxLength={15}
-                      spellCheck="false"
-                      id="pay-input"
-                      className="bg-transparent sm:text-lg text-white"
-                      placeholder="0.00"
-                      onChange={(e) => {
-                        changeLiquidity(parseFloat(e.target.value));
-                      }}
-                    />
-                    <div className="flex items-center">
-                      <Image
-                        src="/images/crypto_logos/usd-coin-usdc-logo-40.png"
-                        width={40}
-                        height={40}
-                        style={{ width: "22px", height: "22px" }}
-                        alt="USDC logo"
-                      />
-                      <span className="ml-1 text-white font-semibold text-lg">
-                        USDC
-                      </span>
-                    </div>
-                  </div>
+      <div
+      >
+        <Head>
+          <title>Liquidity</title>
+          <meta name="description" content="ETH Istanbul project" />
+          <link rel="icon" href="/images/favicon/bull-icon-32.png" />
+        </Head>
+        <div className="container mx-auto py-10 flex flex-col w-full">
+          <div className="flex flex-col mb-6">
+            <h1 className="text-3xl font-bold bg-gradient-to-bl from-fuchsia-700 via-purple-700 to-fuchsia-800 bg-clip-text text-transparent">
+              Provide liquidity
+            </h1>
+            <p className="text-white">
+              Become a liquidity provider and empower the market, earning
+              rewards while supporting the seamless flow of assets.
+            </p>
+          </div>
+          <div className="flex mb-6">
+            <div className="p-4 w-fit bg-gray-900 border-gray-600 rounded-lg">
+              <div className="flex items-center justify-between text-sm font-medium text-gray-400">
+                <div>
+                  <span className="">Quantity: </span>
                 </div>
-                <div className="ml-5 flex gap-4 items-center">
-                  <AddLiquidityButton amount={quantity} />
+                <span className="">
+                  Balance:{" "}
+                  <span
+                    className="text-white cursor-pointer"
+                    onClick={() =>
+                      changeLiquidity(parseFloat(USDCBalance?.formatted))
+                    }
+                  >
+                    {" "}
+                    {isMounted && !balanceIsLoading && USDCBalance
+                      ? parseFloat(USDCBalance.formatted).toFixed(4)
+                      : "..."}
+                  </span>
+                </span>
+              </div>
+              <div className="w-fit mt-3 flex items-center justify-between">
+                <input
+                  value={quantity}
+                  type="text"
+                  inputMode="decimal"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  minLength={1}
+                  maxLength={15}
+                  spellCheck="false"
+                  id="pay-input"
+                  className="bg-transparent sm:text-lg text-white"
+                  placeholder="0.00"
+                  onChange={(e) => {
+                    changeLiquidity(parseFloat(e.target.value));
+                  }}
+                />
+                <div className="flex items-center">
+                  <Image
+                    src="/images/crypto_logos/usd-coin-usdc-logo-40.png"
+                    width={40}
+                    height={40}
+                    style={{ width: "22px", height: "22px" }}
+                    alt="USDC logo"
+                  />
+                  <span className="ml-1 text-white font-semibold text-lg">
+                    USDC
+                  </span>
                 </div>
               </div>
-              <div className="flex">
-                <div className="p-4 w-fit bg-gray-900 border-gray-600 rounded-lg">
-                  <div className="flex items-center justify-between text-sm font-medium text-gray-400">
-                    <div>
-                      <span className="">Quantity: </span>
-                    </div>
-                  </div>
-                  <div className="w-fit mt-3 flex items-center justify-between">
-                    <input
-                      value={quantityW}
-                      type="text"
-                      inputMode="decimal"
-                      autoComplete="off"
-                      autoCorrect="off"
-                      minLength={1}
-                      maxLength={15}
-                      spellCheck="false"
-                      id="pay-input"
-                      className="bg-transparent sm:text-lg text-white"
-                      placeholder="0.00"
-                      onChange={(e) => {
-                        changeLiquidityW(parseFloat(e.target.value));
-                      }}
-                    />
-                    <div className="flex items-center">
-                      <Image
-                        src="/images/crypto_logos/usd-coin-usdc-logo-40.png"
-                        width={40}
-                        height={40}
-                        style={{ width: "22px", height: "22px" }}
-                        alt="USDC logo"
-                      />
-                      <span className="ml-1 text-white font-semibold text-lg">
-                        PPLP
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="ml-5 flex gap-4 items-center mt-6">
-                  <WithdrawLiquidityButton amount={quantityW} />
-                </div>
-              </div>
-              <p>
-                {!isLoading && data && (
-                  <>
-                    <div className="text-white font-semibold text-lg mt-6">
-                      Your balance is{" "}
-                      {Number(data.formatted).toLocaleString("en", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}{" "}
-                      PPLP
-                    </div>
-                  </>
-                )}
-              </p>
             </div>
-          </main>
+            <div className="ml-5 flex gap-4 items-center">
+              <AddLiquidityButton amount={quantity} />
+            </div>
+          </div>
+          <div className="flex">
+            <div className="p-4 w-fit bg-gray-900 border-gray-600 rounded-lg">
+              <div className="flex items-center justify-between text-sm font-medium text-gray-400">
+                <div>
+                  <span className="">Quantity: </span>
+                </div>
+              </div>
+              <div className="w-fit mt-3 flex items-center justify-between">
+                <input
+                  value={quantityW}
+                  type="text"
+                  inputMode="decimal"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  minLength={1}
+                  maxLength={15}
+                  spellCheck="false"
+                  id="pay-input"
+                  className="bg-transparent sm:text-lg text-white"
+                  placeholder="0.00"
+                  onChange={(e) => {
+                    changeLiquidityW(parseFloat(e.target.value));
+                  }}
+                />
+                <div className="flex items-center">
+                  <Image
+                    src="/images/crypto_logos/usd-coin-usdc-logo-40.png"
+                    width={40}
+                    height={40}
+                    style={{ width: "22px", height: "22px" }}
+                    alt="USDC logo"
+                  />
+                  <span className="ml-1 text-white font-semibold text-lg">
+                    PPLP
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="ml-5 flex gap-4 items-center mt-6">
+              <WithdrawLiquidityButton amount={quantityW} />
+            </div>
+          </div>
+          <p>
+            {!isLoading && data && (
+              <>
+                <div className="text-white font-semibold text-lg mt-6">
+                  Your balance is{" "}
+                  {Number(data.formatted).toLocaleString("en", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}{" "}
+                  PPLP
+                </div>
+              </>
+            )}
+          </p>
         </div>
       </div>
     </>

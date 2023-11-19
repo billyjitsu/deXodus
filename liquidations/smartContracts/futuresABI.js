@@ -1,4 +1,4 @@
-export const FuturesABI = [
+const futuresABI = [
   {
     inputs: [],
     stateMutability: "nonpayable",
@@ -1208,3 +1208,7 @@ export const FuturesABI = [
     type: "function",
   },
 ];
+
+module.exports = {
+  futuresABI,
+};

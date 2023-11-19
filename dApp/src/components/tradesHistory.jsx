@@ -42,9 +42,8 @@ export const TradesHistory = () => {
   useEffect(() => {
     execute(PositionsSummaryDocument, {
       traderAddress: address,
-      marketId: market,
     }).then((result) => {
-      //console.log(result);
+      console.log("subgraph result", result);
       if (!result.data) return;
       setData(result.data.positions);
     });
@@ -82,7 +81,7 @@ export const TradesHistory = () => {
                           ).toLocaleString()}
                         </Td>
                         <Td>
-                          <CryptoIcon size={"sm"} market={item.market} />
+                          <CryptoIcon size={"sm"} market={item.marketId} />
                         </Td>
                         <Td isNumeric>{item.currentPrice / 1000000}</Td>
                         <Td isNumeric>{bigIntToFloat(BigInt(item.size))}</Td>

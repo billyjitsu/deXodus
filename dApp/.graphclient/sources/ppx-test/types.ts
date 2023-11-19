@@ -180,94 +180,6 @@ export type Block_height = {
   number_gte?: InputMaybe<Scalars['Int']>;
 };
 
-export type CreateFuture = {
-  id: Scalars['Bytes'];
-  futureId: Scalars['BigInt'];
-  market: Scalars['String'];
-  blockNumber: Scalars['BigInt'];
-  blockTimestamp: Scalars['BigInt'];
-  transactionHash: Scalars['Bytes'];
-};
-
-export type CreateFuture_filter = {
-  id?: InputMaybe<Scalars['Bytes']>;
-  id_not?: InputMaybe<Scalars['Bytes']>;
-  id_gt?: InputMaybe<Scalars['Bytes']>;
-  id_lt?: InputMaybe<Scalars['Bytes']>;
-  id_gte?: InputMaybe<Scalars['Bytes']>;
-  id_lte?: InputMaybe<Scalars['Bytes']>;
-  id_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_contains?: InputMaybe<Scalars['Bytes']>;
-  id_not_contains?: InputMaybe<Scalars['Bytes']>;
-  futureId?: InputMaybe<Scalars['BigInt']>;
-  futureId_not?: InputMaybe<Scalars['BigInt']>;
-  futureId_gt?: InputMaybe<Scalars['BigInt']>;
-  futureId_lt?: InputMaybe<Scalars['BigInt']>;
-  futureId_gte?: InputMaybe<Scalars['BigInt']>;
-  futureId_lte?: InputMaybe<Scalars['BigInt']>;
-  futureId_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  futureId_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  market?: InputMaybe<Scalars['String']>;
-  market_not?: InputMaybe<Scalars['String']>;
-  market_gt?: InputMaybe<Scalars['String']>;
-  market_lt?: InputMaybe<Scalars['String']>;
-  market_gte?: InputMaybe<Scalars['String']>;
-  market_lte?: InputMaybe<Scalars['String']>;
-  market_in?: InputMaybe<Array<Scalars['String']>>;
-  market_not_in?: InputMaybe<Array<Scalars['String']>>;
-  market_contains?: InputMaybe<Scalars['String']>;
-  market_contains_nocase?: InputMaybe<Scalars['String']>;
-  market_not_contains?: InputMaybe<Scalars['String']>;
-  market_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  market_starts_with?: InputMaybe<Scalars['String']>;
-  market_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  market_not_starts_with?: InputMaybe<Scalars['String']>;
-  market_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  market_ends_with?: InputMaybe<Scalars['String']>;
-  market_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_not_ends_with?: InputMaybe<Scalars['String']>;
-  market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  blockNumber?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_not?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_not?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transactionHash?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_contains?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']>;
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<CreateFuture_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<CreateFuture_filter>>>;
-};
-
-export type CreateFuture_orderBy =
-  | 'id'
-  | 'futureId'
-  | 'market'
-  | 'blockNumber'
-  | 'blockTimestamp'
-  | 'transactionHash';
-
 export type Initialized = {
   id: Scalars['Bytes'];
   version: Scalars['Int'];
@@ -330,160 +242,6 @@ export type Initialized_filter = {
 export type Initialized_orderBy =
   | 'id'
   | 'version'
-  | 'blockNumber'
-  | 'blockTimestamp'
-  | 'transactionHash';
-
-export type LiquidatePosition = {
-  id: Scalars['Bytes'];
-  marketId: Scalars['BigInt'];
-  positionId: Scalars['BigInt'];
-  trader: Scalars['Bytes'];
-  startedAt: Scalars['BigInt'];
-  size: Scalars['BigInt'];
-  collateral: Scalars['BigInt'];
-  entryPrice: Scalars['BigInt'];
-  liqPrice: Scalars['BigInt'];
-  long: Scalars['Boolean'];
-  currentPrice: Scalars['BigInt'];
-  blockNumber: Scalars['BigInt'];
-  blockTimestamp: Scalars['BigInt'];
-  transactionHash: Scalars['Bytes'];
-};
-
-export type LiquidatePosition_filter = {
-  id?: InputMaybe<Scalars['Bytes']>;
-  id_not?: InputMaybe<Scalars['Bytes']>;
-  id_gt?: InputMaybe<Scalars['Bytes']>;
-  id_lt?: InputMaybe<Scalars['Bytes']>;
-  id_gte?: InputMaybe<Scalars['Bytes']>;
-  id_lte?: InputMaybe<Scalars['Bytes']>;
-  id_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_contains?: InputMaybe<Scalars['Bytes']>;
-  id_not_contains?: InputMaybe<Scalars['Bytes']>;
-  marketId?: InputMaybe<Scalars['BigInt']>;
-  marketId_not?: InputMaybe<Scalars['BigInt']>;
-  marketId_gt?: InputMaybe<Scalars['BigInt']>;
-  marketId_lt?: InputMaybe<Scalars['BigInt']>;
-  marketId_gte?: InputMaybe<Scalars['BigInt']>;
-  marketId_lte?: InputMaybe<Scalars['BigInt']>;
-  marketId_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  marketId_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  positionId?: InputMaybe<Scalars['BigInt']>;
-  positionId_not?: InputMaybe<Scalars['BigInt']>;
-  positionId_gt?: InputMaybe<Scalars['BigInt']>;
-  positionId_lt?: InputMaybe<Scalars['BigInt']>;
-  positionId_gte?: InputMaybe<Scalars['BigInt']>;
-  positionId_lte?: InputMaybe<Scalars['BigInt']>;
-  positionId_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  positionId_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  trader?: InputMaybe<Scalars['Bytes']>;
-  trader_not?: InputMaybe<Scalars['Bytes']>;
-  trader_gt?: InputMaybe<Scalars['Bytes']>;
-  trader_lt?: InputMaybe<Scalars['Bytes']>;
-  trader_gte?: InputMaybe<Scalars['Bytes']>;
-  trader_lte?: InputMaybe<Scalars['Bytes']>;
-  trader_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  trader_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  trader_contains?: InputMaybe<Scalars['Bytes']>;
-  trader_not_contains?: InputMaybe<Scalars['Bytes']>;
-  startedAt?: InputMaybe<Scalars['BigInt']>;
-  startedAt_not?: InputMaybe<Scalars['BigInt']>;
-  startedAt_gt?: InputMaybe<Scalars['BigInt']>;
-  startedAt_lt?: InputMaybe<Scalars['BigInt']>;
-  startedAt_gte?: InputMaybe<Scalars['BigInt']>;
-  startedAt_lte?: InputMaybe<Scalars['BigInt']>;
-  startedAt_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  startedAt_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  size?: InputMaybe<Scalars['BigInt']>;
-  size_not?: InputMaybe<Scalars['BigInt']>;
-  size_gt?: InputMaybe<Scalars['BigInt']>;
-  size_lt?: InputMaybe<Scalars['BigInt']>;
-  size_gte?: InputMaybe<Scalars['BigInt']>;
-  size_lte?: InputMaybe<Scalars['BigInt']>;
-  size_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  size_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  collateral?: InputMaybe<Scalars['BigInt']>;
-  collateral_not?: InputMaybe<Scalars['BigInt']>;
-  collateral_gt?: InputMaybe<Scalars['BigInt']>;
-  collateral_lt?: InputMaybe<Scalars['BigInt']>;
-  collateral_gte?: InputMaybe<Scalars['BigInt']>;
-  collateral_lte?: InputMaybe<Scalars['BigInt']>;
-  collateral_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  collateral_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  entryPrice?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_not?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_gt?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_lt?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_gte?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_lte?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  entryPrice_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  liqPrice?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_not?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_gt?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_lt?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_gte?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_lte?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  liqPrice_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  long?: InputMaybe<Scalars['Boolean']>;
-  long_not?: InputMaybe<Scalars['Boolean']>;
-  long_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  long_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  currentPrice?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_not?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_gt?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_lt?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_gte?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_lte?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  currentPrice_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_not?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_not?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transactionHash?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_contains?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']>;
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<LiquidatePosition_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<LiquidatePosition_filter>>>;
-};
-
-export type LiquidatePosition_orderBy =
-  | 'id'
-  | 'marketId'
-  | 'positionId'
-  | 'trader'
-  | 'startedAt'
-  | 'size'
-  | 'collateral'
-  | 'entryPrice'
-  | 'liqPrice'
-  | 'long'
-  | 'currentPrice'
   | 'blockNumber'
   | 'blockTimestamp'
   | 'transactionHash';
@@ -649,74 +407,6 @@ export type OwnershipTransferred_orderBy =
   | 'id'
   | 'previousOwner'
   | 'newOwner'
-  | 'blockNumber'
-  | 'blockTimestamp'
-  | 'transactionHash';
-
-export type Paused = {
-  id: Scalars['Bytes'];
-  account: Scalars['Bytes'];
-  blockNumber: Scalars['BigInt'];
-  blockTimestamp: Scalars['BigInt'];
-  transactionHash: Scalars['Bytes'];
-};
-
-export type Paused_filter = {
-  id?: InputMaybe<Scalars['Bytes']>;
-  id_not?: InputMaybe<Scalars['Bytes']>;
-  id_gt?: InputMaybe<Scalars['Bytes']>;
-  id_lt?: InputMaybe<Scalars['Bytes']>;
-  id_gte?: InputMaybe<Scalars['Bytes']>;
-  id_lte?: InputMaybe<Scalars['Bytes']>;
-  id_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_contains?: InputMaybe<Scalars['Bytes']>;
-  id_not_contains?: InputMaybe<Scalars['Bytes']>;
-  account?: InputMaybe<Scalars['Bytes']>;
-  account_not?: InputMaybe<Scalars['Bytes']>;
-  account_gt?: InputMaybe<Scalars['Bytes']>;
-  account_lt?: InputMaybe<Scalars['Bytes']>;
-  account_gte?: InputMaybe<Scalars['Bytes']>;
-  account_lte?: InputMaybe<Scalars['Bytes']>;
-  account_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  account_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  account_contains?: InputMaybe<Scalars['Bytes']>;
-  account_not_contains?: InputMaybe<Scalars['Bytes']>;
-  blockNumber?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_not?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_not?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transactionHash?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_contains?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']>;
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<Paused_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<Paused_filter>>>;
-};
-
-export type Paused_orderBy =
-  | 'id'
-  | 'account'
   | 'blockNumber'
   | 'blockTimestamp'
   | 'transactionHash';
@@ -1073,26 +763,16 @@ export type Query = {
   adminChangeds: Array<AdminChanged>;
   beaconUpgraded?: Maybe<BeaconUpgraded>;
   beaconUpgradeds: Array<BeaconUpgraded>;
-  createFuture?: Maybe<CreateFuture>;
-  createFutures: Array<CreateFuture>;
   initialized?: Maybe<Initialized>;
   initializeds: Array<Initialized>;
-  liquidatePosition?: Maybe<LiquidatePosition>;
-  liquidatePositions: Array<LiquidatePosition>;
   ownershipTransferStarted?: Maybe<OwnershipTransferStarted>;
   ownershipTransferStarteds: Array<OwnershipTransferStarted>;
   ownershipTransferred?: Maybe<OwnershipTransferred>;
   ownershipTransferreds: Array<OwnershipTransferred>;
-  paused?: Maybe<Paused>;
-  pauseds: Array<Paused>;
   position?: Maybe<Position>;
   positions: Array<Position>;
   positionUpdate?: Maybe<PositionUpdate>;
   positionUpdates: Array<PositionUpdate>;
-  unpaused?: Maybe<Unpaused>;
-  unpauseds: Array<Unpaused>;
-  updatedGovernance?: Maybe<UpdatedGovernance>;
-  updatedGovernances: Array<UpdatedGovernance>;
   upgraded?: Maybe<Upgraded>;
   upgradeds: Array<Upgraded>;
   /** Access to subgraph metadata */
@@ -1136,24 +816,6 @@ export type QuerybeaconUpgradedsArgs = {
 };
 
 
-export type QuerycreateFutureArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QuerycreateFuturesArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<CreateFuture_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<CreateFuture_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type QueryinitializedArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1167,24 +829,6 @@ export type QueryinitializedsArgs = {
   orderBy?: InputMaybe<Initialized_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
   where?: InputMaybe<Initialized_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryliquidatePositionArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryliquidatePositionsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<LiquidatePosition_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<LiquidatePosition_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -1226,24 +870,6 @@ export type QueryownershipTransferredsArgs = {
 };
 
 
-export type QuerypausedArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QuerypausedsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Paused_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<Paused_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type QuerypositionArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1280,42 +906,6 @@ export type QuerypositionUpdatesArgs = {
 };
 
 
-export type QueryunpausedArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryunpausedsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Unpaused_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<Unpaused_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryupdatedGovernanceArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryupdatedGovernancesArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<UpdatedGovernance_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<UpdatedGovernance_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type QueryupgradedArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1343,26 +933,16 @@ export type Subscription = {
   adminChangeds: Array<AdminChanged>;
   beaconUpgraded?: Maybe<BeaconUpgraded>;
   beaconUpgradeds: Array<BeaconUpgraded>;
-  createFuture?: Maybe<CreateFuture>;
-  createFutures: Array<CreateFuture>;
   initialized?: Maybe<Initialized>;
   initializeds: Array<Initialized>;
-  liquidatePosition?: Maybe<LiquidatePosition>;
-  liquidatePositions: Array<LiquidatePosition>;
   ownershipTransferStarted?: Maybe<OwnershipTransferStarted>;
   ownershipTransferStarteds: Array<OwnershipTransferStarted>;
   ownershipTransferred?: Maybe<OwnershipTransferred>;
   ownershipTransferreds: Array<OwnershipTransferred>;
-  paused?: Maybe<Paused>;
-  pauseds: Array<Paused>;
   position?: Maybe<Position>;
   positions: Array<Position>;
   positionUpdate?: Maybe<PositionUpdate>;
   positionUpdates: Array<PositionUpdate>;
-  unpaused?: Maybe<Unpaused>;
-  unpauseds: Array<Unpaused>;
-  updatedGovernance?: Maybe<UpdatedGovernance>;
-  updatedGovernances: Array<UpdatedGovernance>;
   upgraded?: Maybe<Upgraded>;
   upgradeds: Array<Upgraded>;
   /** Access to subgraph metadata */
@@ -1406,24 +986,6 @@ export type SubscriptionbeaconUpgradedsArgs = {
 };
 
 
-export type SubscriptioncreateFutureArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptioncreateFuturesArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<CreateFuture_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<CreateFuture_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type SubscriptioninitializedArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1437,24 +999,6 @@ export type SubscriptioninitializedsArgs = {
   orderBy?: InputMaybe<Initialized_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
   where?: InputMaybe<Initialized_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionliquidatePositionArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionliquidatePositionsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<LiquidatePosition_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<LiquidatePosition_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -1496,24 +1040,6 @@ export type SubscriptionownershipTransferredsArgs = {
 };
 
 
-export type SubscriptionpausedArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionpausedsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Paused_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<Paused_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type SubscriptionpositionArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1550,42 +1076,6 @@ export type SubscriptionpositionUpdatesArgs = {
 };
 
 
-export type SubscriptionunpausedArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionunpausedsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Unpaused_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<Unpaused_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionupdatedGovernanceArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionupdatedGovernancesArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<UpdatedGovernance_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<UpdatedGovernance_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type SubscriptionupgradedArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1607,154 +1097,6 @@ export type SubscriptionupgradedsArgs = {
 export type Subscription_metaArgs = {
   block?: InputMaybe<Block_height>;
 };
-
-export type Unpaused = {
-  id: Scalars['Bytes'];
-  account: Scalars['Bytes'];
-  blockNumber: Scalars['BigInt'];
-  blockTimestamp: Scalars['BigInt'];
-  transactionHash: Scalars['Bytes'];
-};
-
-export type Unpaused_filter = {
-  id?: InputMaybe<Scalars['Bytes']>;
-  id_not?: InputMaybe<Scalars['Bytes']>;
-  id_gt?: InputMaybe<Scalars['Bytes']>;
-  id_lt?: InputMaybe<Scalars['Bytes']>;
-  id_gte?: InputMaybe<Scalars['Bytes']>;
-  id_lte?: InputMaybe<Scalars['Bytes']>;
-  id_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_contains?: InputMaybe<Scalars['Bytes']>;
-  id_not_contains?: InputMaybe<Scalars['Bytes']>;
-  account?: InputMaybe<Scalars['Bytes']>;
-  account_not?: InputMaybe<Scalars['Bytes']>;
-  account_gt?: InputMaybe<Scalars['Bytes']>;
-  account_lt?: InputMaybe<Scalars['Bytes']>;
-  account_gte?: InputMaybe<Scalars['Bytes']>;
-  account_lte?: InputMaybe<Scalars['Bytes']>;
-  account_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  account_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  account_contains?: InputMaybe<Scalars['Bytes']>;
-  account_not_contains?: InputMaybe<Scalars['Bytes']>;
-  blockNumber?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_not?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_not?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transactionHash?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_contains?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']>;
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<Unpaused_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<Unpaused_filter>>>;
-};
-
-export type Unpaused_orderBy =
-  | 'id'
-  | 'account'
-  | 'blockNumber'
-  | 'blockTimestamp'
-  | 'transactionHash';
-
-export type UpdatedGovernance = {
-  id: Scalars['Bytes'];
-  oldGovernance: Scalars['Bytes'];
-  newGovernance: Scalars['Bytes'];
-  blockNumber: Scalars['BigInt'];
-  blockTimestamp: Scalars['BigInt'];
-  transactionHash: Scalars['Bytes'];
-};
-
-export type UpdatedGovernance_filter = {
-  id?: InputMaybe<Scalars['Bytes']>;
-  id_not?: InputMaybe<Scalars['Bytes']>;
-  id_gt?: InputMaybe<Scalars['Bytes']>;
-  id_lt?: InputMaybe<Scalars['Bytes']>;
-  id_gte?: InputMaybe<Scalars['Bytes']>;
-  id_lte?: InputMaybe<Scalars['Bytes']>;
-  id_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_contains?: InputMaybe<Scalars['Bytes']>;
-  id_not_contains?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_not?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_gt?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_lt?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_gte?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_lte?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  oldGovernance_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  oldGovernance_contains?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_not_contains?: InputMaybe<Scalars['Bytes']>;
-  newGovernance?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_not?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_gt?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_lt?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_gte?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_lte?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  newGovernance_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  newGovernance_contains?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_not_contains?: InputMaybe<Scalars['Bytes']>;
-  blockNumber?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_not?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_not?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transactionHash?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_contains?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']>;
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<UpdatedGovernance_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<UpdatedGovernance_filter>>>;
-};
-
-export type UpdatedGovernance_orderBy =
-  | 'id'
-  | 'oldGovernance'
-  | 'newGovernance'
-  | 'blockNumber'
-  | 'blockTimestamp'
-  | 'transactionHash';
 
 export type Upgraded = {
   id: Scalars['Bytes'];
@@ -1865,17 +1207,9 @@ export type _SubgraphErrorPolicy_ =
   /** null **/
   beaconUpgradeds: InContextSdkMethod<Query['beaconUpgradeds'], QuerybeaconUpgradedsArgs, MeshContext>,
   /** null **/
-  createFuture: InContextSdkMethod<Query['createFuture'], QuerycreateFutureArgs, MeshContext>,
-  /** null **/
-  createFutures: InContextSdkMethod<Query['createFutures'], QuerycreateFuturesArgs, MeshContext>,
-  /** null **/
   initialized: InContextSdkMethod<Query['initialized'], QueryinitializedArgs, MeshContext>,
   /** null **/
   initializeds: InContextSdkMethod<Query['initializeds'], QueryinitializedsArgs, MeshContext>,
-  /** null **/
-  liquidatePosition: InContextSdkMethod<Query['liquidatePosition'], QueryliquidatePositionArgs, MeshContext>,
-  /** null **/
-  liquidatePositions: InContextSdkMethod<Query['liquidatePositions'], QueryliquidatePositionsArgs, MeshContext>,
   /** null **/
   ownershipTransferStarted: InContextSdkMethod<Query['ownershipTransferStarted'], QueryownershipTransferStartedArgs, MeshContext>,
   /** null **/
@@ -1885,10 +1219,6 @@ export type _SubgraphErrorPolicy_ =
   /** null **/
   ownershipTransferreds: InContextSdkMethod<Query['ownershipTransferreds'], QueryownershipTransferredsArgs, MeshContext>,
   /** null **/
-  paused: InContextSdkMethod<Query['paused'], QuerypausedArgs, MeshContext>,
-  /** null **/
-  pauseds: InContextSdkMethod<Query['pauseds'], QuerypausedsArgs, MeshContext>,
-  /** null **/
   position: InContextSdkMethod<Query['position'], QuerypositionArgs, MeshContext>,
   /** null **/
   positions: InContextSdkMethod<Query['positions'], QuerypositionsArgs, MeshContext>,
@@ -1896,14 +1226,6 @@ export type _SubgraphErrorPolicy_ =
   positionUpdate: InContextSdkMethod<Query['positionUpdate'], QuerypositionUpdateArgs, MeshContext>,
   /** null **/
   positionUpdates: InContextSdkMethod<Query['positionUpdates'], QuerypositionUpdatesArgs, MeshContext>,
-  /** null **/
-  unpaused: InContextSdkMethod<Query['unpaused'], QueryunpausedArgs, MeshContext>,
-  /** null **/
-  unpauseds: InContextSdkMethod<Query['unpauseds'], QueryunpausedsArgs, MeshContext>,
-  /** null **/
-  updatedGovernance: InContextSdkMethod<Query['updatedGovernance'], QueryupdatedGovernanceArgs, MeshContext>,
-  /** null **/
-  updatedGovernances: InContextSdkMethod<Query['updatedGovernances'], QueryupdatedGovernancesArgs, MeshContext>,
   /** null **/
   upgraded: InContextSdkMethod<Query['upgraded'], QueryupgradedArgs, MeshContext>,
   /** null **/
@@ -1926,17 +1248,9 @@ export type _SubgraphErrorPolicy_ =
   /** null **/
   beaconUpgradeds: InContextSdkMethod<Subscription['beaconUpgradeds'], SubscriptionbeaconUpgradedsArgs, MeshContext>,
   /** null **/
-  createFuture: InContextSdkMethod<Subscription['createFuture'], SubscriptioncreateFutureArgs, MeshContext>,
-  /** null **/
-  createFutures: InContextSdkMethod<Subscription['createFutures'], SubscriptioncreateFuturesArgs, MeshContext>,
-  /** null **/
   initialized: InContextSdkMethod<Subscription['initialized'], SubscriptioninitializedArgs, MeshContext>,
   /** null **/
   initializeds: InContextSdkMethod<Subscription['initializeds'], SubscriptioninitializedsArgs, MeshContext>,
-  /** null **/
-  liquidatePosition: InContextSdkMethod<Subscription['liquidatePosition'], SubscriptionliquidatePositionArgs, MeshContext>,
-  /** null **/
-  liquidatePositions: InContextSdkMethod<Subscription['liquidatePositions'], SubscriptionliquidatePositionsArgs, MeshContext>,
   /** null **/
   ownershipTransferStarted: InContextSdkMethod<Subscription['ownershipTransferStarted'], SubscriptionownershipTransferStartedArgs, MeshContext>,
   /** null **/
@@ -1946,10 +1260,6 @@ export type _SubgraphErrorPolicy_ =
   /** null **/
   ownershipTransferreds: InContextSdkMethod<Subscription['ownershipTransferreds'], SubscriptionownershipTransferredsArgs, MeshContext>,
   /** null **/
-  paused: InContextSdkMethod<Subscription['paused'], SubscriptionpausedArgs, MeshContext>,
-  /** null **/
-  pauseds: InContextSdkMethod<Subscription['pauseds'], SubscriptionpausedsArgs, MeshContext>,
-  /** null **/
   position: InContextSdkMethod<Subscription['position'], SubscriptionpositionArgs, MeshContext>,
   /** null **/
   positions: InContextSdkMethod<Subscription['positions'], SubscriptionpositionsArgs, MeshContext>,
@@ -1957,14 +1267,6 @@ export type _SubgraphErrorPolicy_ =
   positionUpdate: InContextSdkMethod<Subscription['positionUpdate'], SubscriptionpositionUpdateArgs, MeshContext>,
   /** null **/
   positionUpdates: InContextSdkMethod<Subscription['positionUpdates'], SubscriptionpositionUpdatesArgs, MeshContext>,
-  /** null **/
-  unpaused: InContextSdkMethod<Subscription['unpaused'], SubscriptionunpausedArgs, MeshContext>,
-  /** null **/
-  unpauseds: InContextSdkMethod<Subscription['unpauseds'], SubscriptionunpausedsArgs, MeshContext>,
-  /** null **/
-  updatedGovernance: InContextSdkMethod<Subscription['updatedGovernance'], SubscriptionupdatedGovernanceArgs, MeshContext>,
-  /** null **/
-  updatedGovernances: InContextSdkMethod<Subscription['updatedGovernances'], SubscriptionupdatedGovernancesArgs, MeshContext>,
   /** null **/
   upgraded: InContextSdkMethod<Subscription['upgraded'], SubscriptionupgradedArgs, MeshContext>,
   /** null **/

@@ -1,24 +1,8 @@
-export const LiquidityPoolABI = [
+export const exdABI = [
   {
     inputs: [],
     stateMutability: "nonpayable",
     type: "constructor",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "available",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "required",
-        type: "uint256",
-      },
-    ],
-    name: "LiquidityPool__InsufficientAvailableLiquidity",
-    type: "error",
   },
   {
     anonymous: false,
@@ -168,38 +152,7 @@ export const LiquidityPoolABI = [
   },
   {
     inputs: [],
-    name: "USDC",
-    outputs: [
-      {
-        internalType: "contract IERC20",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "acceptOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_amountIn",
-        type: "uint256",
-      },
-    ],
-    name: "addLiquidity",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -253,19 +206,6 @@ export const LiquidityPoolABI = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "availableLiquidity",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "address",
@@ -288,7 +228,7 @@ export const LiquidityPoolABI = [
     inputs: [
       {
         internalType: "address",
-        name: "_to",
+        name: "_from",
         type: "address",
       },
       {
@@ -297,73 +237,9 @@ export const LiquidityPoolABI = [
         type: "uint256",
       },
     ],
-    name: "benefitsToTrader",
+    name: "burn",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
-    ],
-    name: "blockLiquidity",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "blockedAmount",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "amountIn",
-        type: "uint256",
-      },
-    ],
-    name: "calcLpOut",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "lpOut",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "calcUsdcOut",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "liquidityOut",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {
@@ -404,19 +280,6 @@ export const LiquidityPoolABI = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "futuresContract",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "address",
@@ -443,11 +306,6 @@ export const LiquidityPoolABI = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "_usdc",
-        type: "address",
-      },
-      {
         internalType: "string",
         name: "_name",
         type: "string",
@@ -457,13 +315,26 @@ export const LiquidityPoolABI = [
         name: "_symbol",
         type: "string",
       },
-      {
-        internalType: "address",
-        name: "_futuresContract",
-        type: "address",
-      },
     ],
     name: "initialize",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "mintMock",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -622,19 +493,6 @@ export const LiquidityPoolABI = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
-    ],
-    name: "unblockLiquidity",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
         internalType: "address",
         name: "newImplementation",
         type: "address",
@@ -674,24 +532,6 @@ export const LiquidityPoolABI = [
       },
     ],
     stateMutability: "pure",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
-    ],
-    name: "withdrawLiquidity",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
 ];

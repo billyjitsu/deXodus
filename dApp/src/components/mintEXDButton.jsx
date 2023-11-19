@@ -3,29 +3,27 @@ import {
   usePrepareContractWrite,
   useContractWrite,
   useWaitForTransaction,
-  useNetwork,
 } from "wagmi";
-import { dxdABI } from "../../smartContracts/dxd";
+import { exdABI } from "../../smartContracts/exd";
 import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import { floatToBigInt } from "@/lib/bigIntegers";
 import { useAccount } from "wagmi";
 import { useDeployment } from "@/context/deploymentContext";
 
-export const MintDXDButton = ({ amount = 100 }) => {
+export const MintEXDButton = ({ amount = 100 }) => {
   const [txStatus, setTxStatus] = useState("idle");
   const toast = useToast();
   const { deployment } = useDeployment();
   const { address, isConnecting, isDisconnected } = useAccount();
-  const { chain } = useNetwork();
 
   const {
     config,
     error: prepareError,
     isError: isPrepareError,
   } = usePrepareContractWrite({
-    address: deployment.dxd,
-    abi: dxdABI,
+    address: deployment.exd,
+    abi: exdABI,
     functionName: "mintMock",
     args: [address, floatToBigInt(amount, 18)],
   });
@@ -43,7 +41,7 @@ export const MintDXDButton = ({ amount = 100 }) => {
       setTxStatus("success");
       toast({
         title: "Minted",
-        description: `Successfully minted ${amount} DXD!`,
+        description: `Successfully minted ${amount} PPX!`,
         status: "success",
         duration: 7000,
         isClosable: true,
@@ -53,12 +51,12 @@ export const MintDXDButton = ({ amount = 100 }) => {
 
   return (
     <Button
-      colorScheme="teal"
+      colorScheme="pink"
       onClick={write}
       isLoading={isLoading}
       loadingText="Submitting"
     >
-      Mint DXD
+      Mint EXD
     </Button>
   );
 };

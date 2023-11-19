@@ -28,7 +28,7 @@ export function LeverageSlider({ sliderValue = 2, setSliderValue }) {
   marks[0].value = 1;
 
   return (
-    <Box pt={6} pb={2} className="text-white/40">
+    <Box pt={6} pb={2} className="text-white/50">
       <Slider
         aria-label="slider-leverage"
         onChange={(val) => setSliderValue(val)}
@@ -37,7 +37,7 @@ export function LeverageSlider({ sliderValue = 2, setSliderValue }) {
         min={1.1}
         max={50}
         step={0.1}
-        colorScheme="teal"
+        colorScheme="pink"
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >

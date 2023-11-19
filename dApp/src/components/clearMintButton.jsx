@@ -3,43 +3,27 @@ import {
   usePrepareContractWrite,
   useContractWrite,
   useWaitForTransaction,
-  useNetwork,
 } from "wagmi";
-import { sepolia } from "wagmi/chains";
-import { LiquidityPoolABI } from "../../../smartContracts/liquidityPool";
 import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
-import { floatToBigInt } from "@/lib/bigIntegers";
-import { useAccount } from "wagmi";
 import { useDeployment } from "@/context/deploymentContext";
+import { chestABI } from "../../smartContracts/chest";
 
-export const WithdrawLiquidityButton = ({
-  amount,
-  action = "addLiquidity",
-}) => {
+export const ClearMintButton = ({}) => {
   const [txStatus, setTxStatus] = useState("idle");
   const toast = useToast();
-  const { address, isConnecting, isDisconnected } = useAccount();
   const { deployment } = useDeployment();
+
+  console.log("chest address", deployment.chest);
 
   const {
     config,
     error: prepareError,
     isError: isPrepareError,
   } = usePrepareContractWrite({
-    address: deployment.liquidity,
-    abi: LiquidityPoolABI,
-    functionName: "withdrawLiquidity",
-    args: [address, floatToBigInt(amount, 18)],
-    onError(error) {
-      /*toast({
-        title: "Error",
-        description: error.message,
-        status: "error",
-        duration: 7000,
-        isClosable: true,
-      });*/
-    },
+    address: deployment.chest,
+    abi: chestABI,
+    functionName: "clearMinting",
   });
 
   const { data, error, isError, write } = useContractWrite({
@@ -54,8 +38,8 @@ export const WithdrawLiquidityButton = ({
     onSuccess(TxData) {
       setTxStatus("success");
       toast({
-        title: "Withdrawal successful",
-        description: "Your liquidity has been withdrawn successfully",
+        title: "Minted",
+        description: "Successfully minted 1.000.000 Test USDC!",
         status: "success",
         duration: 7000,
         isClosable: true,
@@ -65,15 +49,12 @@ export const WithdrawLiquidityButton = ({
 
   return (
     <Button
-      variant="outline"
       colorScheme="pink"
-      size="lg"
       onClick={write}
       isLoading={isLoading}
       loadingText="Submitting"
-      className="w-32"
     >
-      Withdraw
+      Clear Minting
     </Button>
   );
 };
