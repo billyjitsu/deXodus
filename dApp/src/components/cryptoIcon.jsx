@@ -6,7 +6,7 @@ export const CryptoIcon = ({ market = 1, size = "md" }) => {
     sm: "18px",
   };
 
-  if (market === 1) {
+  if (market == 1) {
     return (
       <div className="group flex items-center">
         <Image
@@ -23,7 +23,7 @@ export const CryptoIcon = ({ market = 1, size = "md" }) => {
         </span>
       </div>
     );
-  } else if (market === 2) {
+  } else if (market == 2) {
     return (
       <div className="group flex items-center">
         <Image
