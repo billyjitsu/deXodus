@@ -12,21 +12,7 @@ dotenv.config({ path: ".env.local" });
 const app = express();
 const port = 3005;
 
-// The Graph subgraph endpoint
-const subgraphEndpoint =
-  "https://api.studio.thegraph.com/query/58823/dexodus-ethsepolia/v0.0.4";
-
-const provider = new ethers.providers.JsonRpcProvider(
-  "https://eth-sepolia.g.alchemy.com/v2/04kRge27WZPW67uUVJMnkyjhZSUMCHlg"
-);
-
-const contractAddress = process.env.FUTURES_ADDRESS;
-
-// Your Ethereum wallet private key (keep this secure!)
-const privateKey = process.env.PRIVATE_KEY.trim();
-const wallet = new ethers.Wallet(privateKey, provider);
-
-async function querySubgraph() {
+async function querySubgraph(subgraphEndpoint) {
   const BTCcurrentPrice = (2500 * 1000000).toFixed(0);
   const ETHcurrentPrice = (50 * 1000000).toFixed(0);
 
@@ -76,16 +62,28 @@ async function querySubgraph() {
   }
 }
 
-async function processLiquidations() {
-  const positions = await querySubgraph();
+async function processLiquidations(chain, subgraphEndpoint, rpcProvider) {
+  const provider = new ethers.providers.JsonRpcProvider(rpcProvider);
+
+  // Your Ethereum wallet private key (keep this secure!)
+  const privateKey = process.env.PRIVATE_KEY.trim();
+  const wallet = new ethers.Wallet(privateKey, provider);
+
+  const positions = await querySubgraph(subgraphEndpoint);
   console.log("positions", positions);
   if (typeof positions.data !== "undefined" && positions.data !== null) {
-    await executeTransactions(positions.data.positions);
+    await executeTransactions(positions.data.positions, wallet, chain);
   }
 }
 
-async function executeTransactions(positions) {
-  const contract = new ethers.Contract(contractAddress, futuresABI, wallet);
+async function executeTransactions(positions, wallet, chain) {
+  const contract = new ethers.Contract(
+    chain == "sepolia"
+      ? process.env.FUTURES_ADDRESS
+      : process.env.FUTURES_ADDRESS_ZK,
+    futuresABI,
+    wallet
+  );
 
   positions.forEach(async (position) => {
     const customData = contract.interface.encodeFunctionData(
@@ -95,7 +93,10 @@ async function executeTransactions(positions) {
 
     // Build and sign the transaction
     const transaction = {
-      to: contractAddress,
+      to:
+        chain == "sepolia"
+          ? process.env.FUTURES_ADDRESS
+          : process.env.FUTURES_ADDRESS_ZK,
       data: customData,
     };
 
@@ -110,7 +111,16 @@ async function executeTransactions(positions) {
 
 // Schedule the querySubgraph function to run every 30 seconds
 schedule.scheduleJob("*/30 * * * * *", function () {
-  processLiquidations();
+  processLiquidations(
+    "sepolia",
+    "https://api.studio.thegraph.com/query/58823/dexodus-ethsepolia/v0.0.5",
+    "https://eth-sepolia.g.alchemy.com/v2/04kRge27WZPW67uUVJMnkyjhZSUMCHlg"
+  );
+  processLiquidations(
+    "zkSync",
+    "https://api.studio.thegraph.com/query/58823/dexodus-zksync-testnet/v0.0.1",
+    "https://sepolia.infura.io/v3/"
+  );
 });
 
 app.listen(port, () => {

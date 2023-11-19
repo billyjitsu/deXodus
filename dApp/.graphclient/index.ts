@@ -1631,7 +1631,7 @@ const ppxTestTransforms = [];
 const additionalTypeDefs = [] as any[];
 const ppxTestHandler = new GraphqlHandler({
               name: "ppx-test",
-              config: {"endpoint":"https://api.studio.thegraph.com/query/58823/dexodus-ethsepolia/v0.0.4"},
+              config: {"endpoint":"https://api.studio.thegraph.com/query/58823/dexodus-zksync-testnet/v0.0.1"},
               baseDir,
               cache,
               pubsub,
