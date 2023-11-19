@@ -51,7 +51,7 @@ export const NFTCollectionV2 = ({ onItemClick, selectedItems = [] }) => {
     } else {
       setIsLoading(false);
     }
-  }, [data]);
+  }, [data, address]);
 
   return (
     nftsData.length > 0 && (

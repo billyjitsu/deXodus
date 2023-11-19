@@ -202,94 +202,6 @@ export type Block_height = {
   number_gte?: InputMaybe<Scalars['Int']>;
 };
 
-export type CreateFuture = {
-  id: Scalars['Bytes'];
-  futureId: Scalars['BigInt'];
-  market: Scalars['String'];
-  blockNumber: Scalars['BigInt'];
-  blockTimestamp: Scalars['BigInt'];
-  transactionHash: Scalars['Bytes'];
-};
-
-export type CreateFuture_filter = {
-  id?: InputMaybe<Scalars['Bytes']>;
-  id_not?: InputMaybe<Scalars['Bytes']>;
-  id_gt?: InputMaybe<Scalars['Bytes']>;
-  id_lt?: InputMaybe<Scalars['Bytes']>;
-  id_gte?: InputMaybe<Scalars['Bytes']>;
-  id_lte?: InputMaybe<Scalars['Bytes']>;
-  id_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_contains?: InputMaybe<Scalars['Bytes']>;
-  id_not_contains?: InputMaybe<Scalars['Bytes']>;
-  futureId?: InputMaybe<Scalars['BigInt']>;
-  futureId_not?: InputMaybe<Scalars['BigInt']>;
-  futureId_gt?: InputMaybe<Scalars['BigInt']>;
-  futureId_lt?: InputMaybe<Scalars['BigInt']>;
-  futureId_gte?: InputMaybe<Scalars['BigInt']>;
-  futureId_lte?: InputMaybe<Scalars['BigInt']>;
-  futureId_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  futureId_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  market?: InputMaybe<Scalars['String']>;
-  market_not?: InputMaybe<Scalars['String']>;
-  market_gt?: InputMaybe<Scalars['String']>;
-  market_lt?: InputMaybe<Scalars['String']>;
-  market_gte?: InputMaybe<Scalars['String']>;
-  market_lte?: InputMaybe<Scalars['String']>;
-  market_in?: InputMaybe<Array<Scalars['String']>>;
-  market_not_in?: InputMaybe<Array<Scalars['String']>>;
-  market_contains?: InputMaybe<Scalars['String']>;
-  market_contains_nocase?: InputMaybe<Scalars['String']>;
-  market_not_contains?: InputMaybe<Scalars['String']>;
-  market_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  market_starts_with?: InputMaybe<Scalars['String']>;
-  market_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  market_not_starts_with?: InputMaybe<Scalars['String']>;
-  market_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  market_ends_with?: InputMaybe<Scalars['String']>;
-  market_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  market_not_ends_with?: InputMaybe<Scalars['String']>;
-  market_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  blockNumber?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_not?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_not?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transactionHash?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_contains?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']>;
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<CreateFuture_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<CreateFuture_filter>>>;
-};
-
-export type CreateFuture_orderBy =
-  | 'id'
-  | 'futureId'
-  | 'market'
-  | 'blockNumber'
-  | 'blockTimestamp'
-  | 'transactionHash';
-
 export type Initialized = {
   id: Scalars['Bytes'];
   version: Scalars['Int'];
@@ -352,160 +264,6 @@ export type Initialized_filter = {
 export type Initialized_orderBy =
   | 'id'
   | 'version'
-  | 'blockNumber'
-  | 'blockTimestamp'
-  | 'transactionHash';
-
-export type LiquidatePosition = {
-  id: Scalars['Bytes'];
-  marketId: Scalars['BigInt'];
-  positionId: Scalars['BigInt'];
-  trader: Scalars['Bytes'];
-  startedAt: Scalars['BigInt'];
-  size: Scalars['BigInt'];
-  collateral: Scalars['BigInt'];
-  entryPrice: Scalars['BigInt'];
-  liqPrice: Scalars['BigInt'];
-  long: Scalars['Boolean'];
-  currentPrice: Scalars['BigInt'];
-  blockNumber: Scalars['BigInt'];
-  blockTimestamp: Scalars['BigInt'];
-  transactionHash: Scalars['Bytes'];
-};
-
-export type LiquidatePosition_filter = {
-  id?: InputMaybe<Scalars['Bytes']>;
-  id_not?: InputMaybe<Scalars['Bytes']>;
-  id_gt?: InputMaybe<Scalars['Bytes']>;
-  id_lt?: InputMaybe<Scalars['Bytes']>;
-  id_gte?: InputMaybe<Scalars['Bytes']>;
-  id_lte?: InputMaybe<Scalars['Bytes']>;
-  id_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_contains?: InputMaybe<Scalars['Bytes']>;
-  id_not_contains?: InputMaybe<Scalars['Bytes']>;
-  marketId?: InputMaybe<Scalars['BigInt']>;
-  marketId_not?: InputMaybe<Scalars['BigInt']>;
-  marketId_gt?: InputMaybe<Scalars['BigInt']>;
-  marketId_lt?: InputMaybe<Scalars['BigInt']>;
-  marketId_gte?: InputMaybe<Scalars['BigInt']>;
-  marketId_lte?: InputMaybe<Scalars['BigInt']>;
-  marketId_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  marketId_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  positionId?: InputMaybe<Scalars['BigInt']>;
-  positionId_not?: InputMaybe<Scalars['BigInt']>;
-  positionId_gt?: InputMaybe<Scalars['BigInt']>;
-  positionId_lt?: InputMaybe<Scalars['BigInt']>;
-  positionId_gte?: InputMaybe<Scalars['BigInt']>;
-  positionId_lte?: InputMaybe<Scalars['BigInt']>;
-  positionId_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  positionId_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  trader?: InputMaybe<Scalars['Bytes']>;
-  trader_not?: InputMaybe<Scalars['Bytes']>;
-  trader_gt?: InputMaybe<Scalars['Bytes']>;
-  trader_lt?: InputMaybe<Scalars['Bytes']>;
-  trader_gte?: InputMaybe<Scalars['Bytes']>;
-  trader_lte?: InputMaybe<Scalars['Bytes']>;
-  trader_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  trader_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  trader_contains?: InputMaybe<Scalars['Bytes']>;
-  trader_not_contains?: InputMaybe<Scalars['Bytes']>;
-  startedAt?: InputMaybe<Scalars['BigInt']>;
-  startedAt_not?: InputMaybe<Scalars['BigInt']>;
-  startedAt_gt?: InputMaybe<Scalars['BigInt']>;
-  startedAt_lt?: InputMaybe<Scalars['BigInt']>;
-  startedAt_gte?: InputMaybe<Scalars['BigInt']>;
-  startedAt_lte?: InputMaybe<Scalars['BigInt']>;
-  startedAt_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  startedAt_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  size?: InputMaybe<Scalars['BigInt']>;
-  size_not?: InputMaybe<Scalars['BigInt']>;
-  size_gt?: InputMaybe<Scalars['BigInt']>;
-  size_lt?: InputMaybe<Scalars['BigInt']>;
-  size_gte?: InputMaybe<Scalars['BigInt']>;
-  size_lte?: InputMaybe<Scalars['BigInt']>;
-  size_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  size_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  collateral?: InputMaybe<Scalars['BigInt']>;
-  collateral_not?: InputMaybe<Scalars['BigInt']>;
-  collateral_gt?: InputMaybe<Scalars['BigInt']>;
-  collateral_lt?: InputMaybe<Scalars['BigInt']>;
-  collateral_gte?: InputMaybe<Scalars['BigInt']>;
-  collateral_lte?: InputMaybe<Scalars['BigInt']>;
-  collateral_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  collateral_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  entryPrice?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_not?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_gt?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_lt?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_gte?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_lte?: InputMaybe<Scalars['BigInt']>;
-  entryPrice_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  entryPrice_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  liqPrice?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_not?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_gt?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_lt?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_gte?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_lte?: InputMaybe<Scalars['BigInt']>;
-  liqPrice_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  liqPrice_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  long?: InputMaybe<Scalars['Boolean']>;
-  long_not?: InputMaybe<Scalars['Boolean']>;
-  long_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  long_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  currentPrice?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_not?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_gt?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_lt?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_gte?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_lte?: InputMaybe<Scalars['BigInt']>;
-  currentPrice_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  currentPrice_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_not?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_not?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transactionHash?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_contains?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']>;
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<LiquidatePosition_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<LiquidatePosition_filter>>>;
-};
-
-export type LiquidatePosition_orderBy =
-  | 'id'
-  | 'marketId'
-  | 'positionId'
-  | 'trader'
-  | 'startedAt'
-  | 'size'
-  | 'collateral'
-  | 'entryPrice'
-  | 'liqPrice'
-  | 'long'
-  | 'currentPrice'
   | 'blockNumber'
   | 'blockTimestamp'
   | 'transactionHash';
@@ -671,74 +429,6 @@ export type OwnershipTransferred_orderBy =
   | 'id'
   | 'previousOwner'
   | 'newOwner'
-  | 'blockNumber'
-  | 'blockTimestamp'
-  | 'transactionHash';
-
-export type Paused = {
-  id: Scalars['Bytes'];
-  account: Scalars['Bytes'];
-  blockNumber: Scalars['BigInt'];
-  blockTimestamp: Scalars['BigInt'];
-  transactionHash: Scalars['Bytes'];
-};
-
-export type Paused_filter = {
-  id?: InputMaybe<Scalars['Bytes']>;
-  id_not?: InputMaybe<Scalars['Bytes']>;
-  id_gt?: InputMaybe<Scalars['Bytes']>;
-  id_lt?: InputMaybe<Scalars['Bytes']>;
-  id_gte?: InputMaybe<Scalars['Bytes']>;
-  id_lte?: InputMaybe<Scalars['Bytes']>;
-  id_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_contains?: InputMaybe<Scalars['Bytes']>;
-  id_not_contains?: InputMaybe<Scalars['Bytes']>;
-  account?: InputMaybe<Scalars['Bytes']>;
-  account_not?: InputMaybe<Scalars['Bytes']>;
-  account_gt?: InputMaybe<Scalars['Bytes']>;
-  account_lt?: InputMaybe<Scalars['Bytes']>;
-  account_gte?: InputMaybe<Scalars['Bytes']>;
-  account_lte?: InputMaybe<Scalars['Bytes']>;
-  account_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  account_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  account_contains?: InputMaybe<Scalars['Bytes']>;
-  account_not_contains?: InputMaybe<Scalars['Bytes']>;
-  blockNumber?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_not?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_not?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transactionHash?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_contains?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']>;
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<Paused_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<Paused_filter>>>;
-};
-
-export type Paused_orderBy =
-  | 'id'
-  | 'account'
   | 'blockNumber'
   | 'blockTimestamp'
   | 'transactionHash';
@@ -1095,26 +785,16 @@ export type Query = {
   adminChangeds: Array<AdminChanged>;
   beaconUpgraded?: Maybe<BeaconUpgraded>;
   beaconUpgradeds: Array<BeaconUpgraded>;
-  createFuture?: Maybe<CreateFuture>;
-  createFutures: Array<CreateFuture>;
   initialized?: Maybe<Initialized>;
   initializeds: Array<Initialized>;
-  liquidatePosition?: Maybe<LiquidatePosition>;
-  liquidatePositions: Array<LiquidatePosition>;
   ownershipTransferStarted?: Maybe<OwnershipTransferStarted>;
   ownershipTransferStarteds: Array<OwnershipTransferStarted>;
   ownershipTransferred?: Maybe<OwnershipTransferred>;
   ownershipTransferreds: Array<OwnershipTransferred>;
-  paused?: Maybe<Paused>;
-  pauseds: Array<Paused>;
   position?: Maybe<Position>;
   positions: Array<Position>;
   positionUpdate?: Maybe<PositionUpdate>;
   positionUpdates: Array<PositionUpdate>;
-  unpaused?: Maybe<Unpaused>;
-  unpauseds: Array<Unpaused>;
-  updatedGovernance?: Maybe<UpdatedGovernance>;
-  updatedGovernances: Array<UpdatedGovernance>;
   upgraded?: Maybe<Upgraded>;
   upgradeds: Array<Upgraded>;
   /** Access to subgraph metadata */
@@ -1158,24 +838,6 @@ export type QuerybeaconUpgradedsArgs = {
 };
 
 
-export type QuerycreateFutureArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QuerycreateFuturesArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<CreateFuture_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<CreateFuture_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type QueryinitializedArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1189,24 +851,6 @@ export type QueryinitializedsArgs = {
   orderBy?: InputMaybe<Initialized_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
   where?: InputMaybe<Initialized_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryliquidatePositionArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryliquidatePositionsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<LiquidatePosition_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<LiquidatePosition_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -1248,24 +892,6 @@ export type QueryownershipTransferredsArgs = {
 };
 
 
-export type QuerypausedArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QuerypausedsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Paused_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<Paused_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type QuerypositionArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1302,42 +928,6 @@ export type QuerypositionUpdatesArgs = {
 };
 
 
-export type QueryunpausedArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryunpausedsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Unpaused_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<Unpaused_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryupdatedGovernanceArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type QueryupdatedGovernancesArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<UpdatedGovernance_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<UpdatedGovernance_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type QueryupgradedArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1365,26 +955,16 @@ export type Subscription = {
   adminChangeds: Array<AdminChanged>;
   beaconUpgraded?: Maybe<BeaconUpgraded>;
   beaconUpgradeds: Array<BeaconUpgraded>;
-  createFuture?: Maybe<CreateFuture>;
-  createFutures: Array<CreateFuture>;
   initialized?: Maybe<Initialized>;
   initializeds: Array<Initialized>;
-  liquidatePosition?: Maybe<LiquidatePosition>;
-  liquidatePositions: Array<LiquidatePosition>;
   ownershipTransferStarted?: Maybe<OwnershipTransferStarted>;
   ownershipTransferStarteds: Array<OwnershipTransferStarted>;
   ownershipTransferred?: Maybe<OwnershipTransferred>;
   ownershipTransferreds: Array<OwnershipTransferred>;
-  paused?: Maybe<Paused>;
-  pauseds: Array<Paused>;
   position?: Maybe<Position>;
   positions: Array<Position>;
   positionUpdate?: Maybe<PositionUpdate>;
   positionUpdates: Array<PositionUpdate>;
-  unpaused?: Maybe<Unpaused>;
-  unpauseds: Array<Unpaused>;
-  updatedGovernance?: Maybe<UpdatedGovernance>;
-  updatedGovernances: Array<UpdatedGovernance>;
   upgraded?: Maybe<Upgraded>;
   upgradeds: Array<Upgraded>;
   /** Access to subgraph metadata */
@@ -1428,24 +1008,6 @@ export type SubscriptionbeaconUpgradedsArgs = {
 };
 
 
-export type SubscriptioncreateFutureArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptioncreateFuturesArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<CreateFuture_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<CreateFuture_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type SubscriptioninitializedArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1459,24 +1021,6 @@ export type SubscriptioninitializedsArgs = {
   orderBy?: InputMaybe<Initialized_orderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
   where?: InputMaybe<Initialized_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionliquidatePositionArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionliquidatePositionsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<LiquidatePosition_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<LiquidatePosition_filter>;
   block?: InputMaybe<Block_height>;
   subgraphError?: _SubgraphErrorPolicy_;
 };
@@ -1518,24 +1062,6 @@ export type SubscriptionownershipTransferredsArgs = {
 };
 
 
-export type SubscriptionpausedArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionpausedsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Paused_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<Paused_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type SubscriptionpositionArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1572,42 +1098,6 @@ export type SubscriptionpositionUpdatesArgs = {
 };
 
 
-export type SubscriptionunpausedArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionunpausedsArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Unpaused_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<Unpaused_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionupdatedGovernanceArgs = {
-  id: Scalars['ID'];
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionupdatedGovernancesArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<UpdatedGovernance_orderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  where?: InputMaybe<UpdatedGovernance_filter>;
-  block?: InputMaybe<Block_height>;
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
 export type SubscriptionupgradedArgs = {
   id: Scalars['ID'];
   block?: InputMaybe<Block_height>;
@@ -1629,154 +1119,6 @@ export type SubscriptionupgradedsArgs = {
 export type Subscription_metaArgs = {
   block?: InputMaybe<Block_height>;
 };
-
-export type Unpaused = {
-  id: Scalars['Bytes'];
-  account: Scalars['Bytes'];
-  blockNumber: Scalars['BigInt'];
-  blockTimestamp: Scalars['BigInt'];
-  transactionHash: Scalars['Bytes'];
-};
-
-export type Unpaused_filter = {
-  id?: InputMaybe<Scalars['Bytes']>;
-  id_not?: InputMaybe<Scalars['Bytes']>;
-  id_gt?: InputMaybe<Scalars['Bytes']>;
-  id_lt?: InputMaybe<Scalars['Bytes']>;
-  id_gte?: InputMaybe<Scalars['Bytes']>;
-  id_lte?: InputMaybe<Scalars['Bytes']>;
-  id_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_contains?: InputMaybe<Scalars['Bytes']>;
-  id_not_contains?: InputMaybe<Scalars['Bytes']>;
-  account?: InputMaybe<Scalars['Bytes']>;
-  account_not?: InputMaybe<Scalars['Bytes']>;
-  account_gt?: InputMaybe<Scalars['Bytes']>;
-  account_lt?: InputMaybe<Scalars['Bytes']>;
-  account_gte?: InputMaybe<Scalars['Bytes']>;
-  account_lte?: InputMaybe<Scalars['Bytes']>;
-  account_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  account_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  account_contains?: InputMaybe<Scalars['Bytes']>;
-  account_not_contains?: InputMaybe<Scalars['Bytes']>;
-  blockNumber?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_not?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_not?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transactionHash?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_contains?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']>;
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<Unpaused_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<Unpaused_filter>>>;
-};
-
-export type Unpaused_orderBy =
-  | 'id'
-  | 'account'
-  | 'blockNumber'
-  | 'blockTimestamp'
-  | 'transactionHash';
-
-export type UpdatedGovernance = {
-  id: Scalars['Bytes'];
-  oldGovernance: Scalars['Bytes'];
-  newGovernance: Scalars['Bytes'];
-  blockNumber: Scalars['BigInt'];
-  blockTimestamp: Scalars['BigInt'];
-  transactionHash: Scalars['Bytes'];
-};
-
-export type UpdatedGovernance_filter = {
-  id?: InputMaybe<Scalars['Bytes']>;
-  id_not?: InputMaybe<Scalars['Bytes']>;
-  id_gt?: InputMaybe<Scalars['Bytes']>;
-  id_lt?: InputMaybe<Scalars['Bytes']>;
-  id_gte?: InputMaybe<Scalars['Bytes']>;
-  id_lte?: InputMaybe<Scalars['Bytes']>;
-  id_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  id_contains?: InputMaybe<Scalars['Bytes']>;
-  id_not_contains?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_not?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_gt?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_lt?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_gte?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_lte?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  oldGovernance_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  oldGovernance_contains?: InputMaybe<Scalars['Bytes']>;
-  oldGovernance_not_contains?: InputMaybe<Scalars['Bytes']>;
-  newGovernance?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_not?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_gt?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_lt?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_gte?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_lte?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  newGovernance_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  newGovernance_contains?: InputMaybe<Scalars['Bytes']>;
-  newGovernance_not_contains?: InputMaybe<Scalars['Bytes']>;
-  blockNumber?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_not?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lt?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_gte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_lte?: InputMaybe<Scalars['BigInt']>;
-  blockNumber_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockNumber_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_not?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lt?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_gte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_lte?: InputMaybe<Scalars['BigInt']>;
-  blockTimestamp_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  blockTimestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transactionHash?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lt?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_gte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_lte?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
-  transactionHash_contains?: InputMaybe<Scalars['Bytes']>;
-  transactionHash_not_contains?: InputMaybe<Scalars['Bytes']>;
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<UpdatedGovernance_filter>>>;
-  or?: InputMaybe<Array<InputMaybe<UpdatedGovernance_filter>>>;
-};
-
-export type UpdatedGovernance_orderBy =
-  | 'id'
-  | 'oldGovernance'
-  | 'newGovernance'
-  | 'blockNumber'
-  | 'blockTimestamp'
-  | 'transactionHash';
 
 export type Upgraded = {
   id: Scalars['Bytes'];
@@ -1975,9 +1317,6 @@ export type ResolversTypes = ResolversObject<{
   Block_height: Block_height;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Bytes: ResolverTypeWrapper<Scalars['Bytes']>;
-  CreateFuture: ResolverTypeWrapper<CreateFuture>;
-  CreateFuture_filter: CreateFuture_filter;
-  CreateFuture_orderBy: CreateFuture_orderBy;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Initialized: ResolverTypeWrapper<Initialized>;
@@ -1985,9 +1324,6 @@ export type ResolversTypes = ResolversObject<{
   Initialized_orderBy: Initialized_orderBy;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Int8: ResolverTypeWrapper<Scalars['Int8']>;
-  LiquidatePosition: ResolverTypeWrapper<LiquidatePosition>;
-  LiquidatePosition_filter: LiquidatePosition_filter;
-  LiquidatePosition_orderBy: LiquidatePosition_orderBy;
   OrderDirection: OrderDirection;
   OwnershipTransferStarted: ResolverTypeWrapper<OwnershipTransferStarted>;
   OwnershipTransferStarted_filter: OwnershipTransferStarted_filter;
@@ -1995,9 +1331,6 @@ export type ResolversTypes = ResolversObject<{
   OwnershipTransferred: ResolverTypeWrapper<OwnershipTransferred>;
   OwnershipTransferred_filter: OwnershipTransferred_filter;
   OwnershipTransferred_orderBy: OwnershipTransferred_orderBy;
-  Paused: ResolverTypeWrapper<Paused>;
-  Paused_filter: Paused_filter;
-  Paused_orderBy: Paused_orderBy;
   Position: ResolverTypeWrapper<Position>;
   PositionUpdate: ResolverTypeWrapper<PositionUpdate>;
   PositionUpdate_filter: PositionUpdate_filter;
@@ -2007,12 +1340,6 @@ export type ResolversTypes = ResolversObject<{
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Subscription: ResolverTypeWrapper<{}>;
-  Unpaused: ResolverTypeWrapper<Unpaused>;
-  Unpaused_filter: Unpaused_filter;
-  Unpaused_orderBy: Unpaused_orderBy;
-  UpdatedGovernance: ResolverTypeWrapper<UpdatedGovernance>;
-  UpdatedGovernance_filter: UpdatedGovernance_filter;
-  UpdatedGovernance_orderBy: UpdatedGovernance_orderBy;
   Upgraded: ResolverTypeWrapper<Upgraded>;
   Upgraded_filter: Upgraded_filter;
   Upgraded_orderBy: Upgraded_orderBy;
@@ -2033,22 +1360,16 @@ export type ResolversParentTypes = ResolversObject<{
   Block_height: Block_height;
   Boolean: Scalars['Boolean'];
   Bytes: Scalars['Bytes'];
-  CreateFuture: CreateFuture;
-  CreateFuture_filter: CreateFuture_filter;
   Float: Scalars['Float'];
   ID: Scalars['ID'];
   Initialized: Initialized;
   Initialized_filter: Initialized_filter;
   Int: Scalars['Int'];
   Int8: Scalars['Int8'];
-  LiquidatePosition: LiquidatePosition;
-  LiquidatePosition_filter: LiquidatePosition_filter;
   OwnershipTransferStarted: OwnershipTransferStarted;
   OwnershipTransferStarted_filter: OwnershipTransferStarted_filter;
   OwnershipTransferred: OwnershipTransferred;
   OwnershipTransferred_filter: OwnershipTransferred_filter;
-  Paused: Paused;
-  Paused_filter: Paused_filter;
   Position: Position;
   PositionUpdate: PositionUpdate;
   PositionUpdate_filter: PositionUpdate_filter;
@@ -2056,10 +1377,6 @@ export type ResolversParentTypes = ResolversObject<{
   Query: {};
   String: Scalars['String'];
   Subscription: {};
-  Unpaused: Unpaused;
-  Unpaused_filter: Unpaused_filter;
-  UpdatedGovernance: UpdatedGovernance;
-  UpdatedGovernance_filter: UpdatedGovernance_filter;
   Upgraded: Upgraded;
   Upgraded_filter: Upgraded_filter;
   _Block_: _Block_;
@@ -2113,16 +1430,6 @@ export interface BytesScalarConfig extends GraphQLScalarTypeConfig<ResolversType
   name: 'Bytes';
 }
 
-export type CreateFutureResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['CreateFuture'] = ResolversParentTypes['CreateFuture']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  futureId?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  market?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
 export type InitializedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Initialized'] = ResolversParentTypes['Initialized']> = ResolversObject<{
   id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
   version?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -2135,24 +1442,6 @@ export type InitializedResolvers<ContextType = MeshContext, ParentType extends R
 export interface Int8ScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Int8'], any> {
   name: 'Int8';
 }
-
-export type LiquidatePositionResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['LiquidatePosition'] = ResolversParentTypes['LiquidatePosition']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  marketId?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  positionId?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  trader?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  startedAt?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  size?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  collateral?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  entryPrice?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  liqPrice?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  long?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  currentPrice?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
 
 export type OwnershipTransferStartedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['OwnershipTransferStarted'] = ResolversParentTypes['OwnershipTransferStarted']> = ResolversObject<{
   id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
@@ -2168,15 +1457,6 @@ export type OwnershipTransferredResolvers<ContextType = MeshContext, ParentType 
   id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
   previousOwner?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
   newOwner?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type PausedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Paused'] = ResolversParentTypes['Paused']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
   blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
   transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
@@ -2223,26 +1503,16 @@ export type QueryResolvers<ContextType = MeshContext, ParentType extends Resolve
   adminChangeds?: Resolver<Array<ResolversTypes['AdminChanged']>, ParentType, ContextType, RequireFields<QueryadminChangedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   beaconUpgraded?: Resolver<Maybe<ResolversTypes['BeaconUpgraded']>, ParentType, ContextType, RequireFields<QuerybeaconUpgradedArgs, 'id' | 'subgraphError'>>;
   beaconUpgradeds?: Resolver<Array<ResolversTypes['BeaconUpgraded']>, ParentType, ContextType, RequireFields<QuerybeaconUpgradedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  createFuture?: Resolver<Maybe<ResolversTypes['CreateFuture']>, ParentType, ContextType, RequireFields<QuerycreateFutureArgs, 'id' | 'subgraphError'>>;
-  createFutures?: Resolver<Array<ResolversTypes['CreateFuture']>, ParentType, ContextType, RequireFields<QuerycreateFuturesArgs, 'skip' | 'first' | 'subgraphError'>>;
   initialized?: Resolver<Maybe<ResolversTypes['Initialized']>, ParentType, ContextType, RequireFields<QueryinitializedArgs, 'id' | 'subgraphError'>>;
   initializeds?: Resolver<Array<ResolversTypes['Initialized']>, ParentType, ContextType, RequireFields<QueryinitializedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  liquidatePosition?: Resolver<Maybe<ResolversTypes['LiquidatePosition']>, ParentType, ContextType, RequireFields<QueryliquidatePositionArgs, 'id' | 'subgraphError'>>;
-  liquidatePositions?: Resolver<Array<ResolversTypes['LiquidatePosition']>, ParentType, ContextType, RequireFields<QueryliquidatePositionsArgs, 'skip' | 'first' | 'subgraphError'>>;
   ownershipTransferStarted?: Resolver<Maybe<ResolversTypes['OwnershipTransferStarted']>, ParentType, ContextType, RequireFields<QueryownershipTransferStartedArgs, 'id' | 'subgraphError'>>;
   ownershipTransferStarteds?: Resolver<Array<ResolversTypes['OwnershipTransferStarted']>, ParentType, ContextType, RequireFields<QueryownershipTransferStartedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   ownershipTransferred?: Resolver<Maybe<ResolversTypes['OwnershipTransferred']>, ParentType, ContextType, RequireFields<QueryownershipTransferredArgs, 'id' | 'subgraphError'>>;
   ownershipTransferreds?: Resolver<Array<ResolversTypes['OwnershipTransferred']>, ParentType, ContextType, RequireFields<QueryownershipTransferredsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  paused?: Resolver<Maybe<ResolversTypes['Paused']>, ParentType, ContextType, RequireFields<QuerypausedArgs, 'id' | 'subgraphError'>>;
-  pauseds?: Resolver<Array<ResolversTypes['Paused']>, ParentType, ContextType, RequireFields<QuerypausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   position?: Resolver<Maybe<ResolversTypes['Position']>, ParentType, ContextType, RequireFields<QuerypositionArgs, 'id' | 'subgraphError'>>;
   positions?: Resolver<Array<ResolversTypes['Position']>, ParentType, ContextType, RequireFields<QuerypositionsArgs, 'skip' | 'first' | 'subgraphError'>>;
   positionUpdate?: Resolver<Maybe<ResolversTypes['PositionUpdate']>, ParentType, ContextType, RequireFields<QuerypositionUpdateArgs, 'id' | 'subgraphError'>>;
   positionUpdates?: Resolver<Array<ResolversTypes['PositionUpdate']>, ParentType, ContextType, RequireFields<QuerypositionUpdatesArgs, 'skip' | 'first' | 'subgraphError'>>;
-  unpaused?: Resolver<Maybe<ResolversTypes['Unpaused']>, ParentType, ContextType, RequireFields<QueryunpausedArgs, 'id' | 'subgraphError'>>;
-  unpauseds?: Resolver<Array<ResolversTypes['Unpaused']>, ParentType, ContextType, RequireFields<QueryunpausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  updatedGovernance?: Resolver<Maybe<ResolversTypes['UpdatedGovernance']>, ParentType, ContextType, RequireFields<QueryupdatedGovernanceArgs, 'id' | 'subgraphError'>>;
-  updatedGovernances?: Resolver<Array<ResolversTypes['UpdatedGovernance']>, ParentType, ContextType, RequireFields<QueryupdatedGovernancesArgs, 'skip' | 'first' | 'subgraphError'>>;
   upgraded?: Resolver<Maybe<ResolversTypes['Upgraded']>, ParentType, ContextType, RequireFields<QueryupgradedArgs, 'id' | 'subgraphError'>>;
   upgradeds?: Resolver<Array<ResolversTypes['Upgraded']>, ParentType, ContextType, RequireFields<QueryupgradedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   _meta?: Resolver<Maybe<ResolversTypes['_Meta_']>, ParentType, ContextType, Partial<Query_metaArgs>>;
@@ -2253,48 +1523,19 @@ export type SubscriptionResolvers<ContextType = MeshContext, ParentType extends 
   adminChangeds?: SubscriptionResolver<Array<ResolversTypes['AdminChanged']>, "adminChangeds", ParentType, ContextType, RequireFields<SubscriptionadminChangedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   beaconUpgraded?: SubscriptionResolver<Maybe<ResolversTypes['BeaconUpgraded']>, "beaconUpgraded", ParentType, ContextType, RequireFields<SubscriptionbeaconUpgradedArgs, 'id' | 'subgraphError'>>;
   beaconUpgradeds?: SubscriptionResolver<Array<ResolversTypes['BeaconUpgraded']>, "beaconUpgradeds", ParentType, ContextType, RequireFields<SubscriptionbeaconUpgradedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  createFuture?: SubscriptionResolver<Maybe<ResolversTypes['CreateFuture']>, "createFuture", ParentType, ContextType, RequireFields<SubscriptioncreateFutureArgs, 'id' | 'subgraphError'>>;
-  createFutures?: SubscriptionResolver<Array<ResolversTypes['CreateFuture']>, "createFutures", ParentType, ContextType, RequireFields<SubscriptioncreateFuturesArgs, 'skip' | 'first' | 'subgraphError'>>;
   initialized?: SubscriptionResolver<Maybe<ResolversTypes['Initialized']>, "initialized", ParentType, ContextType, RequireFields<SubscriptioninitializedArgs, 'id' | 'subgraphError'>>;
   initializeds?: SubscriptionResolver<Array<ResolversTypes['Initialized']>, "initializeds", ParentType, ContextType, RequireFields<SubscriptioninitializedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  liquidatePosition?: SubscriptionResolver<Maybe<ResolversTypes['LiquidatePosition']>, "liquidatePosition", ParentType, ContextType, RequireFields<SubscriptionliquidatePositionArgs, 'id' | 'subgraphError'>>;
-  liquidatePositions?: SubscriptionResolver<Array<ResolversTypes['LiquidatePosition']>, "liquidatePositions", ParentType, ContextType, RequireFields<SubscriptionliquidatePositionsArgs, 'skip' | 'first' | 'subgraphError'>>;
   ownershipTransferStarted?: SubscriptionResolver<Maybe<ResolversTypes['OwnershipTransferStarted']>, "ownershipTransferStarted", ParentType, ContextType, RequireFields<SubscriptionownershipTransferStartedArgs, 'id' | 'subgraphError'>>;
   ownershipTransferStarteds?: SubscriptionResolver<Array<ResolversTypes['OwnershipTransferStarted']>, "ownershipTransferStarteds", ParentType, ContextType, RequireFields<SubscriptionownershipTransferStartedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   ownershipTransferred?: SubscriptionResolver<Maybe<ResolversTypes['OwnershipTransferred']>, "ownershipTransferred", ParentType, ContextType, RequireFields<SubscriptionownershipTransferredArgs, 'id' | 'subgraphError'>>;
   ownershipTransferreds?: SubscriptionResolver<Array<ResolversTypes['OwnershipTransferred']>, "ownershipTransferreds", ParentType, ContextType, RequireFields<SubscriptionownershipTransferredsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  paused?: SubscriptionResolver<Maybe<ResolversTypes['Paused']>, "paused", ParentType, ContextType, RequireFields<SubscriptionpausedArgs, 'id' | 'subgraphError'>>;
-  pauseds?: SubscriptionResolver<Array<ResolversTypes['Paused']>, "pauseds", ParentType, ContextType, RequireFields<SubscriptionpausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   position?: SubscriptionResolver<Maybe<ResolversTypes['Position']>, "position", ParentType, ContextType, RequireFields<SubscriptionpositionArgs, 'id' | 'subgraphError'>>;
   positions?: SubscriptionResolver<Array<ResolversTypes['Position']>, "positions", ParentType, ContextType, RequireFields<SubscriptionpositionsArgs, 'skip' | 'first' | 'subgraphError'>>;
   positionUpdate?: SubscriptionResolver<Maybe<ResolversTypes['PositionUpdate']>, "positionUpdate", ParentType, ContextType, RequireFields<SubscriptionpositionUpdateArgs, 'id' | 'subgraphError'>>;
   positionUpdates?: SubscriptionResolver<Array<ResolversTypes['PositionUpdate']>, "positionUpdates", ParentType, ContextType, RequireFields<SubscriptionpositionUpdatesArgs, 'skip' | 'first' | 'subgraphError'>>;
-  unpaused?: SubscriptionResolver<Maybe<ResolversTypes['Unpaused']>, "unpaused", ParentType, ContextType, RequireFields<SubscriptionunpausedArgs, 'id' | 'subgraphError'>>;
-  unpauseds?: SubscriptionResolver<Array<ResolversTypes['Unpaused']>, "unpauseds", ParentType, ContextType, RequireFields<SubscriptionunpausedsArgs, 'skip' | 'first' | 'subgraphError'>>;
-  updatedGovernance?: SubscriptionResolver<Maybe<ResolversTypes['UpdatedGovernance']>, "updatedGovernance", ParentType, ContextType, RequireFields<SubscriptionupdatedGovernanceArgs, 'id' | 'subgraphError'>>;
-  updatedGovernances?: SubscriptionResolver<Array<ResolversTypes['UpdatedGovernance']>, "updatedGovernances", ParentType, ContextType, RequireFields<SubscriptionupdatedGovernancesArgs, 'skip' | 'first' | 'subgraphError'>>;
   upgraded?: SubscriptionResolver<Maybe<ResolversTypes['Upgraded']>, "upgraded", ParentType, ContextType, RequireFields<SubscriptionupgradedArgs, 'id' | 'subgraphError'>>;
   upgradeds?: SubscriptionResolver<Array<ResolversTypes['Upgraded']>, "upgradeds", ParentType, ContextType, RequireFields<SubscriptionupgradedsArgs, 'skip' | 'first' | 'subgraphError'>>;
   _meta?: SubscriptionResolver<Maybe<ResolversTypes['_Meta_']>, "_meta", ParentType, ContextType, Partial<Subscription_metaArgs>>;
-}>;
-
-export type UnpausedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Unpaused'] = ResolversParentTypes['Unpaused']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  account?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type UpdatedGovernanceResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['UpdatedGovernance'] = ResolversParentTypes['UpdatedGovernance']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  oldGovernance?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  newGovernance?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  blockNumber?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  blockTimestamp?: Resolver<ResolversTypes['BigInt'], ParentType, ContextType>;
-  transactionHash?: Resolver<ResolversTypes['Bytes'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type UpgradedResolvers<ContextType = MeshContext, ParentType extends ResolversParentTypes['Upgraded'] = ResolversParentTypes['Upgraded']> = ResolversObject<{
@@ -2326,19 +1567,14 @@ export type Resolvers<ContextType = MeshContext> = ResolversObject<{
   BigDecimal?: GraphQLScalarType;
   BigInt?: GraphQLScalarType;
   Bytes?: GraphQLScalarType;
-  CreateFuture?: CreateFutureResolvers<ContextType>;
   Initialized?: InitializedResolvers<ContextType>;
   Int8?: GraphQLScalarType;
-  LiquidatePosition?: LiquidatePositionResolvers<ContextType>;
   OwnershipTransferStarted?: OwnershipTransferStartedResolvers<ContextType>;
   OwnershipTransferred?: OwnershipTransferredResolvers<ContextType>;
-  Paused?: PausedResolvers<ContextType>;
   Position?: PositionResolvers<ContextType>;
   PositionUpdate?: PositionUpdateResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Subscription?: SubscriptionResolvers<ContextType>;
-  Unpaused?: UnpausedResolvers<ContextType>;
-  UpdatedGovernance?: UpdatedGovernanceResolvers<ContextType>;
   Upgraded?: UpgradedResolvers<ContextType>;
   _Block_?: _Block_Resolvers<ContextType>;
   _Meta_?: _Meta_Resolvers<ContextType>;
@@ -2395,7 +1631,7 @@ const ppxTestTransforms = [];
 const additionalTypeDefs = [] as any[];
 const ppxTestHandler = new GraphqlHandler({
               name: "ppx-test",
-              config: {"endpoint":"https://api.studio.thegraph.com/query/57582/ppx-test-6/v0.0.3"},
+              config: {"endpoint":"https://api.studio.thegraph.com/query/58823/dexodus-ethsepolia/v0.0.4"},
               baseDir,
               cache,
               pubsub,
@@ -2474,7 +1710,6 @@ export function getBuiltGraphSDK<TGlobalContext = any, TOperationContext = any>(
 }
 export type PositionsSummaryQueryVariables = Exact<{
   traderAddress: Scalars['Bytes'];
-  marketId: Scalars['BigInt'];
 }>;
 
 
@@ -2485,11 +1720,11 @@ export type PositionsSummaryQuery = { positions: Array<(
 
 
 export const PositionsSummaryDocument = gql`
-    query PositionsSummary($traderAddress: Bytes!, $marketId: BigInt!) {
+    query PositionsSummary($traderAddress: Bytes!) {
   positions(
     orderBy: id
     orderDirection: desc
-    where: {trader: $traderAddress, isClosed: true, marketId: $marketId}
+    where: {trader: $traderAddress, isClosed: true}
   ) {
     id
     trader

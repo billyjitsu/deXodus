@@ -1,4 +1,4 @@
-export const dxdABI = [
+export const exdABI = [
   {
     inputs: [],
     stateMutability: "nonpayable",

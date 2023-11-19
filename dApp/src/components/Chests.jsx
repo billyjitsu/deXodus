@@ -8,12 +8,15 @@ import { Button } from "@chakra-ui/react";
 import { openChest, buyChest } from "@/lib/smartContracts/chest";
 import { approve } from "@/lib/smartContracts/erc20Functions";
 import { useErc20Allowance } from "@/hooks/useErc20Allowance";
+import { claimNfts } from "@/lib/smartContracts/chest";
+import { Center } from "@chakra-ui/react";
 
 export const Chests = ({}) => {
   const { address } = useAccount();
   const { deployment } = useDeployment();
   const [isLoadingBuy, setIsLoadingBuy] = useState(false);
   const [isLoadingOpen, setIsLoadingOpen] = useState(false);
+  const [isLoadingClaim, setIsLoadingClaim] = useState(false);
 
   const { balance: allowanceUSDC } = useErc20Allowance(
     deployment.usdc,
@@ -69,9 +72,20 @@ export const Chests = ({}) => {
     }
   };
 
+  const handleClaim = async () => {
+    try {
+      setIsLoadingClaim(true);
+      await claimNfts(deployment.chest);
+      setIsLoadingClaim(false);
+    } catch (e) {
+      console.log(e);
+      setIsLoadingClaim(false);
+    }
+  };
+
   return (
     <div className="flex items-center">
-      <div>
+      <div className="-ml-6">
         <Image
           src="/images/chest.png"
           alt="Chests"
@@ -93,9 +107,8 @@ export const Chests = ({}) => {
           </span>{" "}
           <span className="text-white ">{Number(data)}</span>
         </div>
-
         <Button
-          colorScheme="teal"
+          colorScheme="pink"
           size="lg"
           className="mt-4 w-32"
           isLoading={isLoadingOpen}
@@ -104,7 +117,16 @@ export const Chests = ({}) => {
           Open
         </Button>
         <Button
-          colorScheme="teal"
+          colorScheme="pink"
+          size="lg"
+          className="w-32 mt-4"
+          isLoading={isLoadingClaim}
+          onClick={handleClaim}
+        >
+          Claim NFTs
+        </Button>
+        <Button
+          colorScheme="pink"
           size="lg"
           className="w-32 mt-4"
           isLoading={isLoadingBuy}

@@ -19,7 +19,6 @@ import { useEffect, useState } from "react";
 import { useMarket } from "@/context/marketContext";
 import { CryptoIcon } from "./cryptoIcon";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
-import { EditIcon, StarIcon } from "@chakra-ui/icons";
 import { TradesHistory } from "./tradesHistory";
 
 export const ExchangeUserInfo = () => {
@@ -31,11 +30,7 @@ export const ExchangeUserInfo = () => {
     onClose: onCloseClosePositionModal,
     onOpen: onOpenClosePositionModal,
   } = useDisclosure();
-  const {
-    isOpen: isOpenEditCollateralModal,
-    onClose: onCloseEditCollateralModal,
-    onOpen: onOpenEditCollateralModal,
-  } = useDisclosure();
+
   const { position, isLoading: isLoadingPosition } =
     useUserOpenedPositions(market);
   const [myPosition, setMyPosition] = useState([]);
@@ -223,16 +218,6 @@ export const ExchangeUserInfo = () => {
                           <Td isNumeric>
                             <Menu>
                               <MenuButton>&hellip;</MenuButton>
-                              <MenuList bg="#202a36" border="0px">
-                                <MenuItem
-                                  icon={<EditIcon />}
-                                  bg="#202a36"
-                                  onClick={onOpenEditCollateralModal}
-                                ></MenuItem>
-                                <MenuItem icon={<StarIcon />} bg="#202a36">
-                                  Hello ETH Istanbul :D
-                                </MenuItem>
-                              </MenuList>
                             </Menu>
                           </Td>
                         </Tr>

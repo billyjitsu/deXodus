@@ -7,12 +7,12 @@ import {
 import { USDC_ABI } from "../../../smartContracts/USDC_Test";
 import { floatToBigInt } from "@/lib/bigIntegers";
 
-export async function approve(Erc20Address, spenderAddress, amount) {
+export async function approve(Erc20Address, spenderAddress, amount, decimals = 6) {
   const config = await prepareWriteContract({
     address: Erc20Address,
     abi: USDC_ABI,
     functionName: "approve",
-    args: [spenderAddress, floatToBigInt(amount)],
+    args: [spenderAddress, floatToBigInt(amount, decimals)],
     //chainId: chain.id,
   });
 

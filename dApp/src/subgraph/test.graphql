@@ -1,8 +1,8 @@
-query PositionsSummary($traderAddress: Bytes!, $marketId: BigInt!) {
+query PositionsSummary($traderAddress: Bytes!) {
   positions(
     orderBy: id
     orderDirection: desc
-    where: { trader: $traderAddress, isClosed: true, marketId: $marketId }
+    where: { trader: $traderAddress, isClosed: true }
   ) {
     id
     trader

@@ -61,7 +61,7 @@ export const OpenPositionButton = ({ collateral, leverage, type = "long" }) => {
 
   return (
     <Button
-      colorScheme="teal"
+      colorScheme="pink"
       size="lg"
       onClick={handleOpenPosition}
       isLoading={isLoading}

@@ -53,7 +53,7 @@ export const MintButton = ({ amount = 1000000 }) => {
 
   return (
     <Button
-      colorScheme="teal"
+      colorScheme="pink"
       onClick={write}
       isLoading={isLoading}
       loadingText="Submitting"

@@ -33,3 +33,17 @@ export async function openChest(chestAddress) {
 
   return data;
 }
+
+export async function claimNfts(chestAddress) {
+  const config = await prepareWriteContract({
+    address: chestAddress,
+    abi: chestABI,
+    functionName: "claimNfts",
+  });
+
+  const { hash } = await writeContract(config);
+
+  const data = await waitForTransaction({ hash });
+
+  return data;
+}
