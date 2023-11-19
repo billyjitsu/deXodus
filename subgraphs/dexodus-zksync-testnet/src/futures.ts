@@ -14,16 +14,175 @@ import {
 import {
   AdminChanged,
   BeaconUpgraded,
-  ClosePosition,
-  DecreasePosition,
-  IncreasePosition,
   Initialized,
-  LiquidatePosition,
-  OpenPosition,
   OwnershipTransferStarted,
   OwnershipTransferred,
+  Position,
+  PositionUpdate,
   Upgraded
 } from "../generated/schema"
+
+export function handleOpenPosition(event: OpenPositionEvent): void {
+  // create Position entity
+  let id = event.params.positionId.toString()
+  let position = new Position(id)
+  position.marketId = event.params.marketId
+  position.trader = event.params.trader
+  position.startedAt = event.params.startedAt
+  position.size = event.params.size
+  position.collateral = event.params.collateral
+  position.entryPrice = event.params.entryPrice
+  position.currentPrice = event.params.currentPrice
+  position.liqPrice = event.params.liqPrice
+  position.long = event.params.long
+  position.blockNumber = event.block.number
+  position.blockTimestamp = event.block.timestamp
+  position.transactionHash = event.transaction.hash
+  position.isClosed = false
+  position.save()
+
+  // create PositionUpdate entity
+  let positionUpdate = new PositionUpdate(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  positionUpdate.updateType = "open"
+  positionUpdate.size = event.params.size
+  positionUpdate.collateral = event.params.collateral
+  positionUpdate.entryPrice = event.params.entryPrice
+  positionUpdate.currentPrice = event.params.currentPrice
+  positionUpdate.liqPrice = event.params.liqPrice
+  positionUpdate.startedAt = event.params.startedAt
+  positionUpdate.blockNumber = event.block.number
+  positionUpdate.blockTimestamp = event.block.timestamp
+  positionUpdate.transactionHash = event.transaction.hash
+  positionUpdate.position = id
+  positionUpdate.save()
+}
+
+export function handleIncreasePosition(event: IncreasePositionEvent): void {
+  // update Position entity
+  let id = event.params.positionId.toString()
+  let position = Position.load(id)
+  position!.size = event.params.size
+  position!.collateral = event.params.collateral
+  position!.entryPrice = event.params.entryPrice
+  position!.currentPrice = event.params.currentPrice
+  position!.liqPrice = event.params.liqPrice
+  position!.transactionHash = event.transaction.hash
+  position!.save()
+
+  // create PositionUpdate entity
+  let positionUpdate = new PositionUpdate(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  positionUpdate.updateType = "inc-pos"
+  positionUpdate.size = event.params.size
+  positionUpdate.collateral = event.params.collateral
+  positionUpdate.entryPrice = event.params.entryPrice
+  positionUpdate.currentPrice = event.params.currentPrice
+  positionUpdate.liqPrice = event.params.liqPrice
+  positionUpdate.startedAt = event.params.startedAt
+  positionUpdate.blockNumber = event.block.number
+  positionUpdate.blockTimestamp = event.block.timestamp
+  positionUpdate.transactionHash = event.transaction.hash
+  positionUpdate.position = id
+  positionUpdate.save()
+}
+
+export function handleDecreasePosition(event: DecreasePositionEvent): void {
+  // update Position entity
+  let id = event.params.positionId.toString()
+  let position = Position.load(id)
+  position!.size = event.params.size
+  position!.collateral = event.params.collateral
+  position!.entryPrice = event.params.entryPrice
+  position!.currentPrice = event.params.currentPrice
+  position!.liqPrice = event.params.liqPrice
+  position!.transactionHash = event.transaction.hash
+  position!.save()
+
+  // create PositionUpdate entity
+  let positionUpdate = new PositionUpdate(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  positionUpdate.updateType = "dec-pos"
+  positionUpdate.size = event.params.size
+  positionUpdate.collateral = event.params.collateral
+  positionUpdate.entryPrice = event.params.entryPrice
+  positionUpdate.currentPrice = event.params.currentPrice
+  positionUpdate.liqPrice = event.params.liqPrice
+  positionUpdate.startedAt = event.params.startedAt
+  positionUpdate.blockNumber = event.block.number
+  positionUpdate.blockTimestamp = event.block.timestamp
+  positionUpdate.transactionHash = event.transaction.hash
+  positionUpdate.position = id
+  positionUpdate.save()
+}
+
+export function handleClosePosition(event: ClosePositionEvent): void {
+  // update Position entity
+  let id = event.params.positionId.toString()
+  let position = Position.load(id)
+  position!.size = event.params.size
+  position!.collateral = event.params.collateral
+  position!.entryPrice = event.params.entryPrice
+  position!.currentPrice = event.params.currentPrice
+  position!.liqPrice = event.params.liqPrice
+  position!.transactionHash = event.transaction.hash
+  position!.isClosed = true
+  position!.save()
+
+  // create PositionUpdate entity
+  let positionUpdate = new PositionUpdate(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  positionUpdate.updateType = "close"
+  positionUpdate.size = event.params.size
+  positionUpdate.collateral = event.params.collateral
+  positionUpdate.entryPrice = event.params.entryPrice
+  positionUpdate.currentPrice = event.params.currentPrice
+  positionUpdate.liqPrice = event.params.liqPrice
+  positionUpdate.startedAt = event.params.startedAt
+  positionUpdate.blockNumber = event.block.number
+  positionUpdate.blockTimestamp = event.block.timestamp
+  positionUpdate.transactionHash = event.transaction.hash
+  positionUpdate.position = id
+  positionUpdate.save()
+}
+
+export function handleLiquidatePosition(event: LiquidatePositionEvent): void {
+  // update Position entity
+  let id = event.params.positionId.toString()
+  let position = Position.load(id)
+  position!.size = event.params.size
+  position!.collateral = event.params.collateral
+  position!.entryPrice = event.params.entryPrice
+  position!.currentPrice = event.params.currentPrice
+  position!.liqPrice = event.params.liqPrice
+  position!.transactionHash = event.transaction.hash
+  position!.isClosed = true
+  position!.save()
+
+  // create PositionUpdate entity
+  let positionUpdate = new PositionUpdate(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  positionUpdate.updateType = "liq"
+  positionUpdate.size = event.params.size
+  positionUpdate.collateral = event.params.collateral
+  positionUpdate.entryPrice = event.params.entryPrice
+  positionUpdate.currentPrice = event.params.currentPrice
+  positionUpdate.liqPrice = event.params.liqPrice
+  positionUpdate.startedAt = event.params.startedAt
+  positionUpdate.blockNumber = event.block.number
+  positionUpdate.blockTimestamp = event.block.timestamp
+  positionUpdate.transactionHash = event.transaction.hash
+  positionUpdate.position = id
+  positionUpdate.save()
+}
+
+/** -------------------------------------------------------------------------------------------- */
+
 
 export function handleAdminChanged(event: AdminChangedEvent): void {
   let entity = new AdminChanged(
@@ -52,121 +211,11 @@ export function handleBeaconUpgraded(event: BeaconUpgradedEvent): void {
   entity.save()
 }
 
-export function handleClosePosition(event: ClosePositionEvent): void {
-  let entity = new ClosePosition(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.marketId = event.params.marketId
-  entity.positionId = event.params.positionId
-  entity.trader = event.params.trader
-  entity.startedAt = event.params.startedAt
-  entity.size = event.params.size
-  entity.collateral = event.params.collateral
-  entity.entryPrice = event.params.entryPrice
-  entity.liqPrice = event.params.liqPrice
-  entity.long = event.params.long
-  entity.currentPrice = event.params.currentPrice
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleDecreasePosition(event: DecreasePositionEvent): void {
-  let entity = new DecreasePosition(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.marketId = event.params.marketId
-  entity.positionId = event.params.positionId
-  entity.trader = event.params.trader
-  entity.startedAt = event.params.startedAt
-  entity.size = event.params.size
-  entity.collateral = event.params.collateral
-  entity.entryPrice = event.params.entryPrice
-  entity.liqPrice = event.params.liqPrice
-  entity.long = event.params.long
-  entity.currentPrice = event.params.currentPrice
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleIncreasePosition(event: IncreasePositionEvent): void {
-  let entity = new IncreasePosition(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.marketId = event.params.marketId
-  entity.positionId = event.params.positionId
-  entity.trader = event.params.trader
-  entity.startedAt = event.params.startedAt
-  entity.size = event.params.size
-  entity.collateral = event.params.collateral
-  entity.entryPrice = event.params.entryPrice
-  entity.liqPrice = event.params.liqPrice
-  entity.long = event.params.long
-  entity.currentPrice = event.params.currentPrice
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
 export function handleInitialized(event: InitializedEvent): void {
   let entity = new Initialized(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
   entity.version = event.params.version
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleLiquidatePosition(event: LiquidatePositionEvent): void {
-  let entity = new LiquidatePosition(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.marketId = event.params.marketId
-  entity.positionId = event.params.positionId
-  entity.trader = event.params.trader
-  entity.startedAt = event.params.startedAt
-  entity.size = event.params.size
-  entity.collateral = event.params.collateral
-  entity.entryPrice = event.params.entryPrice
-  entity.liqPrice = event.params.liqPrice
-  entity.long = event.params.long
-  entity.currentPrice = event.params.currentPrice
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleOpenPosition(event: OpenPositionEvent): void {
-  let entity = new OpenPosition(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.marketId = event.params.marketId
-  entity.positionId = event.params.positionId
-  entity.trader = event.params.trader
-  entity.startedAt = event.params.startedAt
-  entity.size = event.params.size
-  entity.collateral = event.params.collateral
-  entity.entryPrice = event.params.entryPrice
-  entity.liqPrice = event.params.liqPrice
-  entity.long = event.params.long
-  entity.currentPrice = event.params.currentPrice
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
