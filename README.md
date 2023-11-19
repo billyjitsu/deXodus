@@ -1,66 +1,29 @@
-## Foundry
+<div align="center">
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+# DeXodus
 
-Foundry consists of:
+![cover](img/dexodus_cover.png)
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
 
-## Documentation
+---
 
-https://book.getfoundry.sh/
+DeXodus is the next generation decentralized perpetual exchange for everyone. This project was born out of sweat, blood and copious amounts of ayram during the legendary hackathon of ETH Global Istanbul 2023. 
 
-## Usage
+We wanted to thank everyone who helped bring this event together and wish the best of luck to all our competitors who have shared this experience with us. We had an amazing time and we hope you all did as well.
 
-### Build
+To immortalize the event, we have developed a few unique traits (EtH Global beanie, t-shirt and shish kebab) for our NFT collection that will be airdropped exclusively to the first 40 users of our testnet deployment. We hope you like it and look forward to your feedback!
 
-```shell
-$ forge build
-```
+![istanbul guardian](img/istanbul_guardian.png)
 
-### Test
+---
 
-```shell
-$ forge test
-```
+[Prize Submissions](#prize-submission) •
+[Important Links](#important-links)
 
-### Format
+---
 
-```shell
-$ forge fmt
-```
+</div>
 
-### Gas Snapshots
+# Prize Subsmissions
 
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+# Important Links
