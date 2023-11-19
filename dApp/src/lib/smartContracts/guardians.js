@@ -12,13 +12,9 @@ export async function mintBatch(address, deployment) {
 
     const randomNumber = () => {
       return Math.floor(Math.random() * 199) + 1;
-    }
+    };
     // Create array with 3 random numbers
-    const randomNumbers = [
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-    ];
+    const randomNumbers = [randomNumber(), randomNumber(), randomNumber()];
 
     const tx = await contract.mintBatch(address, randomNumbers, [1, 1, 1]);
 
