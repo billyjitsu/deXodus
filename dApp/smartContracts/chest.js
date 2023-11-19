@@ -173,19 +173,6 @@ export const chestABI = [
     type: "event",
   },
   {
-    inputs: [],
-    name: "areRandomNumbersReady",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "address",

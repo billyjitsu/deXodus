@@ -5,6 +5,22 @@ export const LiquidityPoolABI = [
     type: "constructor",
   },
   {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "available",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "required",
+        type: "uint256",
+      },
+    ],
+    name: "LiquidityPool__InsufficientAvailableLiquidity",
+    type: "error",
+  },
+  {
     anonymous: false,
     inputs: [
       {
@@ -237,6 +253,19 @@ export const LiquidityPoolABI = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "availableLiquidity",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -256,10 +285,47 @@ export const LiquidityPoolABI = [
     type: "function",
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "address",
+        name: "_to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_amount",
+        type: "uint256",
+      },
+    ],
+    name: "benefitsToTrader",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_amount",
+        type: "uint256",
+      },
+    ],
     name: "blockLiquidity",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "blockedAmount",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -338,6 +404,19 @@ export const LiquidityPoolABI = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "futuresContract",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -377,6 +456,11 @@ export const LiquidityPoolABI = [
         internalType: "string",
         name: "_symbol",
         type: "string",
+      },
+      {
+        internalType: "address",
+        name: "_futuresContract",
+        type: "address",
       },
     ],
     name: "initialize",
@@ -536,7 +620,13 @@ export const LiquidityPoolABI = [
     type: "function",
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_amount",
+        type: "uint256",
+      },
+    ],
     name: "unblockLiquidity",
     outputs: [],
     stateMutability: "nonpayable",

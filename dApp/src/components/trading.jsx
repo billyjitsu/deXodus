@@ -228,7 +228,7 @@ export const Trading = ({ type = "long" }) => {
           </DrawerBody>
           <DrawerFooter className="bg-gray-900">
             <Button
-              colorScheme="teal"
+              colorScheme="pink"
               variant="outline"
               mr={3}
               onClick={onClose}

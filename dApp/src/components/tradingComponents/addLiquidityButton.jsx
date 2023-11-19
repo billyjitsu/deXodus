@@ -52,7 +52,7 @@ export const AddLiquidityButton = ({ amount }) => {
 
   return (
     <Button
-      colorScheme="teal"
+      colorScheme="pink"
       size="lg"
       onClick={handleAddLiquidity}
       isLoading={isLoading}
