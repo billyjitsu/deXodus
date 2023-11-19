@@ -61,8 +61,8 @@ Our roadmap reflects our commitment to continuous improvement, emphasizing the e
 |Futures                       |[0x25689D5a6ba0274C2B160400Fb8BF78AA5FF8677](https://zksync2-testnet.zkscan.io/address/0x25689D5a6ba0274C2B160400Fb8BF78AA5FF8677/transactions)    |
 |EXD                           |[0xc7Cfb58925C4454010D20aBC40AB19a3B6EdB59d](https://zksync2-testnet.zkscan.io/address/0xc7Cfb58925C4454010D20aBC40AB19a3B6EdB59d/transactions)    |
 |MockUSDC                      |[0xd8b8E8530a3DAA309886fcCF80761Fe81e2dF4d0](https://zksync2-testnet.zkscan.io/address/0xd8b8E8530a3DAA309886fcCF80761Fe81e2dF4d0/transactions)    |
-|Chest                         |[](https://zksync2-testnet.zkscan.io/address/0x71C7656EC7ab88b098defB751B7401B5f6d8976F/transactions)    |
-|Guardians                     |[](https://zksync2-testnet.zkscan.io/address/0x71C7656EC7ab88b098defB751B7401B5f6d8976F/transactions)    |
+|Chest                         |[0x19a1e1A411539fa2e7b1f4988e9f6A8F62307B33](https://zksync2-testnet.zkscan.io/address/0x19a1e1A411539fa2e7b1f4988e9f6A8F62307B33/transactions)    |
+|Guardians                     |[0xe3CB645a3b550dbAB7C3f6fb92600DcC56F64581](https://zksync2-testnet.zkscan.io/address/0xe3CB645a3b550dbAB7C3f6fb92600DcC56F64581/transactions)    |
 |PriceFeed                     |[0xC325172aa7237F332843adC575AbF11A36081Ba6](https://zksync2-testnet.zkscan.io/address/0xC325172aa7237F332843adC575AbF11A36081Ba6/transactions)    |
 |Paymasters                    |[0x1AE6569a8Aa548ab994e7567D6410C047E2530c9](https://zksync2-testnet.zkscan.io/address/0x1AE6569a8Aa548ab994e7567D6410C047E2530c9/transactions)    |
 
