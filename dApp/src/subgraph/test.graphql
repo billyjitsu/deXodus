@@ -1,0 +1,28 @@
+query PositionsSummary($traderAddress: Bytes!, $marketId: BigInt!) {
+  positions(
+    orderBy: id
+    orderDirection: desc
+    where: { trader: $traderAddress, isClosed: true, marketId: $marketId }
+  ) {
+    id
+    trader
+    marketId
+    long
+    isClosed
+    collateral
+    size
+    entryPrice
+    currentPrice
+    liqPrice
+    blockTimestamp
+    positionUpdates(orderBy: blockTimestamp, orderDirection: asc) {
+      updateType
+      collateral
+      size
+      entryPrice
+      currentPrice
+      liqPrice
+      blockTimestamp
+    }
+  }
+}
