@@ -64,28 +64,26 @@ Our roadmap reflects our commitment to continuous improvement, emphasizing the e
 #### ZKSync Era Testnet
 |Contract                      |Address                                          |
 |------------------------------|-------------------------------------------------|
-|LiquidityPool                 |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
-|Futures                       |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
-|EXD                           |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
-|MockUSDC                      |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
-|Chest                         |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
-|Guardians                     |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
-|RandomNumbers                 |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
-|PriceFeed                     |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
-|Paymasters                    |0x71C7656EC7ab88b098defB751B7401B5f6d8976F       |
+|LiquidityPool                 |[0x2Db1578266C1fF74e1d3ba82051d97BDC1a3D342](https://zksync2-testnet.zkscan.io/address/0x2Db1578266C1fF74e1d3ba82051d97BDC1a3D342/transactions)    |
+|Futures                       |[0x25689D5a6ba0274C2B160400Fb8BF78AA5FF8677](https://zksync2-testnet.zkscan.io/address/0x25689D5a6ba0274C2B160400Fb8BF78AA5FF8677/transactions)    |
+|EXD                           |[0xc7Cfb58925C4454010D20aBC40AB19a3B6EdB59d](https://zksync2-testnet.zkscan.io/address/0xc7Cfb58925C4454010D20aBC40AB19a3B6EdB59d/transactions)    |
+|MockUSDC                      |[0xd8b8E8530a3DAA309886fcCF80761Fe81e2dF4d0](https://zksync2-testnet.zkscan.io/address/0xd8b8E8530a3DAA309886fcCF80761Fe81e2dF4d0/transactions)    |
+|Chest                         |[0x19a1e1A411539fa2e7b1f4988e9f6A8F62307B33](https://zksync2-testnet.zkscan.io/address/0x19a1e1A411539fa2e7b1f4988e9f6A8F62307B33/transactions)    |
+|Guardians                     |[0xe3CB645a3b550dbAB7C3f6fb92600DcC56F64581](https://zksync2-testnet.zkscan.io/address/0xe3CB645a3b550dbAB7C3f6fb92600DcC56F64581/transactions)    |
+|PriceFeed                     |[0xC325172aa7237F332843adC575AbF11A36081Ba6](https://zksync2-testnet.zkscan.io/address/0xC325172aa7237F332843adC575AbF11A36081Ba6/transactions)    |
+|Paymasters                    |[0x1AE6569a8Aa548ab994e7567D6410C047E2530c9](https://zksync2-testnet.zkscan.io/address/0x1AE6569a8Aa548ab994e7567D6410C047E2530c9/transactions)    |
 
 #### ETH Sepolia
 |Contract                      |Address                                          |
 |------------------------------|-------------------------------------------------|
-|LiquidityPool                 |[0x5D9f08d5b65662a53E30C4E510968AcC6d015651](https://sepolia.etherscan.io/address/0x5D9f08d5b65662a53E30C4E510968AcC6d015651)       |
-|Futures                       |[0x0d1cC1c963CdE4DF833bFCa7898D8dfEd713CF44](https://sepolia.etherscan.io/address/0x0d1cC1c963CdE4DF833bFCa7898D8dfEd713CF44)       |
-|EXD                           |[0xaf2aa7917250689Df2692d3249d94292F30491F8](https://sepolia.etherscan.io/address/0xaf2aa7917250689Df2692d3249d94292F30491F8)       |
-|MockUSDC                      |[0x13D0A4EBeAfCaFB6C84AE35753C04FBF3Eb3663F](https://sepolia.etherscan.io/address/0x13D0A4EBeAfCaFB6C84AE35753C04FBF3Eb3663F)       |
-|Chest                         |[0x9Baca60f3Bd0A5376631cf4Bf9b5A807B99A10B0](https://sepolia.etherscan.io/address/0x9Baca60f3Bd0A5376631cf4Bf9b5A807B99A10B0)       |
-|Guardians                     |[0xFa62AF99ee54B75Fc0Fddce81DC9607ebd4cC986](https://sepolia.etherscan.io/address/0xFa62AF99ee54B75Fc0Fddce81DC9607ebd4cC986)      |
-|RandomNumbers                 |[0xE0Be7fE3Bab804B5F4CA9308C996C16569Df62D0](https://sepolia.etherscan.io/address/0xE0Be7fE3Bab804B5F4CA9308C996C16569Df62D0)       |
-|PriceFeed                     |[0x7d2A50F28D5c200b55B7cbB1c2E1c8cE1E74b255](https://sepolia.etherscan.io/address/0x7d2A50F28D5c200b55B7cbB1c2E1c8cE1E74b255)       |
-
+|LiquidityPool                 |[0x5D9f08d5b65662a53E30C4E510968AcC6d015651](https://sepolia.etherscan.io/address/0x5D9f08d5b65662a53E30C4E510968AcC6d015651)  |
+|Futures                       |[0x0d1cC1c963CdE4DF833bFCa7898D8dfEd713CF44](https://sepolia.etherscan.io/address/0x0d1cC1c963CdE4DF833bFCa7898D8dfEd713CF44)  |
+|EXD                           |[0xaf2aa7917250689Df2692d3249d94292F30491F8](https://sepolia.etherscan.io/address/0xaf2aa7917250689Df2692d3249d94292F30491F8)  |
+|MockUSDC                      |[0x13D0A4EBeAfCaFB6C84AE35753C04FBF3Eb3663F](https://sepolia.etherscan.io/address/0x13D0A4EBeAfCaFB6C84AE35753C04FBF3Eb3663F)  |
+|Chest                         |[0x9Baca60f3Bd0A5376631cf4Bf9b5A807B99A10B0](https://sepolia.etherscan.io/address/0x9Baca60f3Bd0A5376631cf4Bf9b5A807B99A10B0)  |
+|Guardians                     |[0xFa62AF99ee54B75Fc0Fddce81DC9607ebd4cC986](https://sepolia.etherscan.io/address/0xFa62AF99ee54B75Fc0Fddce81DC9607ebd4cC986)  |
+|RandomNumbers                 |[0xE0Be7fE3Bab804B5F4CA9308C996C16569Df62D0](https://sepolia.etherscan.io/address/0xE0Be7fE3Bab804B5F4CA9308C996C16569Df62D0)  |
+|PriceFeed                     |[0x7d2A50F28D5c200b55B7cbB1c2E1c8cE1E74b255](https://sepolia.etherscan.io/address/0x7d2A50F28D5c200b55B7cbB1c2E1c8cE1E74b255)  |
 
 
 

@@ -113,14 +113,14 @@ async function executeTransactions(positions, wallet, chain) {
 schedule.scheduleJob("*/30 * * * * *", function () {
   processLiquidations(
     "sepolia",
-    "https://api.studio.thegraph.com/query/58823/dexodus-ethsepolia/v0.0.4",
+    "https://api.studio.thegraph.com/query/58823/dexodus-ethsepolia/v0.0.5",
     "https://eth-sepolia.g.alchemy.com/v2/04kRge27WZPW67uUVJMnkyjhZSUMCHlg"
   );
-  /*processLiquidations(
+  processLiquidations(
     "zkSync",
-    "https://api.studio.thegraph.com/query/58823/dexodus-ethsepolia/v0.0.4",
+    "https://api.studio.thegraph.com/query/58823/dexodus-zksync-testnet/v0.0.1",
     "https://sepolia.infura.io/v3/"
-  );*/
+  );
 });
 
 app.listen(port, () => {
