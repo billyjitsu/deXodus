@@ -52,30 +52,44 @@ contract PriceFeed is UUPSUpgradeable, Ownable2StepUpgradeable {
 
     function getUsdPriceFromChainlink(address _token) public view returns (uint256) {
         AggregatorV3Interface priceFeed = s_tokenPriceFeed[_token];
-        (, int256 price, , , ) = priceFeed.latestRoundData(); // to be upgraded in future for security reasons
+        (, int256 price, , , ) = priceFeed.latestRoundData();
         return uint256(price);
     }
 
     // FUNCTION TO CHECK IF THE PRICE OF THE TRANSACTION IS CORRECT
     function isAcceptablePrice(
         uint256 _futureId,
-        uint256 _entryPrice,
-        uint256 _percentAllowed,
-        bool _long
+        uint256 _entryPrice
+        /*bool _long*/
     ) external view returns (bool) {
+        bool _long = true; //only longs for now!
         // ej percent allowed: 10 (= 0.1%), 50 (= 0.5%), 500 (= 5%), 5000 (50%), 10000 (100%)
-        uint256 diff = (_entryPrice * _percentAllowed) / 10000;
+        uint256 diff = (_entryPrice * 50) / 10000;
         uint256 value2max = _entryPrice + diff;
         uint256 value2min = _entryPrice - diff;
 
         uint256 currentPrice;
-        if (_futureId == 1) {
-            currentPrice = getUsdPriceFromChainlink(wbtc);
-        } else {
-            currentPrice = getUsdPriceFromChainlink(weth);
+
+        uint256 id;
+        assembly {
+            id := chainid()
         }
 
-        currentPrice = currentPrice * 1e6 / 1e8;
+        if (id == 280) { // zkSync testnet
+            if (_futureId == 1) {
+                currentPrice = readDataFeedFromApi3(address(0xe5Cf15fED24942E656dBF75165aF1851C89F21B5));
+            } else {
+                currentPrice = readDataFeedFromApi3(address(0x26690F9f17FdC26D419371315bc17950a0FC90eD));
+            }
+            currentPrice = currentPrice * 1e6 / 1e18;
+        } else {
+            if (_futureId == 1) {
+                currentPrice = getUsdPriceFromChainlink(wbtc);
+            } else {
+                currentPrice = getUsdPriceFromChainlink(weth);
+            }
+            currentPrice = currentPrice * 1e6 / 1e8;
+        }
 
         // console.log("diff         -> ", diff);
         // console.log("value2max    -> ", value2max);
@@ -94,12 +108,13 @@ contract PriceFeed is UUPSUpgradeable, Ownable2StepUpgradeable {
         return true;
     }
 
-    function isAcceptablePrice(
-        uint256 _futureId,
-        uint256 _entryPrice
-    ) external view returns (bool) {
-        return true;
-    }
+    // function only for testing and mock the price always as acceptable
+    // function isAcceptablePrice(
+    //     uint256 _futureId,
+    //     uint256 _entryPrice
+    // ) external view returns (bool) {
+    //     return true;
+    // }
 
     function version() external pure returns (uint256) {
         return 1;

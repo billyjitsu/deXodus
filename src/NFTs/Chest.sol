@@ -50,43 +50,33 @@ contract Chest is ERC1155, Ownable {
     function openChest() public onlyWhenNotMinting {
         exd.transferFrom(msg.sender, address(this), chestPrice);    // burn exd
         _burn(msg.sender, 1, 1);
-        _getPredatorIds();
+        _getGuardiansIds();
     }
 
-    function _getPredatorIds() internal returns (uint256[] memory) {
+    function _getGuardiansIds() internal {
         nextUserToMint = msg.sender;
         minting = 2;
-        randomNumbers.makeRequestUint256Array(3);
-    }
-
-    function areRandomNumbersReady() public view returns (bool) {
-        uint256[] memory randoms = randomNumbers.getRandomNumberArray();
-        if (randoms[0] != 0) return true;
-        return false;
+        randomNumbers.makeRequestUint256();
     }
 
     function claimNfts() public onlynextUserToMint {
         nextUserToMint = address(0);
         minting = 1;
 
-        uint256[] memory randoms = randomNumbers.getRandomNumberArray();
+        uint256 random = randomNumbers.getRandomNumber();
 
-        require(randoms[0] != 0, "Randoms still not available!");
+        require(random != 0, "Randoms still not available!");
         
-        uint256[] memory ids = new uint256[](3);
+        uint256[] memory ids = new uint256[](1);
 
-        ids[0] = randoms[0] % 200;
-        ids[1] = randoms[1] % 200;
-        ids[2] = randoms[2] % 200;
+        ids[0] = random % 200;
 
-        uint256[] memory amounts = new uint256[](3);
+        uint256[] memory amounts = new uint256[](1);
         amounts[0] = 1;
-        amounts[1] = 1;
-        amounts[2] = 1;
 
         guardians.mintBatch(msg.sender, ids, amounts);
 
-        randomNumbers.clearRandomsArray();
+        randomNumbers.clearRandom();
     }
 
     function clearMinting() public onlyOwner {

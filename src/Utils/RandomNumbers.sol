@@ -138,8 +138,7 @@ contract RandomNumbers is RrpRequesterV0, Ownable {
         );
     }
 
-    function clearRandomsArray() external onlyChestContract {
-        uint256[] memory emptyArray = new uint256[](10);
-        _qrngUint256Array = emptyArray;
+    function clearRandom() external onlyChestContract {
+        _qrngUint256 = 0;
     }
 }

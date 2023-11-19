@@ -12,7 +12,7 @@ contract Guardians is ERC1155, Ownable {
     string public name;
     string public symbol;
 
-    struct PredatorAttributes {
+    struct GuardiansAttributes {
         Animal animal;
         Evolution evolution;
         uint256 age;
@@ -33,8 +33,8 @@ contract Guardians is ERC1155, Ownable {
         Bear
     }
 
-    // mapping(PredatorAttributes attribute => uint256 quantity) globalQuantityPerAttribute;
-    mapping(uint256 id => PredatorAttributes attribute) public predatorAttributes;
+    // mapping(GuardiansAttributes attribute => uint256 quantity) globalQuantityPerAttribute;
+    mapping(uint256 id => GuardiansAttributes attribute) public guardiansAttributes;
     mapping(uint256 age => uint256 maxExperience) public maxExpPerAge;      // exp max to change age
     mapping(Evolution evolution => uint256 maxAge) public ageToEvolution;   // age max to evolve
     mapping(address => uint256[]) public holdings;
@@ -60,25 +60,25 @@ contract Guardians is ERC1155, Ownable {
 
     // we can cut this
     function increaseExperience(uint256 _id, uint256 _expIncrease) public {
-        uint256 age = predatorAttributes[_id].age;
-        uint256 exp = predatorAttributes[_id].experience;
-        Evolution evolution = predatorAttributes[_id].evolution;
+        uint256 age = guardiansAttributes[_id].age;
+        uint256 exp = guardiansAttributes[_id].experience;
+        Evolution evolution = guardiansAttributes[_id].evolution;
         uint256 maxExp;
 
         while(_expIncrease > 0){
             maxExp = maxExpPerAge[age];
             if (exp + _expIncrease < maxExp) {
-                predatorAttributes[_id].experience += _expIncrease;
+                guardiansAttributes[_id].experience += _expIncrease;
                 _expIncrease = 0;
             } else if (age == ageToEvolution[evolution]) {
-                predatorAttributes[_id].experience = maxExp;
+                guardiansAttributes[_id].experience = maxExp;
                 _expIncrease = 0;
             } else {
                 uint256 _expIncrease = _expIncrease + exp - maxExp;
-                predatorAttributes[_id].experience = 0;
+                guardiansAttributes[_id].experience = 0;
                 exp = 0;
                 age++;
-                predatorAttributes[_id].age++;
+                guardiansAttributes[_id].age++;
             }
         }
     }
@@ -87,7 +87,7 @@ contract Guardians is ERC1155, Ownable {
     function evolve(address _to, uint256[] calldata _ids) public {
         require(_ids.length == 4);
 
-        Evolution ev = predatorAttributes[_ids[0]].evolution;
+        Evolution ev = guardiansAttributes[_ids[0]].evolution;
         uint256 maxAge = ageToEvolution[ev];
         require(_checkMaxAges(_ids, maxAge));
 
@@ -105,17 +105,17 @@ contract Guardians is ERC1155, Ownable {
     }
 
     function _checkMaxAges(uint256[] calldata _ids, uint256 _maxAge) internal returns (bool) {
-        return  predatorAttributes[_ids[0]].age == _maxAge &&
-                predatorAttributes[_ids[1]].age == _maxAge &&
-                predatorAttributes[_ids[2]].age == _maxAge &&
-                predatorAttributes[_ids[3]].age == _maxAge;
+        return  guardiansAttributes[_ids[0]].age == _maxAge &&
+                guardiansAttributes[_ids[1]].age == _maxAge &&
+                guardiansAttributes[_ids[2]].age == _maxAge &&
+                guardiansAttributes[_ids[3]].age == _maxAge;
     }
 
     function _checkMaxExperiences(uint256[] calldata _ids, uint _maxExp) internal returns (bool) {
-        return  predatorAttributes[_ids[0]].experience == _maxExp &&
-                predatorAttributes[_ids[1]].experience == _maxExp &&
-                predatorAttributes[_ids[2]].experience == _maxExp &&
-                predatorAttributes[_ids[3]].experience == _maxExp;
+        return  guardiansAttributes[_ids[0]].experience == _maxExp &&
+                guardiansAttributes[_ids[1]].experience == _maxExp &&
+                guardiansAttributes[_ids[2]].experience == _maxExp &&
+                guardiansAttributes[_ids[3]].experience == _maxExp;
     }
 
     function mintBatchFromOwner(address to, uint256[] memory ids, uint256[] memory amounts) public onlyOwner {
